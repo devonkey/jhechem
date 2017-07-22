@@ -1,0 +1,43 @@
+ext {
+    version = [
+            'spring': '4.2.9.RELEASE',
+            'common': '1.2.7-29e0bce',
+            'druid': '1.0.15',
+            'mybatis': '3.3.0',
+            'mybatis-spring': '1.2.3',
+            'mysql-connector': '5.1.36',
+            'redis': '2.8.1',
+            'zookeeper': '3.4.6',
+            'curator-framework': '2.11.0',
+            'commons-beanutils': '1.8.3',
+            'commons-lang3': '3.3.1',
+            'commons-codec': '1.10',
+            'junit': '4.11',
+            'hibernate-validator': '5.2.0.Final',
+            'validation-api': '1.1.0.Final',
+            'javax.servlet-api': '3.1.0',
+    ]
+    dependencies = [
+            'dongjia-common': 'cn.idongjia:common:' + version['common'],
+
+            'spring-context': 'org.springframework:spring-context:' + version['spring'],
+            'spring-web': 'org.springframework:spring-web:' + version['spring'],
+            'spring-webmvc': 'org.springframework:spring-webmvc:' + version['spring'],
+            'spring-jdbc': 'org.springframework:spring-jdbc:' + version['spring'],
+            'spring-test': 'org.springframework:spring-test:' + version['spring'],
+            'redis': 'redis.clients:jedis:' + version['redis'],
+            'druid': 'com.alibaba:druid:' + version['druid'],
+            'mybatis': 'org.mybatis:mybatis:' + version['mybatis'],
+            'mybatis-spring': 'org.mybatis:mybatis-spring:' + version['mybatis-spring'],
+            'mysql-connector': 'mysql:mysql-connector-java:' + version['mysql-connector'],
+            'zookeeper': 'org.apache.zookeeper:zookeeper:' + version['zookeeper'],
+            'curator-framework': 'org.apache.curator:curator-framework:' + version['curator-framework'],
+            'commons-beanutils': 'commons-beanutils:commons-beanutils:' + version['commons-beanutils'],
+            'commons-lang3': 'org.apache.commons:commons-lang3:' + version['commons-lang3'],
+            'commons-codec': 'commons-codec:commons-codec:' + version['commons-codec'],
+            'junit': 'junit:junit:' + version['junit'],
+            'hibernate-validator': 'org.hibernate:hibernate-validator:' + version['hibernate-validator'],
+            'validation-api': 'javax.validation:validation-api:' + version['validation-api'],
+            'javax.servlet-api': 'javax.servlet:javax.servlet-api:' + version['javax.servlet-api'],
+    ]
+}

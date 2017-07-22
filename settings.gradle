@@ -1,0 +1,7 @@
+include 'core','lib','order','web'
+
+project(':core').projectDir = "$rootDir/core" as File
+project(':lib').projectDir = "$rootDir/lib" as File
+project(':order').projectDir = "$rootDir/order" as File
+project(':web').projectDir = "$rootDir/web" as File
+

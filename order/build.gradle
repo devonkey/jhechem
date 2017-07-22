@@ -1,0 +1,39 @@
+apply plugin: 'war'
+
+war {
+    archiveName = "order.war"
+}
+
+dependencies {
+
+    compile project(":core")
+    compile project(":lib")
+
+    compile rootProject.ext.dependencies['dongjia-common']
+
+    // spring
+    compile rootProject.ext.dependencies['spring-context']
+    compile rootProject.ext.dependencies['spring-web']
+    compile rootProject.ext.dependencies['spring-webmvc']
+    compile rootProject.ext.dependencies['spring-jdbc']
+
+    // 数据访问
+    compile rootProject.ext.dependencies['mysql-connector']
+    compile rootProject.ext.dependencies['druid']
+    compile rootProject.ext.dependencies['mybatis']
+    compile rootProject.ext.dependencies['mybatis-spring']
+
+    //zookeeper
+    compile rootProject.ext.dependencies['zookeeper']
+    compile rootProject.ext.dependencies['curator-framework']
+    // beanutils
+    compile rootProject.ext.dependencies['commons-beanutils']
+    // tools
+    compile rootProject.ext.dependencies['commons-lang3']
+    compile rootProject.ext.dependencies['commons-codec']
+    compile rootProject.ext.dependencies['hibernate-validator']
+    compile rootProject.ext.dependencies['javax.servlet-api']
+    // test
+    compile rootProject.ext.dependencies['spring-test']
+    compile rootProject.ext.dependencies['junit']
+}

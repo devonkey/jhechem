@@ -1,0 +1,40 @@
+apply from: "config.gradle"
+
+subprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'maven-publish'
+    apply plugin: 'maven'
+    group 'top.jhechem'
+
+    version = '1.0.0'
+
+    // JVM 版本号要求
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    // java编译的时候缺省状态下会因为中文字符而失败
+    [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
+
+    repositories {
+        mavenCentral()
+    }
+
+    jar {
+        manifest {
+            attributes("Implementation-Title": "Gradle")
+        }
+    }
+
+    configurations {
+        // 所有需要忽略的包定义在此
+        all*.exclude module: 'log4j'
+        all*.exclude module: 'slf4j-log4j12'
+    }
+
+}
+
+def getGitVersion(prefix, withGit) {
+    return prefix + (withGit ? ('-' + ('git rev-parse --short HEAD'.execute().text.trim())) : '')
+}

@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.jhechem.order.mapper.OrderMapper">
+
+    <resultMap id="orderMap" type="top.jhechem.order.pojo.Order">
+        <id column="bookid" property="bookid"/>
+        <result property="paixu" column="paixu"/>
+        <result property="casno" column="casno"/>
+        <result property="bookname" column="bookname"/>
+        <result property="enbookname" column="enbookname"/>
+        <result property="ordernum" column="ordernum"/>
+        <result property="fapiaonum" column="fapiaonum"/>
+        <result property="krname" column="krname"/>
+        <result property="date1" column="date1"/>
+        <result property="date2" column="date2"/>
+        <result property="cjsl" column="cjsl"/>
+        <result property="style" column="style"/>
+        <result property="price1" column="price1"/>
+        <result property="price2" column="price2"/>
+        <result property="ysfs" column="ysfs"/>
+        <result property="ysfy" column="ysfy"/>
+        <result property="hl" column="hl"/>
+        <result property="zsh" column="zsh"/>
+        <result property="huokuan" column="huokuan"/>
+        <result property="lirun" column="lirun"/>
+        <result property="yundan" column="yundan"/>
+        <result property="date3" column="date3"/>
+        <result property="cpgg" column="cpgg"/>
+        <result property="baozhuang" column="baozhuang"/>
+        <result property="isyp" column="isyp"/>
+        <result property="gyscontact" column="gyscontact"/>
+        <result property="gysname" column="gysname"/>
+        <result property="iskucun" column="iskucun"/>
+        <result property="kucun" column="kucun"/>
+        <result property="fj1" column="fj1"/>
+        <result property="fj2" column="fj2"/>
+        <result property="ywy" column="ywy"/>
+        <result property="isjs" column="isjs"/>
+        <result property="isdh" column="isdh"/>
+        <result property="isfh" column="isfh"/>
+        <result property="isfp" column="isfp"/>
+        <result property="isfxbg" column="isfxbg"/>
+        <result property="zhfrom" column="zhfrom"/>
+        <result property="ists" column="ists"/>
+        <result property="date4" column="date4"/>
+        <result property="issh" column="issh"/>
+        <result property="iskp" column="iskp"/>
+        <result property="isgcfp" column="isgcfp"/>
+        <result property="mylx" column="mylx"/>
+        <result property="ishx" column="ishx"/>
+        <result property="date5" column="date5"/>
+        <result property="iswcts" column="iswcts"/>
+        <result property="ishkqf" column="ishkqf"/>
+        <result property="qgchk" column="qgchk"/>
+        <result property="krqk" column="krqk"/>
+        <result property="isok" column="isok"/>
+        <result property="krkpdz" column="krkpdz"/>
+        <result property="krfhdz" column="krfhdz"/>
+        <result property="content" column="content"/>
+    </resultMap>
+
+
+    <insert id="add" parameterType="top.jhechem.order.pojo.Order"
+            useGeneratedKeys="true" keyProperty="bookid">
+        INSERT INTO jh_order (<include refid="columnAdd"/>)
+        VALUES (<include refid="insertBody"/>);
+    </insert>
+
+    <update id="update" parameterType="top.jhechem.order.pojo.Order">
+        UPDATE jh_order
+        <include refid="updateBody"/>
+        WHERE `bookid` = #{bookid}
+    </update>
+
+    <update id="delete" parameterType="java.lang.Long">
+        UPDATE jh_order
+        SET `bookid` = `bookid`
+        WHERE `bookid` = #{0}
+    </update>
+
+    <select id="get" parameterType="java.lang.Long" resultMap="orderMap">
+        SELECT
+        <include refid="columnGet"/>
+        FROM jh_order
+        WHERE `bookid` = #{0}
+    </select>
+
+    <select id="list" parameterType="java.lang.Long" resultMap="orderMap">
+        SELECT
+        <include refid="columnGet"/>
+        FROM jh_order
+        WHERE 1=1
+        <include refid="searchBody"/>
+        <if test="offset != null">offset #{offset}</if>
+        <if test="limit != null">limit #{limit}</if>
+    </select>
+
+
+    <sql id="columnAdd">
+      `paixu`, `casno`, `bookname`, `enbookname`, `ordernum`, `fapiaonum`, `krname`, `date1`,
+`date2`, `cjsl`, `style`, `price1`, `price2`, `ysfs`, `ysfy`, `hl`, `zsh`, `huokuan`,
+`lirun`, `yundan`, `date3`, `cpgg`, `baozhuang`, `isyp`, `gyscontact`, `gysname`,
+`iskucun`, `kucun`, `fj1`, `fj2`, `ywy`, `isjs`, `isdh`, `isfh`, `isfp`, `isfxbg`,
+`zhfrom`, `ists`, `date4`, `issh`, `iskp`, `isgcfp`, `mylx`, `ishx`, `date5`, `iswcts`,
+`ishkqf`, `qgchk`, `krqk`, `isok`, `krkpdz`, `krfhdz`, `content`
+    </sql>
+
+    <sql id="columnGet">
+        bookid, paixu, casno, bookname, enbookname, ordernum, fapiaonum, krname,
+        IFNULL(date1,unix_timestamp(date1)) date1, IFNULL(date2,unix_timestamp(date2)) date2, cjsl, style,
+        price1, price2, ysfs, ysfy, hl, zsh, huokuan, lirun, yundan,
+        IFNULL(date3,unix_timestamp(date3)) date3, cpgg, baozhuang, isyp,
+        gyscontact, gysname, iskucun, kucun, fj1, fj2, ywy, isjs,
+        isdh, isfh, isfp, isfxbg, zhfrom, ists,
+        IFNULL(date4,unix_timestamp(date4)) date4, issh, iskp, isgcfp,
+        mylx, ishx, IFNULL(date5,unix_timestamp(date5)) date5, iswcts, ishkqf, qgchk, krqk,
+        isok, krkpdz, krfhdz, content
+    </sql>
+
+    <sql id="insertBody">
+        <choose>
+            <when test="paixu !=null and paixu != ''">#{paixu}</when>
+            <otherwise>0</otherwise>
+        </choose>
+        <choose>
+            <when test="casno !=null and casno != ''">,#{casno}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="bookname !=null and bookname != ''">,#{bookname}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="enbookname !=null and enbookname != ''">,#{enbookname}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="ordernum !=null and ordernum != ''">,#{ordernum}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="fapiaonum !=null and fapiaonum != ''">,#{fapiaonum}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="krname !=null and krname != ''">,#{krname}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="date1 !=null and date1 != ''">,from_unixtime(#{date1})</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="date2 !=null and date2 != ''">,from_unixtime(#{date2})</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="cjsl !=null and cjsl != ''">,#{cjsl}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="style !=null and style != ''">,#{style}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="price1 !=null and price1 != ''">,#{price1}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="price2 !=null and price2 != ''">,#{price2}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="ysfs !=null and ysfs != ''">,#{ysfs}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="ysfy !=null and ysfy != ''">,#{ysfy}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="hl !=null and hl != ''">,#{hl}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="zsh !=null and zsh != ''">,#{zsh}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="huokuan !=null and huokuan != ''">,#{huokuan}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="lirun !=null and lirun != ''">,#{lirun}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="yundan !=null and yundan != ''">,#{yundan}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="date3 !=null and date3 != ''">,from_unixtime(#{date3})</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="cpgg !=null and cpgg != ''">,#{cpgg}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="baozhuang !=null and baozhuang != ''">,#{baozhuang}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="isyp !=null and isyp != ''">,#{isyp}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="gyscontact !=null and gyscontact != ''">,#{gyscontact}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="gysname !=null and gysname != ''">,#{gysname}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="iskucun !=null and iskucun != ''">,#{iskucun}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="kucun !=null and kucun != ''">,#{kucun}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="fj1 !=null and fj1 != ''">,#{fj1}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="fj2 !=null and fj2 != ''">,#{fj2}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="ywy !=null and ywy != ''">,#{ywy}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="isjs !=null and isjs != ''">,#{isjs}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="isdh !=null and isdh != ''">,#{isdh}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="isfh !=null and isfh != ''">,#{isfh}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="isfp !=null and isfp != ''">,#{isfp}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="isfxbg !=null and isfxbg != ''">,#{isfxbg}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="zhfrom !=null and zhfrom != ''">,#{zhfrom}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="ists !=null and ists != ''">,#{ists}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="date4 !=null and date4 != ''">,from_unixtime(#{date4})</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="issh !=null and issh != ''">,#{issh}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="iskp !=null and iskp != ''">,#{iskp}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="isgcfp !=null and isgcfp != ''">,#{isgcfp}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="mylx !=null and mylx != ''">,#{mylx}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="ishx !=null and ishx != ''">,#{ishx}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="date5 !=null and date5 != ''">,from_unixtime(#{date5})</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="iswcts !=null and iswcts != ''">,#{iswcts}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="ishkqf !=null and ishkqf != ''">,#{ishkqf}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="qgchk !=null and qgchk != ''">,#{qgchk}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="krqk !=null and krqk != ''">,#{krqk}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="isok !=null and isok != ''">,#{isok}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="krkpdz !=null and krkpdz != ''">,#{krkpdz}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="krfhdz !=null and krfhdz != ''">,#{krfhdz}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+        <choose>
+            <when test="content !=null and content != ''">,#{content}</when>
+            <otherwise>,NULL</otherwise>
+        </choose>
+    </sql>
+
+    <sql id="updateBody">
+        <set>
+            <if test="paixu != null">`paixu` = #{paixu},</if>
+            <if test="casno != null">`casno` = #{casno},</if>
+            <if test="bookname != null">`bookname` = #{bookname},</if>
+            <if test="enbookname != null">`enbookname` = #{enbookname},</if>
+            <if test="ordernum != null">`ordernum` = #{ordernum},</if>
+            <if test="fapiaonum != null">`fapiaonum` = #{fapiaonum},</if>
+            <if test="krname != null">`krname` = #{krname},</if>
+            <if test="date1 != null">`date1` = from_unixtime(#{date1}),</if>
+            <if test="date2 != null">`date2` = from_unixtime(#{date2}),</if>
+            <if test="cjsl != null">`cjsl` = #{cjsl},</if>
+            <if test="style != null">`style` = #{style},</if>
+            <if test="price1 != null">`price1` = #{price1},</if>
+            <if test="price2 != null">`price2` = #{price2},</if>
+            <if test="ysfs != null">`ysfs` = #{ysfs},</if>
+            <if test="ysfy != null">`ysfy` = #{ysfy},</if>
+            <if test="hl != null">`hl` = #{hl},</if>
+            <if test="zsh != null">`zsh` = #{zsh},</if>
+            <if test="huokuan != null">`huokuan` = #{huokuan},</if>
+            <if test="lirun != null">`lirun` = #{lirun},</if>
+            <if test="yundan != null">`yundan` = #{yundan},</if>
+            <if test="date3 != null">`date3` = from_unixtime(#{date3}),</if>
+            <if test="cpgg != null">`cpgg` = #{cpgg},</if>
+            <if test="baozhuang != null">`baozhuang` = #{baozhuang},</if>
+            <if test="isyp != null">`isyp` = #{isyp},</if>
+            <if test="gyscontact != null">`gyscontact` = #{gyscontact},</if>
+            <if test="gysname != null">`gysname` = #{gysname},</if>
+            <if test="iskucun != null">`iskucun` = #{iskucun},</if>
+            <if test="kucun != null">`kucun` = #{kucun},</if>
+            <if test="fj1 != null">`fj1` = #{fj1},</if>
+            <if test="fj2 != null">`fj2` = #{fj2},</if>
+            <if test="ywy != null">`ywy` = #{ywy},</if>
+            <if test="isjs != null">`isjs` = #{isjs},</if>
+            <if test="isdh != null">`isdh` = #{isdh},</if>
+            <if test="isfh != null">`isfh` = #{isfh},</if>
+            <if test="isfp != null">`isfp` = #{isfp},</if>
+            <if test="isfxbg != null">`isfxbg` = #{isfxbg},</if>
+            <if test="zhfrom != null">`zhfrom` = #{zhfrom},</if>
+            <if test="ists != null">`ists` = #{ists},</if>
+            <if test="date4 != null">`date4` = from_unixtime(#{date4}),</if>
+            <if test="issh != null">`issh` = #{issh},</if>
+            <if test="iskp != null">`iskp` = #{iskp},</if>
+            <if test="isgcfp != null">`isgcfp` = #{isgcfp},</if>
+            <if test="mylx != null">`mylx` = #{mylx},</if>
+            <if test="ishx != null">`ishx` = #{ishx},</if>
+            <if test="date5 != null">`date5` = from_unixtime(#{date5}),</if>
+            <if test="iswcts != null">`iswcts` = #{iswcts},</if>
+            <if test="ishkqf != null">`ishkqf` = #{ishkqf},</if>
+            <if test="qgchk != null">`qgchk` = #{qgchk},</if>
+            <if test="krqk != null">`krqk` = #{krqk},</if>
+            <if test="isok != null">`isok` = #{isok},</if>
+            <if test="krkpdz != null">`krkpdz` = #{krkpdz},</if>
+            <if test="krfhdz != null">`krfhdz` = #{krfhdz},</if>
+            <if test="content != null">`content` = #{content},</if>
+            `bookid` = #{bookid}
+        </set>
+    </sql>
+
+    <sql id="searchBody">
+        <if test="bookid != null">AND `bookid` = #{bookid}</if>
+        <if test="bookname != null">AND bookname like #{bookname}</if>
+    </sql>
+
+
+</mapper>

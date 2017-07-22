@@ -1,0 +1,14 @@
+apply plugin: 'war'
+
+war {
+    archiveName = "web.war"
+}
+
+dependencies {
+
+    compile project(":core")
+    compile project(":lib")
+
+    compile rootProject.ext.dependencies['dongjia-common']
+
+}

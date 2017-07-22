@@ -1,0 +1,3 @@
+version getGitVersion(version, true)
+
+archivesBaseName = 'core'
