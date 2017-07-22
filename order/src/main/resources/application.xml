@@ -18,7 +18,7 @@
 
     <context:annotation-config/>
 
-    <context:component-scan base-package="cn.idongjia"/>
+    <context:component-scan base-package="top.jhechem"/>
 
     <import resource="mybatis.xml"/>
 
