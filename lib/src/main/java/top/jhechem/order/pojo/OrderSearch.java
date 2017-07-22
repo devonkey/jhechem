@@ -10,8 +10,6 @@ import javax.ws.rs.QueryParam;
  * search
  * Created by wuqiang on 2017/7/20.
  */
-@Getter
-@Setter
 public class OrderSearch extends BaseSearch {
 
     @QueryParam("bookid")
@@ -20,4 +18,28 @@ public class OrderSearch extends BaseSearch {
     private String bookname;
     @QueryParam("ywy")
     private String ywy;
+
+    public Long getBookid() {
+        return bookid;
+    }
+
+    public void setBookid(Long bookid) {
+        this.bookid = bookid;
+    }
+
+    public String getBookname() {
+        return bookname;
+    }
+
+    public void setBookname(String bookname) {
+        this.bookname = bookname;
+    }
+
+    public String getYwy() {
+        return ywy;
+    }
+
+    public void setYwy(String ywy) {
+        this.ywy = ywy;
+    }
 }

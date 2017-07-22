@@ -1,6 +1,8 @@
 package top.jhechem.order.pojo;
 
 import cn.idongjia.common.base.Base;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +10,8 @@ import lombok.Setter;
  * 订单
  * Created by wuqiang on 2017/7/20.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Order extends Base {
 
     private Long bookid;
