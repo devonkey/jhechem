@@ -1,7 +1,7 @@
 apply plugin: 'war'
 
 war {
-    archiveName = "order.war"
+    archiveName = "user.war"
 }
 
 dependencies {
@@ -33,4 +33,5 @@ dependencies {
     // test
     compile rootProject.ext.dependencies['spring-test']
     compile rootProject.ext.dependencies['junit']
+
 }

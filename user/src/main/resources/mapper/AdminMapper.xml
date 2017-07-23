@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.jhechem.user.mapper.AdminMapper">
+
+    <resultMap id="adminMap" type="top.jhechem.user.pojo.Admin">
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="realName" column="realname"/>
+        <result property="mobile" column="mobile"/>
+        <result property="password" column="password"/>
+        <result property="salt" column="salt"/>
+        <result property="department" column="department"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+    <insert id="add" parameterType="top.jhechem.user.pojo.Admin"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO admin (<include refid="columnsAdd"/>)
+        VALUES (<include refid="insertBody"></include>);
+    </insert>
+
+
+    <select id="listRoleId" resultType="java.lang.Integer">
+        SELECT role_id FROM admin_role_rel WHERE admin_id = #{0}
+    </select>
+
+    <sql id="insertBody">
+        <choose>
+            <when test="username !=null">#{username}</when>
+            <otherwise>""</otherwise>
+        </choose>
+        <choose>
+            <when test="realName !=null">,#{realName}</when>
+            <otherwise>,""</otherwise>
+        </choose>
+        <choose>
+            <when test="mobile !=null">,#{mobile}</when>
+            <otherwise>,""</otherwise>
+        </choose>
+        <choose>
+            <when test="password !=null">,#{password}</when>
+            <otherwise>,""</otherwise>
+        </choose>
+        <choose>
+            <when test="salt !=null">,#{salt}</when>
+            <otherwise>,""</otherwise>
+        </choose>
+        <choose>
+            <when test="department !=null">,#{department}</when>
+            <otherwise>,""</otherwise>
+        </choose>
+        ,CURRENT_TIMESTAMP ,CURRENT_TIMESTAMP
+    </sql>
+
+    <sql id="columnsAdd">
+        username,realname,mobile,password,salt,department,create_time,update_time
+    </sql>
+
+</mapper>

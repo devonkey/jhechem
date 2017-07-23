@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.jhechem.user.mapper.FunctionAuthMapper">
+
+    <resultMap id="functionAuthMap" type="top.jhechem.user.pojo.FunctionAuth">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="url" property="url"/>
+    </resultMap>
+
+
+    <select id="list" resultMap="functionAuthMap">
+        SELECT
+        <include refid="columnGet"/>
+        FROM function_auth
+    </select>
+
+    <select id="listGroupAuthId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT group_id FROM auth_group_rel WHERE auth_id = #{0}
+    </select>
+
+
+    <sql id="columnAdd">
+        `name`,url
+    </sql>
+
+    <sql id="columnGet">
+       id,`name`,url
+    </sql>
+
+    <sql id="insertBody">
+
+    </sql>
+
+    <sql id="searchBody">
+        <if test="name != null">AND `name` LIKE #{name}</if>
+        <if test="url != null">AND url like #{url}</if>
+    </sql>
+
+
+</mapper>

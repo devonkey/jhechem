@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task.xsd
+	    http://code.alibabatech.com/schema/dubbo
+	    http://code.alibabatech.com/schema/dubbo/dubbo.xsd" default-lazy-init="true">
+
+
+    <task:annotation-driven/>
+
+    <context:annotation-config/>
+
+    <context:component-scan base-package="top.jhechem"/>
+
+    <import resource="mybatis.xml"/>
+    <context:property-placeholder location="classpath:user.properties" />
+
+    <dubbo:application name="user" owner="jhechem" organization="jhechem"/>
+    <!--内网测试机-->
+    <dubbo:registry protocol="zookeeper" address="${zookeeper}" client="curator"/>
+    <!-- 监控 -->
+    <dubbo:monitor protocol="registry"/>
+    <!--激活注解-->
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+
+    <dubbo:annotation/>
+
+    <dubbo:protocol name="rest" port="${port_rest}"
+                    extension="cn.idongjia.exception.filter.RestExceptionMapper,
+                    cn.idongjia.exception.filter.ValidationExceptionMapper"
+                    payload="16777216"/>
+
+    <dubbo:protocol name="dubbo" port="${port_dubbo}"
+                    extension="cn.idongjia.exception.filter.DubboExceptionFilter" payload="16777216"/>
+
+    <dubbo:provider filter="-default,context,finalcontext,echo,clsLoader,gnc,dubbo,timeout,monitor,trace"/>
+    <dubbo:consumer filter="consumerfilter"/>
+
+    <dubbo:service interface="cn.idongjia.common.api.PingService"
+                   ref="pingService"
+                   protocol="rest"/>
+
+    <bean id="pingService" class="cn.idongjia.common.impl.Ping"/>
+
+    <dubbo:service interface="top.jhechem.user.service.AdminFunctionAuthGroupService"
+                   ref="adminFunctionAuthGroupService" protocol="dubbo,rest"/>
+    <dubbo:service interface="top.jhechem.user.service.FunctionAuthService"
+                   ref="functionAuthService" protocol="dubbo,rest"/>
+
+</beans>
