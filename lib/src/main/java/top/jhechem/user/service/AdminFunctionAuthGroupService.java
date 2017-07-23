@@ -4,6 +4,7 @@ import com.alibaba.dubbo.rpc.protocol.rest.support.ContentType;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import java.util.List;
 
@@ -16,6 +17,6 @@ import java.util.List;
 public interface AdminFunctionAuthGroupService {
 
     @GET
-    @Path("list")
-    List<Integer> listAdminAuthGroups(long adminId);
+    @Path("list/{adminId:\\d+}")
+    List<Integer> listAdminAuthGroups(@PathParam("adminId") long adminId);
 }

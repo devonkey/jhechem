@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:user.xml" })
+@ContextConfiguration(locations = { "classpath:application.xml" })
 public abstract class SpringJUnitServiceTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Override

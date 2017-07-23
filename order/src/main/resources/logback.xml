@@ -42,10 +42,6 @@
         <appender-ref ref="INTERFACE-OUT"/>
     </logger>
 
-    <logger level="info" name="mqdispacher" additivity="false">
-        <appender-ref ref="SERVICE-OUT"/>
-    </logger>
-
     <logger level="debug" name="top.jhechem.order.mapper" additivity="false">
         <appender-ref ref="SERVICE-OUT"/>
     </logger>
