@@ -1,22 +1,24 @@
-package top.jhechem.web.filter;
+package top.jhechem.web.biz;
 
 import cn.idongjia.log.Log;
 import cn.idongjia.log.LogFactory;
-import cn.idongjia.router.pojos.Response;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Component;
+import top.jhechem.web.Response;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import java.io.IOException;
 
-import static cn.idongjia.exception.Exceptions.INVALID_PASSWORD;
-import static cn.idongjia.exception.Exceptions.NO_USER;
+import static top.jhechem.web.constant.ExceptionResponse.INVALID_PASSWORD;
+import static top.jhechem.web.constant.ExceptionResponse.LOGIN_FAILURE;
+import static top.jhechem.web.constant.ExceptionResponse.NO_USER;
+
 
 /**
  * 登路流程业务控制
@@ -54,7 +56,6 @@ public class LoginBiz {
                              ServletRequest request, ServletResponse response) {
         writePhpSession(subject);
         writeSession(token);
-
         try {
             request.getRequestDispatcher(DISPATCHER_SUCCESS_URL).forward(request, response);
         } catch (ServletException | IOException e1) {
@@ -69,16 +70,13 @@ public class LoginBiz {
      */
     public void loginFailure(AuthenticationException e
             , ServletRequest request, ServletResponse response) {
-        Response result = Response.ok();
+        Response result;
         if (e instanceof IncorrectCredentialsException) {
-            result.setCode(INVALID_PASSWORD.getCode());
-            result.setMsg(INVALID_PASSWORD.getMessage());
+            result = INVALID_PASSWORD;
         } else if (e instanceof UnknownAccountException) {
-            result.setCode(NO_USER.getCode());
-            result.setMsg(NO_USER.getMessage());
+            result = NO_USER;
         } else {
-            result.setCode(INVALID_PASSWORD.getCode());
-            result.setMsg(INVALID_PASSWORD.getMessage());
+            result = LOGIN_FAILURE;
         }
         request.getServletContext().setAttribute(DISPATCHER_RESULT_KEY, result);
         try {

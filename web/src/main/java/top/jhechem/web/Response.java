@@ -1,4 +1,4 @@
-package top.jhechem.web.support;
+package top.jhechem.web;
 
 import cn.idongjia.common.base.Base;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

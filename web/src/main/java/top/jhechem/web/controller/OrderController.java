@@ -4,8 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import top.jhechem.web.support.BaseController;
-import top.jhechem.web.support.Response;
+import top.jhechem.web.BaseController;
+import top.jhechem.web.Response;
 
 /**
  * 订单控制器

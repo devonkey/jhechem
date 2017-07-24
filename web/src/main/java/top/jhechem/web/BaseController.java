@@ -1,4 +1,4 @@
-package top.jhechem.web.support;
+package top.jhechem.web;
 
 
 import cn.idongjia.exception.ApiException;

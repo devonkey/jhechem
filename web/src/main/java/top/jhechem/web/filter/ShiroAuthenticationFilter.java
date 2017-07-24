@@ -4,6 +4,7 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
+import top.jhechem.web.biz.LoginBiz;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
@@ -11,9 +12,10 @@ import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 /**
+ * shiro 认证过滤
  * Created by wuqiang on 2017/7/21.
  */
-public class ShiroFilter extends FormAuthenticationFilter {
+public class ShiroAuthenticationFilter extends FormAuthenticationFilter {
 
     @Resource
     private LoginBiz loginBiz;
