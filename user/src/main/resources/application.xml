@@ -27,9 +27,6 @@
 
     <dubbo:application name="user" owner="jhechem" organization="jhechem"/>
 
-    <!-- 监控 -->
-    <dubbo:monitor protocol="registry"/>
-
     <dubbo:registry protocol="zookeeper" address="${zookeeper}" client="curator"/>
     <!--激活注解-->
     <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>

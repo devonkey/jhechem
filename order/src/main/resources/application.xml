@@ -32,8 +32,6 @@
     <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
 
     <dubbo:annotation/>
-    <!-- 监控 -->
-    <dubbo:monitor protocol="registry"/>
 
     <dubbo:protocol name="rest" port="${port_rest}"
                     extension="cn.idongjia.exception.filter.RestExceptionMapper,

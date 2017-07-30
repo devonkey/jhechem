@@ -1,10 +1,15 @@
 package top.jhechem.web.filter;
 
+import cn.idongjia.log.Log;
+import cn.idongjia.log.LogFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
-import top.jhechem.web.biz.LoginBiz;
+import top.jhechem.user.pojo.Admin;
+import top.jhechem.web.biz.AuthBiz;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
@@ -17,28 +22,48 @@ import java.io.IOException;
  */
 public class ShiroAuthenticationFilter extends FormAuthenticationFilter {
 
+    private static final Log LOGGER = LogFactory.getLog(ShiroAuthenticationFilter.class);
     @Resource
-    private LoginBiz loginBiz;
+    private AuthBiz authBiz;
 
     @Override
     protected AuthenticationToken createToken(ServletRequest request, ServletResponse response) {
-        return super.createToken(request, response);
+
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            Admin admin = mapper.readValue(request.getInputStream(), Admin.class);
+            return createToken(admin.getUsername(),
+                    admin.getPassword(), false, request.getRemoteHost());
+        } catch (IOException e) {
+            LOGGER.error(e);
+            throw new AuthenticationException(e);
+        }
+    }
+
+    @Override
+    protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
+        Subject subject = SecurityUtils.getSubject();
+        if (isLoginRequest(request, response)) {
+            subject.logout();
+        }
+        return false;
     }
 
     @Override
     protected boolean onLoginSuccess(AuthenticationToken token, Subject subject, ServletRequest request, ServletResponse response) throws Exception {
-        loginBiz.loginSuccess(token, subject, request, response);
+        authBiz.loginSuccess(token, subject, request, response);
         return false;
     }
 
     @Override
     protected boolean onLoginFailure(AuthenticationToken token, AuthenticationException e, ServletRequest request, ServletResponse response) {
-        loginBiz.loginFailure(e, request, response);
+        authBiz.loginFailure(e, request, response);
         return false;
     }
 
     @Override
     protected void redirectToLogin(ServletRequest request, ServletResponse response) throws IOException {
-        loginBiz.redirectToLogin(request, response);
+        authBiz.redirectToLogin(request, response);
     }
+
 }

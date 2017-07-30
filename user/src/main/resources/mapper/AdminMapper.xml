@@ -23,6 +23,13 @@
         VALUES (<include refid="insertBody"></include>);
     </insert>
 
+    <select id="get" resultMap="adminMap">
+        SELECT <include refid="columnsGet"/> FROM admin WHERE id = #{0}
+    </select>
+
+    <select id="getByUsername" resultMap="adminMap">
+        SELECT <include refid="columnsGet"/> FROM admin WHERE username = #{0}
+    </select>
 
     <select id="listRoleId" resultType="java.lang.Integer">
         SELECT role_id FROM admin_role_rel WHERE admin_id = #{0}
@@ -54,6 +61,10 @@
             <otherwise>,""</otherwise>
         </choose>
         ,CURRENT_TIMESTAMP ,CURRENT_TIMESTAMP
+    </sql>
+
+    <sql id="columnsGet">
+        id,username,realname,mobile,password,salt,department
     </sql>
 
     <sql id="columnsAdd">

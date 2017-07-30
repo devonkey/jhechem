@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
-    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+    <bean id="shiroFilter" class="top.jhechem.web.shiro.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="/login"/>
         <property name="unauthorizedUrl" value="/unauthorized"/>
@@ -26,13 +26,8 @@
         <property name="loginUrl" value="/login"/>
     </bean>
 
-    <bean id="dynamicUrlDefinitionService"
-          class="cn.idongjia.router.shiro.definition.DynamicUrlDefinitionServiceImpl"/>
-
     <bean id="shiroDynamicLoadDefinition"
-          class="cn.idongjia.router.shiro.definition.ShiroDynamicLoadDefinitionImpl">
-        <property name="shiroFilter" ref="shiroFilter"/>
-        <property name="dynamicDefinitionService" ref="dynamicUrlDefinitionService"/>
+          class="top.jhechem.web.biz.ShiroDynamicLoadDefinitionImpl">
         <property name="filterChainDefinitions">
             <value>
                 /login = authc
@@ -42,15 +37,18 @@
         </property>
     </bean>
 
+    <bean id="shiroCredentialsMatcher" class="top.jhechem.web.shiro.ShiroCredentialsMatcher"/>
 
-    <bean id="shiroRealmService" class="cn.idongjia.router.shiro.realm.ShiroRealmService"/>
-
-    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <property name="realm" ref="shiroRealmService"/>
-        <property name="sessionManager" ref="sessionManager"/>
+    <bean id="shiroRealm" class="top.jhechem.web.shiro.ShiroRealm">
+        <property name="credentialsMatcher" ref="shiroCredentialsMatcher"/>
     </bean>
 
-    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="shiroRealm"/>
+    </bean>
+
+    <bean id="lifecycleBeanPostProcessor"
+          class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
 
     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
@@ -61,44 +59,8 @@
     </bean>
 
 
-    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
-        <property name="sessionDAO" ref="sessionDao"/>
-        <property name="globalSessionTimeout" value="3600000"/>
-        <property name="sessionIdCookie.name" value="ADMIN"/>
-        <property name="sessionIdCookie.path" value="/"/>
-        <property name="sessionIdCookie.httpOnly" value="true"/>
-        <property name="sessionValidationSchedulerEnabled" value="false"/>
-    </bean>
-
-    <bean id="sessionDao" class="cn.idongjia.router.shiro.session.ShiroClusterSeesionManager">
-        <property name="sessionDAO" ref="sessionService" />
-        <property name="concurrentSessionFilter" ref="concurrentSessionFilter"/>
-    </bean>
-
-
-    <bean id="sessionService" class="cn.idongjia.router.shiro.session.RedisSessionServiceImpl"/>
-
-    <bean id="concurrentSessionFilter" class="cn.idongjia.router.shiro.session.DefaultConcurrentSessionFilter">
-        <property name="sessionDAO" ref="sessionService"/>
-        <property name="jedisPool" ref="jedisPool"/>
-        <property name="maxSession" value="1"/>
-    </bean>
-
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
-        <property name="securityManager" ref="securityManager" />
-    </bean>
-
-
-    <!-- redis -->
-    <bean id="jedisPoolConfig" class="org.apache.commons.pool2.impl.GenericObjectPoolConfig"/>
-
-    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
-        <constructor-arg index="0" type="org.apache.commons.pool2.impl.GenericObjectPoolConfig"
-                         ref="jedisPoolConfig"/>
-        <constructor-arg index="1" value="${redis.host}"/>
-        <constructor-arg index="2" type="int" value="${redis.port}"/>
-        <constructor-arg index="3" type="int" value="2000"/>
-        <constructor-arg index="4" value="${redis.password}"/>
+        <property name="securityManager" ref="securityManager"/>
     </bean>
 
 

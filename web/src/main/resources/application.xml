@@ -22,10 +22,17 @@
 
     <context:property-placeholder location="classpath:web.properties"/>
 
-    <dubbo:registry protocol="zookeeper" address="${zookeeper}"/>
+    <dubbo:application name="web" />
+
+    <import resource="classpath:shiro.xml"/>
+
+    <dubbo:registry protocol="zookeeper" address="${zookeeper}" client="curator"/>
 
     <dubbo:reference id="orderService"
                      interface="top.jhechem.order.service.OrderService"
+                     check="false" protocol="dubbo"/>
+    <dubbo:reference id="adminService"
+                     interface="top.jhechem.user.service.AdminService"
                      check="false" protocol="dubbo"/>
     <dubbo:reference id="functionAuthService"
                      interface="top.jhechem.user.service.FunctionAuthService"

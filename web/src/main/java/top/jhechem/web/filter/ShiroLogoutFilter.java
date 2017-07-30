@@ -2,7 +2,7 @@ package top.jhechem.web.filter;
 
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.LogoutFilter;
-import top.jhechem.web.biz.LoginBiz;
+import top.jhechem.web.biz.AuthBiz;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
@@ -15,7 +15,7 @@ import javax.servlet.ServletResponse;
 public class ShiroLogoutFilter extends LogoutFilter {
 
     @Resource
-    private LoginBiz loginBiz;
+    private AuthBiz loginBiz;
 
     @Override
     protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {

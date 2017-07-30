@@ -1,5 +1,6 @@
 package top.jhechem.order.service.impl;
 
+import cn.idongjia.common.query.BaseSearch;
 import org.springframework.stereotype.Service;
 import top.jhechem.order.mapper.OrderMapper;
 import top.jhechem.order.pojo.Order;
@@ -44,6 +45,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> list(@BeanParam OrderSearch search) {
+        search.setBookname(BaseSearch.likeStr(search.getBookname()));
+        search.setYwy(BaseSearch.likeStr(search.getYwy()));
         return mapper.list(search);
     }
 }

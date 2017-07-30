@@ -34,7 +34,7 @@ public class AdminServiceImpl implements AdminService {
         if (admin.getSalt() == null) {
             admin.setSalt(DEFAULT_SALT);
         }
-        String password = MD5Encoder.encode(admin.getPassword() + admin.getSalt(), "utf-8");
+        String password = MD5Encoder.encode(admin.getPassword() + admin.getSalt(), DEFAULT_PASSWORD_CHARSET);
         admin.setPassword(password);
         mapper.add(admin);
         return admin;
@@ -48,6 +48,16 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public int delete(long id) {
         return 0;
+    }
+
+    @Override
+    public Admin getByUsername(String username) {
+        return mapper.getByUsername(username);
+    }
+
+    @Override
+    public Admin get(long id) {
+        return mapper.get(id);
     }
 
     @Override

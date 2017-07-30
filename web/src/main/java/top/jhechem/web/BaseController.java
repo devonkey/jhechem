@@ -1,11 +1,13 @@
 package top.jhechem.web;
 
 
-import cn.idongjia.exception.ApiException;
 import cn.idongjia.log.Log;
 import cn.idongjia.log.LogFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import top.jhechem.core.ApiException;
+import top.jhechem.core.Response;
+import top.jhechem.web.constant.ExceptionResponse;
 
 public abstract class BaseController {
 
@@ -19,7 +21,7 @@ public abstract class BaseController {
             return new Response(exception.getCode(), exception.getMsg());
         } else {
             LOGGER.error("未知异常!", e);
-            return new Response(Response.FAIL_CODE, Response.FAIL_MSG);
+            return ExceptionResponse.response("系统错误！");
         }
     }
 

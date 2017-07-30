@@ -36,22 +36,27 @@ public class AdminServiceImplTest extends SpringJUnitServiceTest{
         System.out.println(adminService.add(admin));
         admin.setUsername("小赵");
         admin.setRealName("赵又廷");
+        admin.setPassword("123456");
         System.out.println(adminService.add(admin));
 
         admin.setUsername("小楼");
         admin.setRealName("楼佳枫");
+        admin.setPassword("123456");
         System.out.println(adminService.add(admin));
 
         admin.setUsername("三关");
         admin.setRealName("吴强");
+        admin.setPassword("123456");
         System.out.println(adminService.add(admin));
 
         admin.setUsername("空空笑");
         admin.setRealName("任先龙");
+        admin.setPassword("123456");
         System.out.println(adminService.add(admin));
 
         admin.setUsername("夏夏");
         admin.setRealName("周贝贝");
+        admin.setPassword("123456");
         System.out.println(adminService.add(admin));
     }
 

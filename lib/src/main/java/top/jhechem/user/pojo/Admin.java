@@ -1,11 +1,17 @@
 package top.jhechem.user.pojo;
 
 import cn.idongjia.common.base.Base;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import java.util.List;
 
 /**
  * 管理员pojo
  * Created by wuqiang on 2017/7/23.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Admin extends Base {
 
     public static final int STATUS_NORMAL = 1, STATUS_DISABLE = 0;
@@ -29,6 +35,8 @@ public class Admin extends Base {
     private Long createTime;
 
     private Long updateTime;
+
+    private List<Integer> authGroups;
 
 
     public Long getId() {
@@ -109,5 +117,13 @@ public class Admin extends Base {
 
     public void setUpdateTime(Long updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public List<Integer> getAuthGroups() {
+        return authGroups;
+    }
+
+    public void setAuthGroups(List<Integer> authGroups) {
+        this.authGroups = authGroups;
     }
 }

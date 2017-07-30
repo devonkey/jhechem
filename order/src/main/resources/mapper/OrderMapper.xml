@@ -92,8 +92,8 @@
         FROM jh_order
         WHERE 1=1
         <include refid="searchBody"/>
-        <if test="offset != null">offset #{offset}</if>
         <if test="limit != null">limit #{limit}</if>
+        <if test="offset != null">offset #{offset}</if>
     </select>
 
 
@@ -395,6 +395,7 @@
     <sql id="searchBody">
         <if test="bookid != null">AND `bookid` = #{bookid}</if>
         <if test="bookname != null">AND bookname like #{bookname}</if>
+        <if test="ywy != null">AND ywy LIKE #{ywy}</if>
     </sql>
 
 

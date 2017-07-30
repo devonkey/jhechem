@@ -1,14 +1,14 @@
-insert into function_auth(id,`name`,url,create_time,update_time) values (10000,'订单详情','order/get',current_timestamp,current_timestamp);
-insert into function_auth(id,`name`,url,create_time,update_time) values (10001,'订单列表','order/update',current_timestamp,current_timestamp);
-insert into function_auth(id,`name`,url,create_time,update_time) values (10002,'订单修改','order/update',current_timestamp,current_timestamp);
-insert into function_auth(id,`name`,url,create_time,update_time) values (10009,'订单删除','order/delete',current_timestamp,current_timestamp);
+insert into function_auth(id,`name`,url,create_time,update_time) values (10000,'订单详情','/order/{bookid:\\d+}',current_timestamp,current_timestamp);
+insert into function_auth(id,`name`,url,create_time,update_time) values (10001,'订单列表','/order/list',current_timestamp,current_timestamp);
+insert into function_auth(id,`name`,url,create_time,update_time) values (10002,'订单修改','/order/update',current_timestamp,current_timestamp);
+insert into function_auth(id,`name`,url,create_time,update_time) values (10009,'订单删除','/order/delete',current_timestamp,current_timestamp);
 
-insert into function_auth(id,`name`,url,create_time,update_time) values (10003,'新增管理员','admin/add',current_timestamp,current_timestamp);
-insert into function_auth(id,`name`,url,create_time,update_time) values (10004,'删除管理员','admin/delete',current_timestamp,current_timestamp);
-insert into function_auth(id,`name`,url,create_time,update_time) values (10005,'管理员修改','admin/update',current_timestamp,current_timestamp);
-insert into function_auth(id,`name`,url,create_time,update_time) values (10006,'管理员修改密码','admin/password/update',current_timestamp,current_timestamp);
-insert into function_auth(id,`name`,url,create_time,update_time) values (10007,'管理员详情','admin/get',current_timestamp,current_timestamp);
-insert into function_auth(id,`name`,url,create_time,update_time) values (10008,'管理员列表','admin/list',current_timestamp,current_timestamp);
+insert into function_auth(id,`name`,url,create_time,update_time) values (10003,'新增管理员','/admin/add',current_timestamp,current_timestamp);
+insert into function_auth(id,`name`,url,create_time,update_time) values (10004,'删除管理员','/admin/delete',current_timestamp,current_timestamp);
+insert into function_auth(id,`name`,url,create_time,update_time) values (10005,'管理员修改','/admin/update',current_timestamp,current_timestamp);
+insert into function_auth(id,`name`,url,create_time,update_time) values (10006,'管理员修改密码','/admin/password/update',current_timestamp,current_timestamp);
+insert into function_auth(id,`name`,url,create_time,update_time) values (10007,'管理员详情','/admin/{id:\\d+}',current_timestamp,current_timestamp);
+insert into function_auth(id,`name`,url,create_time,update_time) values (10008,'管理员列表','/admin/list',current_timestamp,current_timestamp);
 
 insert into auth_group (id,name,create_time,update_time) values (10000,'管理员管理',current_timestamp,current_timestamp);
 insert into auth_group (id,name,create_time,update_time) values (10001,'订单管理',current_timestamp,current_timestamp);

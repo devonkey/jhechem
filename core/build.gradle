@@ -1,3 +1,9 @@
 version getGitVersion(version, true)
 
 archivesBaseName = 'core'
+
+dependencies {
+
+    compile rootProject.ext.dependencies['dongjia-common']
+
+}

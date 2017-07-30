@@ -12,5 +12,9 @@ public interface AdminMapper {
 
     int add(Admin admin);
 
+    Admin getByUsername(String username);
+
+    Admin get(long id);
+
     List<Integer> listRoleId(long id);
 }

@@ -2,7 +2,10 @@ package top.jhechem.web.filter;
 
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authz.AuthorizationFilter;
+import top.jhechem.web.biz.AuthBiz;
+import top.jhechem.web.shiro.AntPathMatcher;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
@@ -11,6 +14,12 @@ import javax.servlet.ServletResponse;
  * Created by wuqiang on 2017/7/23.
  */
 public class PermissionsAuthorizationFilter extends AuthorizationFilter {
+
+    @Resource
+    private AntPathMatcher pathMatcher;
+    @Resource
+    private AuthBiz authBiz;
+
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
         Subject subject = getSubject(request, response);
@@ -27,6 +36,13 @@ public class PermissionsAuthorizationFilter extends AuthorizationFilter {
                 return true;
             }
         }
+        authBiz.unauthorized(request, response);
         return false;
+    }
+
+
+    @Override
+    protected boolean pathsMatch(String pattern, String path) {
+        return pathMatcher.matches(pattern, path);
     }
 }
