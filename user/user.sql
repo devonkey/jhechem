@@ -63,7 +63,6 @@ DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '角色id',
   `name` varchar(32) NOT NULL DEFAULT '' COMMENT '角色名',
-  `alias` varchar(32) NOT NULL DEFAULT '' COMMENT '角色别名',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态:0-无效,1-有效',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` datetime NOT NULL COMMENT '修改时间',

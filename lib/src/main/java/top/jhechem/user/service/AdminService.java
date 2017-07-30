@@ -51,4 +51,9 @@ public interface AdminService {
     @GET
     @Path("list")
     List<Admin> list(@BeanParam BaseSearch search);
+
+    @GET
+    @Path("count")
+    int count(@BeanParam BaseSearch search);
+
 }

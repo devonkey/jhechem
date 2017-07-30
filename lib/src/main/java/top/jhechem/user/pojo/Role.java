@@ -12,7 +12,8 @@ public class Role extends Base {
 
     private Integer id;
     private String name;
-    private String alias;
+
+    private Integer status;
 
     private List<Admin> admins;
 
@@ -32,19 +33,19 @@ public class Role extends Base {
         this.name = name;
     }
 
-    public String getAlias() {
-        return alias;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
-
     public List<Admin> getAdmins() {
         return admins;
     }
 
     public void setAdmins(List<Admin> admins) {
         this.admins = admins;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

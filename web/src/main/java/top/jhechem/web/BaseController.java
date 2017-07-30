@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.jhechem.core.ApiException;
 import top.jhechem.core.Response;
-import top.jhechem.web.constant.ExceptionResponse;
+import top.jhechem.core.constant.ExceptionResponse;
 
 public abstract class BaseController {
 

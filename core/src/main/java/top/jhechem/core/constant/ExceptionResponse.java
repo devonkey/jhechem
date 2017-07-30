@@ -1,4 +1,4 @@
-package top.jhechem.web.constant;
+package top.jhechem.core.constant;
 
 import top.jhechem.core.Response;
 

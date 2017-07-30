@@ -15,9 +15,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import java.io.IOException;
 
-import static top.jhechem.web.constant.ExceptionResponse.INVALID_PASSWORD;
-import static top.jhechem.web.constant.ExceptionResponse.LOGIN_FAILURE;
-import static top.jhechem.web.constant.ExceptionResponse.NO_USER;
+import static top.jhechem.core.constant.ExceptionResponse.INVALID_PASSWORD;
+import static top.jhechem.core.constant.ExceptionResponse.LOGIN_FAILURE;
+import static top.jhechem.core.constant.ExceptionResponse.NO_USER;
 
 
 /**

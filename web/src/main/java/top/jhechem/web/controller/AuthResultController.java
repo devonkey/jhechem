@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import top.jhechem.core.Response;
 import top.jhechem.web.BaseController;
 import top.jhechem.web.biz.AuthBiz;
-import top.jhechem.web.constant.ExceptionResponse;
+import top.jhechem.core.constant.ExceptionResponse;
 
 import javax.servlet.http.HttpServletRequest;
 

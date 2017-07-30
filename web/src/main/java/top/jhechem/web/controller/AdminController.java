@@ -5,10 +5,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import top.jhechem.core.Response;
+import top.jhechem.core.util.Assert;
 import top.jhechem.user.pojo.Admin;
 import top.jhechem.user.service.AdminService;
 import top.jhechem.web.BaseController;
-import top.jhechem.core.Response;
+import top.jhechem.core.constant.ExceptionResponse;
 
 import javax.annotation.Resource;
 
@@ -18,20 +20,35 @@ import javax.annotation.Resource;
  */
 @Controller
 @RequestMapping("admin")
+@ResponseBody
 public class AdminController extends BaseController {
 
     @Resource
     private AdminService adminService;
 
     @RequestMapping(value = "test", method = RequestMethod.GET)
-    @ResponseBody
     public Response test() {
         return Response.ok();
     }
 
     @RequestMapping(value = "{id:\\d+}", method = RequestMethod.GET)
-    @ResponseBody
     public Response<Admin> get(@PathVariable("id") long id) {
         return Response.ok(adminService.get(id));
+    }
+
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public Response add(Admin admin) {
+        Assert.assertNotNull(admin, ExceptionResponse.MISS_ARGRUMENTS);
+        Assert.assertNotNull(admin.getUsername(), ExceptionResponse.MISS_ARGRUMENTS);
+        Assert.assertNotNull(admin.getRealName(), ExceptionResponse.MISS_ARGRUMENTS);
+        Assert.assertNotNull(admin.getPassword(), ExceptionResponse.MISS_ARGRUMENTS);
+        return Response.ok(adminService.add(admin));
+    }
+
+    @RequestMapping(value = "update", method = RequestMethod.PUT)
+    public Response update(Admin admin) {
+        Assert.assertNotNull(admin, ExceptionResponse.MISS_ARGRUMENTS);
+        Assert.assertNotNull(admin.getId(), ExceptionResponse.MISS_ARGRUMENTS);
+        return Response.ok(adminService.update(admin));
     }
 }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.jhechem.user.mapper.RoleMapper">
+
+    <resultMap id="roleMap" type="top.jhechem.user.pojo.Role">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <insert id="add" parameterType="top.jhechem.user.pojo.Role"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `role` (<include refid="columnsAdd"/>)
+        VALUES (<include refid="insertBody"></include>);
+    </insert>
+
+    <update id="update" parameterType="top.jhechem.user.pojo.Role">
+        UPDATE `role` SET update_time=CURRENT_TIMESTAMP
+        <if test="name != null">, `name` = #{name}</if>
+        <if test="status != null">, `status` = #{status}</if>
+        WHERE `id` = #{id}
+    </update>
+
+    <delete id="removeAdmin" parameterType="java.lang.Long">
+        DELETE FROM `admin_role_rel`
+        WHERE role_id = #{0}
+        <foreach collection="adminIds" item="id" open="AND admin_id IN(" close=")"
+                 separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <insert id="addAdmin" parameterType="java.lang.Long">
+        INSERT INTO `admin_role_rel` (admin_id,role_id,create_time) VALUES
+        <foreach collection="adminIds" item="id" open="" close="" separator=",">
+            ( #{id}, #{0}, CURRENT_TIMESTAMP)
+        </foreach>
+    </insert>
+
+
+    <sql id="insertBody">
+        <choose>
+            <when test="name !=null">#{name}</when>
+            <otherwise>""</otherwise>
+        </choose>
+        ,CURRENT_TIMESTAMP ,CURRENT_TIMESTAMP
+    </sql>
+
+    <sql id="columnsAdd">
+        `name`,create_time,update_time
+    </sql>
+
+</mapper>

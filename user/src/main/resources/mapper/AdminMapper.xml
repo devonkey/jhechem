@@ -23,6 +23,22 @@
         VALUES (<include refid="insertBody"></include>);
     </insert>
 
+    <update id="update" parameterType="top.jhechem.user.pojo.Admin">
+        UPDATE `admin` SET update_time=CURRENT_TIMESTAMP
+        <if test="username != null">, `username` = #{username}</if>
+        <if test="realName != null">, `realname` = #{realName}</if>
+        <if test="mobile != null">, `mobile` = #{mobile}</if>
+        <if test="password != null">, `password` = #{password}</if>
+        <if test="salt != null">, `salt` = #{salt}</if>
+        <if test="department != null">, `department` = #{department}</if>
+        <if test="status != null">, `status` = #{status}</if>
+        WHERE `id` = #{id}
+    </update>
+
+    <delete id="deleteAdminRoles"  parameterType="java.lang.Long">
+        DELETE FROM `admin_role_rel` WHERE `admin_id` = #{0}
+    </delete>
+
     <select id="get" resultMap="adminMap">
         SELECT <include refid="columnsGet"/> FROM admin WHERE id = #{0}
     </select>
@@ -33,6 +49,16 @@
 
     <select id="listRoleId" resultType="java.lang.Integer">
         SELECT role_id FROM admin_role_rel WHERE admin_id = #{0}
+    </select>
+
+    <select id="list" resultMap="adminMap">
+        SELECT <include refid="columnsGet"/> FROM admin
+        <if test="limit != null" >limit #{limit}</if>
+        <if test="offset != null" >offset #{offset}</if>
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM admin
     </select>
 
     <sql id="insertBody">

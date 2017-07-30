@@ -1,15 +1,21 @@
 package top.jhechem.user.service.impl;
 
 import cn.idongjia.common.query.BaseSearch;
+import cn.idongjia.log.Log;
+import cn.idongjia.log.LogFactory;
 import cn.idongjia.util.MD5Encoder;
 import org.springframework.stereotype.Service;
+import top.jhechem.core.util.Assert;
 import top.jhechem.user.mapper.AdminMapper;
 import top.jhechem.user.pojo.Admin;
 import top.jhechem.user.service.AdminService;
 
 import javax.annotation.Resource;
+import javax.ws.rs.BeanParam;
 import java.util.List;
 import java.util.Objects;
+
+import static top.jhechem.core.constant.ExceptionResponse.MISS_ARGRUMENTS;
 
 /**
  * 管理员服务
@@ -18,36 +24,37 @@ import java.util.Objects;
 @Service("adminService")
 public class AdminServiceImpl implements AdminService {
 
+    private static final Log LOGGER = LogFactory.getLog(AdminServiceImpl.class);
     private static final String DEFAULT_SALT = "JHHG";
     @Resource
     private AdminMapper mapper;
 
     @Override
     public Admin add(Admin admin) {
-        Objects.requireNonNull(admin);
-
-        Objects.requireNonNull(admin.getUsername());
-
+        Assert.assertNotNull(admin, MISS_ARGRUMENTS);
+        Assert.assertNotNull(admin.getUsername(), MISS_ARGRUMENTS);
         //TODO 检验用户名唯一性
 
         Objects.requireNonNull(admin.getPassword());
-        if (admin.getSalt() == null) {
-            admin.setSalt(DEFAULT_SALT);
-        }
-        String password = MD5Encoder.encode(admin.getPassword() + admin.getSalt(), DEFAULT_PASSWORD_CHARSET);
-        admin.setPassword(password);
+        encodePassword(admin);
         mapper.add(admin);
         return admin;
     }
 
     @Override
     public int update(Admin admin) {
-        return 0;
+        Assert.assertNotNull(admin, MISS_ARGRUMENTS);
+        Assert.assertNotNull(admin.getId(), MISS_ARGRUMENTS);
+        encodePassword(admin);
+        return mapper.update(admin);
     }
 
     @Override
     public int delete(long id) {
-        return 0;
+        LOGGER.info("用户:{} 拥有的角色:{}", id, mapper.listRoleId(id));
+        mapper.deleteAdminRoles(id);
+        Admin admin = new Admin(id, Admin.STATUS_DISABLE);
+        return mapper.update(admin);
     }
 
     @Override
@@ -62,6 +69,19 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<Admin> list(BaseSearch search) {
-        return null;
+        return mapper.list(search);
+    }
+
+    @Override
+    public int count(BaseSearch search) {
+        return mapper.count(search);
+    }
+
+    private void encodePassword(Admin admin) {
+        if (admin.getPassword() == null) return;
+        if (admin.getSalt() == null) admin.setSalt(DEFAULT_SALT);
+        String password = MD5Encoder.encode(
+                admin.getPassword() + admin.getSalt(), DEFAULT_PASSWORD_CHARSET);
+        admin.setPassword(password);
     }
 }

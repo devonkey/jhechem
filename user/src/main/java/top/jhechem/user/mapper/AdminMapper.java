@@ -1,5 +1,6 @@
 package top.jhechem.user.mapper;
 
+import cn.idongjia.common.query.BaseSearch;
 import top.jhechem.user.pojo.Admin;
 
 import java.util.List;
@@ -12,9 +13,17 @@ public interface AdminMapper {
 
     int add(Admin admin);
 
+    int update(Admin admin);
+
+    int deleteAdminRoles(long id);
+
     Admin getByUsername(String username);
 
     Admin get(long id);
 
     List<Integer> listRoleId(long id);
+
+    List<Admin> list(BaseSearch search);
+
+    int count(BaseSearch search);
 }

@@ -55,5 +55,7 @@
                    ref="functionAuthService" protocol="dubbo,rest"/>
     <dubbo:service interface="top.jhechem.user.service.AdminService"
                    ref="adminService" protocol="dubbo,rest"/>
+    <dubbo:service interface="top.jhechem.user.service.RoleService"
+                   ref="roleService" protocol="dubbo"/>
 
 </beans>

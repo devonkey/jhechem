@@ -38,6 +38,13 @@ public class Admin extends Base {
 
     private List<Integer> authGroups;
 
+    public Admin() {
+    }
+
+    public Admin(Long id, Integer status) {
+        this.id = id;
+        this.status = status;
+    }
 
     public Long getId() {
         return id;
