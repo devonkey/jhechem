@@ -20,4 +20,6 @@ public interface OrderMapper {
     Order get(long bookid);
 
     List<Order> list(OrderSearch search);
+
+    int count(OrderSearch search);
 }

@@ -86,7 +86,7 @@
         WHERE `bookid` = #{0}
     </select>
 
-    <select id="list" parameterType="java.lang.Long" resultMap="orderMap">
+    <select id="list" resultMap="orderMap">
         SELECT
         <include refid="columnGet"/>
         FROM jh_order
@@ -94,6 +94,12 @@
         <include refid="searchBody"/>
         <if test="limit != null">limit #{limit}</if>
         <if test="offset != null">offset #{offset}</if>
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT count(1) FROM jh_order
+        WHERE 1=1
+        <include refid="searchBody"/>
     </select>
 
 

@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.jhechem.core.Response;
+import top.jhechem.core.base.Pagination;
 import top.jhechem.order.pojo.Order;
 import top.jhechem.order.pojo.OrderSearch;
 import top.jhechem.order.service.OrderService;
 import top.jhechem.web.BaseController;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * 订单控制器
@@ -39,8 +39,8 @@ public class OrderController extends BaseController {
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     @ResponseBody
-    public Response<List<Order>> list(OrderSearch search) {
+    public Response<Pagination<Order>> list(OrderSearch search) {
 
-        return Response.ok(orderService.list(search));
+        return Response.paginate(orderService.list(search), orderService.count(search));
     }
 }

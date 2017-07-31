@@ -13,6 +13,9 @@ insert into function_auth(id,`name`,url,create_time,update_time) values (10008,'
 insert into auth_group (id,name,create_time,update_time) values (10000,'管理员管理',current_timestamp,current_timestamp);
 insert into auth_group (id,name,create_time,update_time) values (10001,'订单管理',current_timestamp,current_timestamp);
 insert into auth_group (id,name,create_time,update_time) values (10002,'查询订单',current_timestamp,current_timestamp);
+insert into auth_group (id,name,create_time,update_time) values (10003,'权限管理',current_timestamp,current_timestamp);
+insert into auth_group (id,name,create_time,update_time) values (10004,'角色管理',current_timestamp,current_timestamp);
+insert into auth_group (id,name,create_time,update_time) values (10005,'角色权限组关系管理',current_timestamp,current_timestamp);
 
 insert into auth_group_rel(group_id,auth_id,create_time) values (10000,10003,current_timestamp);
 insert into auth_group_rel(group_id,auth_id,create_time) values (10000,10004,current_timestamp);

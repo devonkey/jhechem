@@ -49,4 +49,9 @@ public class OrderServiceImpl implements OrderService {
         search.setYwy(BaseSearch.likeStr(search.getYwy()));
         return mapper.list(search);
     }
+
+    @Override
+    public int count(@BeanParam OrderSearch search) {
+        return mapper.count(search);
+    }
 }

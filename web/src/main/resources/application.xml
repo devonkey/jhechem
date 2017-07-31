@@ -22,7 +22,7 @@
 
     <context:property-placeholder location="classpath:web.properties"/>
 
-    <dubbo:application name="web" />
+    <dubbo:application name="web"/>
 
     <import resource="classpath:shiro.xml"/>
 
@@ -39,6 +39,9 @@
                      check="false" protocol="dubbo"/>
     <dubbo:reference id="adminFunctionAuthGroupService"
                      interface="top.jhechem.user.service.AdminFunctionAuthGroupService"
+                     check="false" protocol="dubbo"/>
+    <dubbo:reference id="roleService"
+                     interface="top.jhechem.user.service.RoleService"
                      check="false" protocol="dubbo"/>
 
 </beans>

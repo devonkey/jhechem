@@ -44,4 +44,8 @@ public interface OrderService {
     @Path("list")
     List<Order> list(@BeanParam OrderSearch search);
 
+    @GET
+    @Path("count")
+    int count(@BeanParam OrderSearch search);
+
 }

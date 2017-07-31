@@ -3,6 +3,9 @@ package top.jhechem.core;
 import cn.idongjia.common.base.Base;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import top.jhechem.core.base.Pagination;
+
+import java.util.List;
 
 /**
  * 响应类
@@ -51,6 +54,10 @@ public class Response<T> extends Base {
 
     public static <T> Response<T> ok(T res) {
         return new Response<>(SUCCESS_CODE, SUCCESS_MSG, res);
+    }
+
+    public static <T> Response<Pagination<T>> paginate(List<T> items, int total) {
+        return new Response<>(SUCCESS_CODE,SUCCESS_MSG, new Pagination<>(items, total));
     }
 
     public Response() {
