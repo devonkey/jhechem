@@ -74,8 +74,7 @@
     </update>
 
     <update id="delete" parameterType="java.lang.Long">
-        UPDATE jh_order
-        SET `bookid` = `bookid`
+        UPDATE jh_order SET `status` = 0 AND `update_time` = CURRENT_TIMESTAMP
         WHERE `bookid` = #{0}
     </update>
 
@@ -83,14 +82,14 @@
         SELECT
         <include refid="columnGet"/>
         FROM jh_order
-        WHERE `bookid` = #{0}
+        WHERE `bookid` = #{0} AND `status` = 1
     </select>
 
     <select id="list" resultMap="orderMap">
         SELECT
         <include refid="columnGet"/>
         FROM jh_order
-        WHERE 1=1
+        WHERE `status` = 1
         <include refid="searchBody"/>
         <if test="limit != null">limit #{limit}</if>
         <if test="offset != null">offset #{offset}</if>
@@ -98,7 +97,7 @@
 
     <select id="count" resultType="int">
         SELECT count(1) FROM jh_order
-        WHERE 1=1
+        WHERE `status` = 1
         <include refid="searchBody"/>
     </select>
 
@@ -394,7 +393,7 @@
             <if test="krkpdz != null">`krkpdz` = #{krkpdz},</if>
             <if test="krfhdz != null">`krfhdz` = #{krfhdz},</if>
             <if test="content != null">`content` = #{content},</if>
-            `bookid` = #{bookid}
+            `update_time` = CURRENT_TIMESTAMP
         </set>
     </sql>
 
