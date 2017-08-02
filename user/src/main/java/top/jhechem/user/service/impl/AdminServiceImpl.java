@@ -11,7 +11,6 @@ import top.jhechem.user.pojo.Admin;
 import top.jhechem.user.service.AdminService;
 
 import javax.annotation.Resource;
-import javax.ws.rs.BeanParam;
 import java.util.List;
 import java.util.Objects;
 
