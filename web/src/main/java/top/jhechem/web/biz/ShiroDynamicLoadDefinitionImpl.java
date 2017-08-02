@@ -7,12 +7,12 @@ import org.apache.shiro.web.config.IniFilterChainResolverFactory;
 import org.apache.shiro.web.filter.mgt.DefaultFilterChainManager;
 import org.apache.shiro.web.filter.mgt.PathMatchingFilterChainResolver;
 import org.apache.shiro.web.servlet.AbstractShiroFilter;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import top.jhechem.user.pojo.FunctionAuth;
 import top.jhechem.user.service.FunctionAuthService;
 
-import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +21,7 @@ import java.util.Map;
  * 动态加载权限所在权限组
  * Created by wuqiang on 2017/7/25.
  */
-public class ShiroDynamicLoadDefinitionImpl implements ShiroDynamicLoadDefinition {
+public class ShiroDynamicLoadDefinitionImpl implements ShiroDynamicLoadDefinition, InitializingBean {
 
     private static final Log LOGGER = LogFactory.getLog(ShiroDynamicLoadDefinitionImpl.class);
 
@@ -34,7 +34,6 @@ public class ShiroDynamicLoadDefinitionImpl implements ShiroDynamicLoadDefinitio
     private String filterChainDefinitions;
 
     @Override
-    @PostConstruct
     public synchronized void reloadPermission() {
         LOGGER.debug("reload资源权限配置开始！");
         try {
@@ -44,6 +43,7 @@ public class ShiroDynamicLoadDefinitionImpl implements ShiroDynamicLoadDefinitio
             addToChain(manager, urlDefinitionMap);
         } catch (Exception e) {
             LOGGER.error("reload资源权限配置发生错误！", e);
+            throw new RuntimeException(e);
         }
         LOGGER.debug("reload资源权限配置结束！");
     }
@@ -94,4 +94,8 @@ public class ShiroDynamicLoadDefinitionImpl implements ShiroDynamicLoadDefinitio
         this.filterChainDefinitions = filterChainDefinitions;
     }
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        reloadPermission();
+    }
 }

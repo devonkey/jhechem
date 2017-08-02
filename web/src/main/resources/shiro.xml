@@ -27,12 +27,14 @@
     </bean>
 
     <bean id="shiroDynamicLoadDefinition"
-          class="top.jhechem.web.biz.ShiroDynamicLoadDefinitionImpl">
+          class="top.jhechem.web.biz.ShiroDynamicLoadDefinitionImpl"
+          lazy-init="false">
         <property name="filterChainDefinitions">
             <value>
                 /login = authc
                 /logout = logout
                 /menu/** = anon
+                /admin/test=anon
             </value>
         </property>
     </bean>

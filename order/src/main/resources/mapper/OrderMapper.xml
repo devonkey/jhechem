@@ -114,13 +114,13 @@
 
     <sql id="columnGet">
         bookid, paixu, casno, bookname, enbookname, ordernum, fapiaonum, krname,
-        IFNULL(date1,unix_timestamp(date1)) date1, IFNULL(date2,unix_timestamp(date2)) date2, cjsl, style,
+        IF(date1 IS NULL , 0, unix_timestamp(date1)) date1, date2, cjsl, style,
         price1, price2, ysfs, ysfy, hl, zsh, huokuan, lirun, yundan,
-        IFNULL(date3,unix_timestamp(date3)) date3, cpgg, baozhuang, isyp,
+        date3, cpgg, baozhuang, isyp,
         gyscontact, gysname, iskucun, kucun, fj1, fj2, ywy, isjs,
         isdh, isfh, isfp, isfxbg, zhfrom, ists,
-        IFNULL(date4,unix_timestamp(date4)) date4, issh, iskp, isgcfp,
-        mylx, ishx, IFNULL(date5,unix_timestamp(date5)) date5, iswcts, ishkqf, qgchk, krqk,
+        date4, issh, iskp, isgcfp,
+        mylx, ishx, date5, iswcts, ishkqf, qgchk, krqk,
         isok, krkpdz, krfhdz, content
     </sql>
 
@@ -154,11 +154,11 @@
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="date1 !=null and date1 != ''">,from_unixtime(#{date1})</when>
+            <when test="date1 !=null and date1 != ''">,unix_timestamp(#{date1})</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="date2 !=null and date2 != ''">,from_unixtime(#{date2})</when>
+            <when test="date2 !=null and date2 != ''">,#{date2}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
@@ -206,7 +206,7 @@
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="date3 !=null and date3 != ''">,from_unixtime(#{date3})</when>
+            <when test="date3 !=null and date3 != ''">,#{date3}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
@@ -278,7 +278,7 @@
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="date4 !=null and date4 != ''">,from_unixtime(#{date4})</when>
+            <when test="date4 !=null and date4 != ''">,#{date4}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
@@ -302,7 +302,7 @@
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="date5 !=null and date5 != ''">,from_unixtime(#{date5})</when>
+            <when test="date5 !=null and date5 != ''">,#{date5}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
@@ -349,7 +349,7 @@
             <if test="fapiaonum != null">`fapiaonum` = #{fapiaonum},</if>
             <if test="krname != null">`krname` = #{krname},</if>
             <if test="date1 != null">`date1` = from_unixtime(#{date1}),</if>
-            <if test="date2 != null">`date2` = from_unixtime(#{date2}),</if>
+            <if test="date2 != null">`date2` = #{date2},</if>
             <if test="cjsl != null">`cjsl` = #{cjsl},</if>
             <if test="style != null">`style` = #{style},</if>
             <if test="price1 != null">`price1` = #{price1},</if>
@@ -361,7 +361,7 @@
             <if test="huokuan != null">`huokuan` = #{huokuan},</if>
             <if test="lirun != null">`lirun` = #{lirun},</if>
             <if test="yundan != null">`yundan` = #{yundan},</if>
-            <if test="date3 != null">`date3` = from_unixtime(#{date3}),</if>
+            <if test="date3 != null">`date3` = #{date3},</if>
             <if test="cpgg != null">`cpgg` = #{cpgg},</if>
             <if test="baozhuang != null">`baozhuang` = #{baozhuang},</if>
             <if test="isyp != null">`isyp` = #{isyp},</if>
@@ -379,13 +379,13 @@
             <if test="isfxbg != null">`isfxbg` = #{isfxbg},</if>
             <if test="zhfrom != null">`zhfrom` = #{zhfrom},</if>
             <if test="ists != null">`ists` = #{ists},</if>
-            <if test="date4 != null">`date4` = from_unixtime(#{date4}),</if>
+            <if test="date4 != null">`date4` = #{date4}</if>
             <if test="issh != null">`issh` = #{issh},</if>
             <if test="iskp != null">`iskp` = #{iskp},</if>
             <if test="isgcfp != null">`isgcfp` = #{isgcfp},</if>
             <if test="mylx != null">`mylx` = #{mylx},</if>
             <if test="ishx != null">`ishx` = #{ishx},</if>
-            <if test="date5 != null">`date5` = from_unixtime(#{date5}),</if>
+            <if test="date5 != null">`date5` = #{date5},</if>
             <if test="iswcts != null">`iswcts` = #{iswcts},</if>
             <if test="ishkqf != null">`ishkqf` = #{ishkqf},</if>
             <if test="qgchk != null">`qgchk` = #{qgchk},</if>

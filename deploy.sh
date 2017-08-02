@@ -12,8 +12,8 @@ if [ -n "$3" ] ; then
         sendWar=$3
 fi
 
-if [ $sendWar == true ] ; then
-	if [ $project == 'jhechem' ] ; then
+if [ $sendWar = true ] ; then
+	if [ $project = 'jhechem' ] ; then
         project='user'
         scp ${project}/target/libs/${project}.war hugo@$BMW:~/war/
         ssh -t hugo@$BMW "sh ~/deploy.sh ${project} ${clearLog}"
@@ -28,7 +28,7 @@ if [ $sendWar == true ] ; then
         ssh -t hugo@$BMW "sh ~/deploy.sh ${project} ${clearLog}"
     fi
 else
-    if [ $project == 'jhechem' ] ; then
+    if [ $project = 'jhechem' ] ; then
         project='user'
         ssh -t hugo@$BMW "sh ~/deploy.sh ${project} ${clearLog}"
         project='order'
