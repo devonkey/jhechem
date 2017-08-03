@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="true" scan="false" scanPeriod="30 seconds">
+    <contextName>order</contextName>
+
+    <conversionRule conversionWord="uniqueId" converterClass="cn.idongjia.log.converter.ExtensionConverter"/>
+    <conversionRule conversionWord="msgId" converterClass="cn.idongjia.log.converter.ExtensionConverter"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %cn %-5p %m [%t] %c.%M\(%L\)%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="SERVICE-OUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.home}/logs/service.log</file>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %cn %-5p %m [%t] %c.%M\(%L\)%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.home}/logs/service.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="INTERFACE-OUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.home}/logs/interface.log</file>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %cn %-5p %uniqueId %m%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.home}/logs/interface.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <logger level="debug" name="top.jhechem" additivity="false">
+        <appender-ref ref="SERVICE-OUT"/>
+    </logger>
+
+    <logger level="info" name="interface" additivity="false">
+        <appender-ref ref="INTERFACE-OUT"/>
+    </logger>
+
+    <logger level="debug" name="top.jhechem.order.mapper" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <root level="WARN">
+        <appender-ref ref="STDOUT"/>
+    </root>
+    
+</configuration>

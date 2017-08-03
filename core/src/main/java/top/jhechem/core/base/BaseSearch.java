@@ -10,6 +10,7 @@ public class BaseSearch extends Base {
 
     private Integer page;
     private Integer limit;
+    private Integer offset;
     private String orderBy;
     private Long start;
     private Long end;
@@ -42,6 +43,13 @@ public class BaseSearch extends Base {
 
     public Integer getLimit() {
         return limit == null ? Query.DEFAULT_LIMIT : limit;
+    }
+
+    public Integer getOffset() {
+        if (offset == null) {
+            offset = (getPage() - 1) * getLimit();
+        }
+        return offset;
     }
 
     public String getOrderBy() {

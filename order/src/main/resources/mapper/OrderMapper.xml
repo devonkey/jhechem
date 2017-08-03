@@ -89,17 +89,21 @@
         SELECT
         <include refid="columnGet"/>
         FROM jh_order
-        WHERE `status` = 1
-        <include refid="searchBody"/>
-        <if test="orderBy != null">ORDER BY #{orderBy}</if>
-        <if test="limit != null">limit #{limit}</if>
-        <if test="offset != null">offset #{offset}</if>
+        <where>
+            `status` = 1
+            <include refid="searchBody"/>
+        </where>
+        <if test="orderBy != null">ORDER BY ${orderBy}</if>
+        <if test="limit != null">limit ${limit}</if>
+        <if test="offset != null">offset ${offset}</if>
     </select>
 
     <select id="count" resultType="int">
         SELECT count(1) FROM jh_order
-        WHERE `status` = 1
-        <include refid="searchBody"/>
+        <where>
+            `status` = 1
+            <include refid="searchBody"/>
+        </where>
     </select>
 
 

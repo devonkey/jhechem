@@ -49,7 +49,7 @@ public class OrderMapperTest extends SpringJUnitServiceTest {
     @Test
     public void list() throws Exception {
         OrderSearch search = new OrderSearch();
-        search.setDefaultOrderBy("bookid desc");
+        search.setDefaultOrderBy("bookid DESC");
         System.out.println(mapper.list(search));
     }
 
