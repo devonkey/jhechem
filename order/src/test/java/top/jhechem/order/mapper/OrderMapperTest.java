@@ -21,6 +21,7 @@ public class OrderMapperTest extends SpringJUnitServiceTest {
         order = new Order();
         order.setBaozhuang("dkjflskjfl");
     }
+
     @Test
     public void add() throws Exception {
         mapper.add(order);
@@ -48,7 +49,7 @@ public class OrderMapperTest extends SpringJUnitServiceTest {
     @Test
     public void list() throws Exception {
         OrderSearch search = new OrderSearch();
-        search.setLimit(5);
+        search.setDefaultOrderBy("bookid desc");
         System.out.println(mapper.list(search));
     }
 

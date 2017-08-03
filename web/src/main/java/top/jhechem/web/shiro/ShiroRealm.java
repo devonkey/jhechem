@@ -1,6 +1,5 @@
 package top.jhechem.web.shiro;
 
-import cn.idongjia.util.Utils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -11,6 +10,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import top.jhechem.core.util.Utils;
 import top.jhechem.user.pojo.Admin;
 import top.jhechem.user.service.AdminFunctionAuthGroupService;
 import top.jhechem.user.service.AdminService;

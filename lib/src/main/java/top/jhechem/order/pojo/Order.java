@@ -1,10 +1,10 @@
 package top.jhechem.order.pojo;
 
-import cn.idongjia.common.base.Base;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
+import top.jhechem.core.base.Base;
 
 /**
  * 订单

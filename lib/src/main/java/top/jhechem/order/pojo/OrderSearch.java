@@ -1,8 +1,8 @@
 package top.jhechem.order.pojo;
 
-import cn.idongjia.common.query.BaseSearch;
 import lombok.Getter;
 import lombok.Setter;
+import top.jhechem.core.base.BaseSearch;
 
 import javax.ws.rs.QueryParam;
 
@@ -10,6 +10,8 @@ import javax.ws.rs.QueryParam;
  * search
  * Created by wuqiang on 2017/7/20.
  */
+@Setter
+@Getter
 public class OrderSearch extends BaseSearch {
 
     @QueryParam("bookid")
@@ -19,27 +21,22 @@ public class OrderSearch extends BaseSearch {
     @QueryParam("ywy")
     private String ywy;
 
-    public Long getBookid() {
-        return bookid;
-    }
+    private String casno;
 
-    public void setBookid(Long bookid) {
-        this.bookid = bookid;
-    }
+    private String enbookname;
 
-    public String getBookname() {
-        return bookname;
-    }
+    private String ordernum;
 
-    public void setBookname(String bookname) {
-        this.bookname = bookname;
-    }
+    private String huokuan;
 
-    public String getYwy() {
-        return ywy;
-    }
+    private String gysname;
 
-    public void setYwy(String ywy) {
-        this.ywy = ywy;
-    }
+    private String gyscontact;
+
+    private String lirun;
+
+    private String style;
+
+    private String yundan;
+
 }

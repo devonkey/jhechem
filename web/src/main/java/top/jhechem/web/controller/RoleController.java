@@ -1,6 +1,8 @@
 package top.jhechem.web.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.jhechem.core.Response;
 import top.jhechem.core.constant.ExceptionResponse;
@@ -29,14 +31,14 @@ public class RoleController extends BaseController {
 
     @POST
     @Path("add")
-    public Response add(Role role) {
+    public Response add(@RequestBody Role role) {
         roleService.add(role);
         return Response.ok();
     }
 
     @PUT
     @Path("update")
-    public Response update(Role role) {
+    public Response update(@RequestBody Role role) {
         Assert.assertNotNull(role, ExceptionResponse.MISS_ARGRUMENTS);
         Assert.assertNotNull(role.getId(), ExceptionResponse.MISS_ARGRUMENTS);
         roleService.update(role);
@@ -45,7 +47,7 @@ public class RoleController extends BaseController {
 
     @POST
     @Path("add_admin/{roleId:\\d+}")
-    public Response addAdmin(int roleId, List<Long> adminIds) {
+    public Response addAdmin(@PathVariable("roleId") int roleId, @RequestBody List<Long> adminIds) {
         Assert.assertNotNull(adminIds, ExceptionResponse.MISS_ARGRUMENTS);
         roleService.addAdmin(roleId, adminIds);
         return Response.ok();

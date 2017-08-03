@@ -1,6 +1,6 @@
 package top.jhechem.user.mapper;
 
-import cn.idongjia.common.query.BaseSearch;
+import top.jhechem.core.base.BaseSearch;
 import top.jhechem.user.pojo.Admin;
 
 import java.util.List;

@@ -2,6 +2,7 @@ package top.jhechem.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -45,14 +46,14 @@ public class OrderController extends BaseController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public Response add(Order order) {
+    public Response add(@RequestBody Order order) {
         Assert.assertNotNull(order, ExceptionResponse.MISS_ARGRUMENTS);
         Order res = orderService.add(order);
         return Response.ok(res);
     }
 
     @RequestMapping(value = "update", method = RequestMethod.PUT)
-    public Response update(Order order) {
+    public Response update(@RequestBody Order order) {
         Assert.assertNotNull(order, ExceptionResponse.MISS_ARGRUMENTS);
         Assert.assertNotNull(order.getBookid(), ExceptionResponse.MISS_ARGRUMENTS);
         int res = orderService.update(order);

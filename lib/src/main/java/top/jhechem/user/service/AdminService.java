@@ -1,7 +1,7 @@
 package top.jhechem.user.service;
 
-import cn.idongjia.common.query.BaseSearch;
 import com.alibaba.dubbo.rpc.protocol.rest.support.ContentType;
+import top.jhechem.core.base.BaseSearch;
 import top.jhechem.user.pojo.Admin;
 
 import javax.ws.rs.BeanParam;
@@ -15,7 +15,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import java.nio.charset.Charset;
 import java.util.List;
 
 /**

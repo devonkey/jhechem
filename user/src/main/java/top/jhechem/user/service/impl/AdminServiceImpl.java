@@ -1,10 +1,10 @@
 package top.jhechem.user.service.impl;
 
-import cn.idongjia.common.query.BaseSearch;
 import cn.idongjia.log.Log;
 import cn.idongjia.log.LogFactory;
 import cn.idongjia.util.MD5Encoder;
 import org.springframework.stereotype.Service;
+import top.jhechem.core.base.BaseSearch;
 import top.jhechem.core.util.Assert;
 import top.jhechem.user.mapper.AdminMapper;
 import top.jhechem.user.pojo.Admin;

@@ -1,8 +1,8 @@
 package top.jhechem.core;
 
-import cn.idongjia.common.base.Base;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import top.jhechem.core.base.Base;
 import top.jhechem.core.base.Pagination;
 
 import java.util.List;

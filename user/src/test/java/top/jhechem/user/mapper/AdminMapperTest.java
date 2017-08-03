@@ -7,8 +7,6 @@ import top.jhechem.user.pojo.Admin;
 
 import javax.annotation.Resource;
 
-import static org.junit.Assert.*;
-
 /**
  * junit
  * Created by wuqiang on 2017/7/23.

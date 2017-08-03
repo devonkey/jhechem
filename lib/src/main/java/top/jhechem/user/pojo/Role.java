@@ -1,6 +1,7 @@
 package top.jhechem.user.pojo;
 
-import cn.idongjia.common.base.Base;
+
+import top.jhechem.core.base.Base;
 
 import java.util.List;
 

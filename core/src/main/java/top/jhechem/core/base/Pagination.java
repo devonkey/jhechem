@@ -1,7 +1,5 @@
 package top.jhechem.core.base;
 
-import cn.idongjia.common.base.Base;
-
 import java.util.List;
 
 /**

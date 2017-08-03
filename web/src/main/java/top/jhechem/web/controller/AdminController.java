@@ -2,6 +2,7 @@ package top.jhechem.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,7 +38,7 @@ public class AdminController extends BaseController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public Response add(Admin admin) {
+    public Response add(@RequestBody Admin admin) {
         Assert.assertNotNull(admin, ExceptionResponse.MISS_ARGRUMENTS);
         Assert.assertNotNull(admin.getUsername(), ExceptionResponse.MISS_ARGRUMENTS);
         Assert.assertNotNull(admin.getRealName(), ExceptionResponse.MISS_ARGRUMENTS);
@@ -46,7 +47,7 @@ public class AdminController extends BaseController {
     }
 
     @RequestMapping(value = "update", method = RequestMethod.PUT)
-    public Response update(Admin admin) {
+    public Response update(@RequestBody Admin admin) {
         Assert.assertNotNull(admin, ExceptionResponse.MISS_ARGRUMENTS);
         Assert.assertNotNull(admin.getId(), ExceptionResponse.MISS_ARGRUMENTS);
         return Response.ok(adminService.update(admin));
