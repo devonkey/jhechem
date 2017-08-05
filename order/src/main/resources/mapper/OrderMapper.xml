@@ -75,7 +75,10 @@
 
     <update id="delete" parameterType="java.lang.Long">
         UPDATE jh_order SET `status` = 0 AND `update_time` = CURRENT_TIMESTAMP
-        WHERE `bookid` = #{0}
+        WHERE 1 = 0 OR
+        <foreach collection="bookids" item="id" open="`bookid` IN (" close=")" separator=",">
+            #{id}
+        </foreach>
     </update>
 
     <select id="get" parameterType="java.lang.Long" resultMap="orderMap">

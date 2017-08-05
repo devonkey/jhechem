@@ -1,5 +1,6 @@
 package top.jhechem.order.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import top.jhechem.order.pojo.Order;
 import top.jhechem.order.pojo.OrderSearch;
 
@@ -15,7 +16,7 @@ public interface OrderMapper {
 
     int update(Order order);
 
-    int delete(long bookid);
+    int delete(@Param("bookids") List<Long> bookids);
 
     Order get(long bookid);
 

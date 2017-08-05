@@ -34,8 +34,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public int delete(long bookid) {
-        return mapper.delete(bookid);
+    public int delete(List<Long> bookids) {
+        return mapper.delete(bookids);
     }
 
     @Override
