@@ -45,7 +45,7 @@ CREATE TABLE `jh_order` (
 `isgcfp` tinyint(1) DEFAULT NULL COMMENT '是否收到工厂发票', 
 `mylx` tinyint(2) DEFAULT '0' COMMENT '贸易类型, 0-外销 1-内销', 
 `ishx` tinyint(1) DEFAULT NULL COMMENT '是否已经核销', 
-`date5` DATETIME DEFAULT NULL COMMENT '核销截止日期',
+`date5` VARCHAR(64) DEFAULT NULL COMMENT '核销截止日期',
 `iswcts` tinyint(1) DEFAULT NULL COMMENT '是否已经完成退税', 
 `ishkqf` tinyint(1) DEFAULT NULL COMMENT '工厂货款是否已经全付', 
 `qgchk` VARCHAR(64) DEFAULT NULL COMMENT '欠工厂部分货款', 

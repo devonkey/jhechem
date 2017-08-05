@@ -4,7 +4,7 @@ insert into function_auth(id,`name`,url,create_time,update_time) values (10000,'
 insert into function_auth(id,`name`,url,create_time,update_time) values (10001,'订单列表','/order/list',current_timestamp,current_timestamp);
 #订单编辑
 insert into function_auth(id,`name`,url,create_time,update_time) values (10002,'订单修改','/order/update',current_timestamp,current_timestamp);
-insert into function_auth(id,`name`,url,create_time,update_time) values (10003,'订单删除','/order/delete/{bookid:\\d+}',current_timestamp,current_timestamp);
+insert into function_auth(id,`name`,url,create_time,update_time) values (10003,'订单删除','/order/delete',current_timestamp,current_timestamp);
 insert into function_auth(id,`name`,url,create_time,update_time) values (10004,'添加订单','/order/add',current_timestamp,current_timestamp);
 
 #管理员管理

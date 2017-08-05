@@ -57,3 +57,4 @@ CREATE TABLE `jh_order` (
 PRIMARY KEY (`bookid`),
 KEY `idx_ywy` (`ywy`,`lirun`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8mb4 COMMENT='订单表';
+

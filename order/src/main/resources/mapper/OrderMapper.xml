@@ -386,7 +386,7 @@
             <if test="isfxbg != null">`isfxbg` = #{isfxbg},</if>
             <if test="zhfrom != null">`zhfrom` = #{zhfrom},</if>
             <if test="ists != null">`ists` = #{ists},</if>
-            <if test="date4 != null">`date4` = #{date4}</if>
+            <if test="date4 != null">`date4` = #{date4},</if>
             <if test="issh != null">`issh` = #{issh},</if>
             <if test="iskp != null">`iskp` = #{iskp},</if>
             <if test="isgcfp != null">`isgcfp` = #{isgcfp},</if>

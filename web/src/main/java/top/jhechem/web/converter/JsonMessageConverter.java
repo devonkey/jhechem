@@ -19,6 +19,7 @@ package top.jhechem.web.converter;
 import cn.idongjia.common.context.DongjiaContext;
 import cn.idongjia.log.LoggerName;
 import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,10 +30,13 @@ import org.springframework.http.StreamingHttpOutputMessage;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJacksonValue;
+import org.springframework.util.ClassUtils;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Type;
+import java.nio.charset.Charset;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Implementation of {@link org.springframework.http.converter.HttpMessageConverter HttpMessageConverter} that
@@ -55,6 +59,12 @@ import java.lang.reflect.Type;
  * @since 3.1.2
  */
 public class JsonMessageConverter extends AbstractJsonMessageConverter {
+
+    public static final Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
+
+    // Check for Jackson 2.3's overloaded canDeserialize/canSerialize variants with cause reference
+    private static final boolean jackson23Available = ClassUtils.hasMethod(ObjectMapper.class,
+            "canDeserialize", JavaType.class, AtomicReference.class);
 
     private Logger interfaceLogger = LoggerFactory.getLogger(LoggerName.INTERFACE);
     private String jsonPrefix;
@@ -132,7 +142,15 @@ public class JsonMessageConverter extends AbstractJsonMessageConverter {
 
     @Override
     public boolean canWrite(Type type, Class<?> clazz, MediaType mediaType) {
-        return supports(clazz) && canWrite(mediaType);
+        if (!jackson23Available || !logger.isWarnEnabled()) {
+            return (this.objectMapper.canSerialize(clazz) && canWrite(mediaType));
+        }
+        AtomicReference<Throwable> causeRef = new AtomicReference<Throwable>();
+        if (this.objectMapper.canSerialize(clazz, causeRef) && canWrite(mediaType)) {
+            return true;
+        }
+        logger.error("not excepted.");
+        return false;
     }
 
     @Override
