@@ -16,6 +16,7 @@ import top.jhechem.order.service.OrderService;
 import top.jhechem.web.BaseController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 订单控制器
@@ -60,9 +61,9 @@ public class OrderController extends BaseController {
         return Response.ok(res);
     }
 
-    @RequestMapping(value = "delete/{bookid:\\d+}", method = RequestMethod.DELETE)
-    public Response delete(@PathVariable("bookid") long bookid) {
-        int res = orderService.delete(bookid);
+    @RequestMapping(value = "delete", method = RequestMethod.DELETE)
+    public Response delete(@RequestBody List<Long> bookids) {
+        int res = orderService.delete(bookids);
         return Response.ok(res);
     }
 }
