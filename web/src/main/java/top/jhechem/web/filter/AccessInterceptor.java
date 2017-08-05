@@ -10,10 +10,10 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.sun.deploy.util.ArrayUtil.arrayToString;
 import static org.springframework.util.StringUtils.isEmpty;
 
 public class AccessInterceptor extends HandlerInterceptorAdapter {
@@ -50,8 +50,9 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
             return outMap;
         }
 
-        inputMap.forEach((k, v) -> outMap.put(k, arrayToString(v)));
+        inputMap.forEach((k, v) -> outMap.put(k, Arrays.toString(v)));
 
         return outMap;
     }
+
 }
