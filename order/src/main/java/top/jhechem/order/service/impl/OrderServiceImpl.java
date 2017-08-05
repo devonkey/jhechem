@@ -51,6 +51,7 @@ public class OrderServiceImpl implements OrderService {
         search.setEnbookname(BaseSearch.likeStr(search.getEnbookname()));
         search.setGysname(BaseSearch.likeStr(search.getGysname()));
         search.setGyscontact(BaseSearch.likeStr(search.getGyscontact()));
+        search.setKeyword(BaseSearch.likeStr(search.getKeyword()));
         return mapper.list(search);
     }
 

@@ -68,6 +68,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<Admin> list(BaseSearch search) {
+        search.setKeyword(BaseSearch.likeStr(search.getKeyword()));
         return mapper.list(search);
     }
 

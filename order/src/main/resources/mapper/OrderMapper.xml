@@ -161,7 +161,7 @@
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="date1 !=null and date1 != ''">,unix_timestamp(#{date1})</when>
+            <when test="date1 !=null and date1 != ''">,from_unixtime(#{date1})</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
@@ -416,7 +416,7 @@
     <!--private String yundan;-->
     <sql id="searchBody">
         <if test="bookid != null">AND `bookid` = #{bookid}</if>
-        <if test="bookname != null">AND bookname like #{bookname}</if>
+        <if test="bookname != null">AND bookname LIKE #{bookname}</if>
         <if test="ywy != null">AND ywy LIKE #{ywy}</if>
         <if test="casno != null">AND casno = #{casno}</if>
         <if test="enbookname != null">AND enbookname LIKE #{enbookname}</if>
@@ -426,6 +426,15 @@
         <if test="gyscontact != null">AND gyscontact LIKE #{gyscontact}</if>
         <if test="lirun != null">AND lirun = #{lirun}</if>
         <if test="yundan != null">AND yundan = #{yundan}</if>
+        <if test="keyword != null">
+            AND (
+              bookname LIKE #{keyword}
+              OR enbookname LIKE #{keyword}
+              OR ywy LIKE #{keyword}
+              OR gysname LIKE #{keyword}
+              OR gyscontact LIKE #{keyword}
+                )
+        </if>
     </sql>
 
 

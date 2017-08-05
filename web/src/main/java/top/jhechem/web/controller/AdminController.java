@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.jhechem.core.Response;
+import top.jhechem.core.base.BaseSearch;
+import top.jhechem.core.base.Pagination;
+import top.jhechem.core.constant.ExceptionResponse;
 import top.jhechem.core.util.Assert;
 import top.jhechem.user.pojo.Admin;
 import top.jhechem.user.service.AdminService;
 import top.jhechem.web.BaseController;
-import top.jhechem.core.constant.ExceptionResponse;
 
 import javax.annotation.Resource;
 
@@ -35,6 +37,11 @@ public class AdminController extends BaseController {
     @RequestMapping(value = "{id:\\d+}", method = RequestMethod.GET)
     public Response<Admin> get(@PathVariable("id") long id) {
         return Response.ok(adminService.get(id));
+    }
+
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public Response<Pagination<Admin>> list(BaseSearch search) {
+        return Response.paginate(adminService.list(search), adminService.count(search));
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)

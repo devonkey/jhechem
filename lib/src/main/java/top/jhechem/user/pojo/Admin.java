@@ -2,6 +2,8 @@ package top.jhechem.user.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
+import lombok.Setter;
 import top.jhechem.core.base.Base;
 
 import java.util.List;
@@ -12,6 +14,8 @@ import java.util.List;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Setter
+@Getter
 public class Admin extends Base {
 
     public static final int STATUS_NORMAL = 1, STATUS_DISABLE = 0;
@@ -36,6 +40,8 @@ public class Admin extends Base {
 
     private Long updateTime;
 
+    private List<Role> roles;
+
     private List<Integer> authGroups;
 
     public Admin() {
@@ -46,91 +52,4 @@ public class Admin extends Base {
         this.status = status;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public String getRealName() {
-        return realName;
-    }
-
-    public void setRealName(String realName) {
-        this.realName = realName;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Long getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Long createTime) {
-        this.createTime = createTime;
-    }
-
-    public Long getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Long updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public List<Integer> getAuthGroups() {
-        return authGroups;
-    }
-
-    public void setAuthGroups(List<Integer> authGroups) {
-        this.authGroups = authGroups;
-    }
 }

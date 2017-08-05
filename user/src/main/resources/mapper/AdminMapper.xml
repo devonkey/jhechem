@@ -53,12 +53,18 @@
 
     <select id="list" resultMap="adminMap">
         SELECT <include refid="columnsGet"/> FROM admin
+        <if test="keyword != null">
+            WHERE username LIKE #{keyword} OR realname LIKE #{keyword}
+        </if>
         <if test="limit != null" >limit #{limit}</if>
         <if test="offset != null" >offset #{offset}</if>
     </select>
 
     <select id="count" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM admin
+        <if test="keyword != null">
+            WHERE username LIKE #{keyword} OR realname LIKE #{keyword}
+        </if>
     </select>
 
     <sql id="insertBody">

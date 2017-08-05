@@ -14,6 +14,7 @@ public class BaseSearch extends Base {
     private String orderBy;
     private Long start;
     private Long end;
+    private String keyword;
 
     public void setDefaultOrderBy(String orderBy) {
         if (this.orderBy == null) {
@@ -58,6 +59,10 @@ public class BaseSearch extends Base {
 
     public Long getStart() {
         return start;
+    }
+
+    public String getKeyword() {
+        return keyword;
     }
 
     public Long getEnd() {
