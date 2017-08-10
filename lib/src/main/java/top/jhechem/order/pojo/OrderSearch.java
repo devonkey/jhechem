@@ -22,6 +22,10 @@ public class OrderSearch extends BaseSearch {
     @QueryParam("ywy")
     private String ywy;
 
+    private Integer adminId;
+
+    private String adminName;
+
     private String casno;
 
     private String enbookname;

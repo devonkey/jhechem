@@ -1,0 +1,12 @@
+INSERT INTO `admin` VALUES (20000,'杨波','杨波','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20001,'赵国梁','赵国梁','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20002,'郑瑞笔','郑瑞笔','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20003,'胡振杭','胡振杭','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20004,'胡佳瑶','胡佳瑶','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20005,'胡姗姗','胡姗姗','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20006,'任如意','任如意','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20007,'薛奇汶','薛奇汶','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20008,'梅丽燕','梅丽燕','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20009,'徐梦瑜','徐梦瑜','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20010,'相春辉','相春辉','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20011,'尚迎','尚迎','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);

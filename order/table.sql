@@ -59,6 +59,7 @@ KEY `idx_ywy` (`ywy`,`lirun`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8mb4 COMMENT='订单表';
 
 
+ALTER TABLE jh_order ADD COLUMN `admin_id` int(10) unsigned DEFAULT '1' COMMENT '管理员id';
 ALTER TABLE jh_order ADD COLUMN `status` tinyint(2) unsigned DEFAULT '1' COMMENT '1-正常，0-删除';
 ALTER TABLE jh_order ADD COLUMN `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间';
 ALTER TABLE jh_order ADD COLUMN `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间';

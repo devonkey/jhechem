@@ -47,7 +47,6 @@ public class Order extends Base {
     private String kucun;
     private String fj1;
     private String fj2;
-    private String ywy;
     private Boolean isjs;
     private Boolean isdh;
     private Boolean isfh;
@@ -61,7 +60,7 @@ public class Order extends Base {
     private Boolean isgcfp;
     private Integer mylx;
     private Boolean ishx;
-    private Long date5;
+    private String date5;
     private Boolean iswcts;
     private Boolean ishkqf;
     private String qgchk;
@@ -70,5 +69,8 @@ public class Order extends Base {
     private String krkpdz;
     private String krfhdz;
     private String content;
+
+    private Integer adminId;     //业务员id
+    private String adminName;    //业务员名称
 
 }
