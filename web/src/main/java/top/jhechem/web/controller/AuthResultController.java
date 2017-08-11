@@ -1,12 +1,15 @@
 package top.jhechem.web.controller;
 
+import cn.idongjia.log.Log;
+import cn.idongjia.log.LogFactory;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.jhechem.core.Response;
+import top.jhechem.core.constant.ExceptionResponse;
 import top.jhechem.web.BaseController;
 import top.jhechem.web.biz.AuthBiz;
-import top.jhechem.core.constant.ExceptionResponse;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,9 +23,12 @@ import javax.servlet.http.HttpServletRequest;
 @ResponseBody
 public class AuthResultController extends BaseController {
 
+    private static final Log LOGGER = LogFactory.getLog(AuthResultController.class);
+
     @RequestMapping("login/success")
     public Response success() {
-        return Response.ok();
+        LOGGER.info("login success.");
+        return Response.ok(SecurityUtils.getSubject().getPrincipal());
     }
 
     @RequestMapping("login/failure")

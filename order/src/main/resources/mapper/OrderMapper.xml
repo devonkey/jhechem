@@ -36,6 +36,7 @@
         <result property="fj1" column="fj1"/>
         <result property="fj2" column="fj2"/>
         <result property="adminId" column="admin_id"/>
+        <result property="adminName" column="admin_name"/>
         <result property="isjs" column="isjs"/>
         <result property="isdh" column="isdh"/>
         <result property="isfh" column="isfh"/>
@@ -108,7 +109,7 @@
         FROM jh_order o
         LEFT JOIN admin a ON o.admin_id = a.id
         <where>
-            `status` = 1
+            o.`status` = 1
             <include refid="searchBody"/>
         </where>
     </select>
@@ -130,7 +131,7 @@
         o.isyp,o.gyscontact,o.gysname,o.iskucun,o.kucun,o.fj1,o.fj2,o.admin_id,o.isjs,
         o.isdh,o.isfh,o.isfp,o.isfxbg,o.zhfrom,o.ists,o.date4,o.issh,o.iskp,o.isgcfp,o.mylx,
         o.ishx,o.date5,o.iswcts,o.ishkqf,o.qgchk,o.krqk,o.isok,o.krkpdz,o.krfhdz,o.content,
-        a.name admin_name
+        a.username admin_name
     </sql>
 
     <sql id="insertBody">
@@ -420,7 +421,7 @@
         <if test="bookid != null">AND o.`bookid` = #{bookid}</if>
         <if test="bookname != null">AND o.bookname LIKE #{bookname}</if>
         <if test="adminId != null">AND admin_id = #{adminId}</if>
-        <if test="adminName != null">AND a.name LIKE #{adminName}</if>
+        <if test="adminName != null">AND a.username LIKE #{adminName}</if>
         <if test="casno != null">AND o.casno = #{casno}</if>
         <if test="enbookname != null">AND o.enbookname LIKE #{enbookname}</if>
         <if test="ordernum != null">AND o.ordernum = #{ordernum}</if>
@@ -429,11 +430,14 @@
         <if test="gyscontact != null">AND o.gyscontact LIKE #{gyscontact}</if>
         <if test="lirun != null">AND o.lirun = #{lirun}</if>
         <if test="yundan != null">AND o.yundan = #{yundan}</if>
+        <if test="isfh != null">AND o.isfh = #{isfh}</if>
+        <if test="isdh != null">AND o.isdh = #{isdh}</if>
+        <if test="issh != null">AND o.issh = #{issh}</if>
         <if test="keyword != null">
             AND (
               o.bookname LIKE #{keyword}
               OR o.enbookname LIKE #{keyword}
-              OR a.name LIKE #{keyword}
+              OR a.username LIKE #{keyword}
               OR o.gysname LIKE #{keyword}
               OR o.gyscontact LIKE #{keyword}
                 )

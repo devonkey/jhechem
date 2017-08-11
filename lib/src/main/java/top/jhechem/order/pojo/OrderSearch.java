@@ -44,4 +44,10 @@ public class OrderSearch extends BaseSearch {
 
     private String yundan;
 
+    private Boolean isfh;       //是否发货
+
+    private Boolean isdh;       //是否到货
+
+    private Boolean issh;       //是否收汇
+
 }

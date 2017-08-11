@@ -50,7 +50,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public int delete(long id) {
-        LOGGER.info("用户:{} 拥有的角色:{}", id, mapper.listRoleId(id));
+        LOGGER.info("用户:{} 拥有的角色:{} 删除中...", id, mapper.listRoleId(id));
         mapper.deleteAdminRoles(id);
         Admin admin = new Admin(id, Admin.STATUS_DISABLE);
         return mapper.update(admin);
@@ -58,18 +58,24 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Admin getByUsername(String username) {
-        return mapper.getByUsername(username);
+        Admin admin = mapper.getByUsername(username);
+        admin.setRoles(mapper.listRole(admin.getId()));
+        return admin;
     }
 
     @Override
     public Admin get(long id) {
-        return mapper.get(id);
+        Admin admin = mapper.get(id);
+        admin.setRoles(mapper.listRole(id));
+        return admin;
     }
 
     @Override
     public List<Admin> list(BaseSearch search) {
         search.setKeyword(BaseSearch.likeStr(search.getKeyword()));
-        return mapper.list(search);
+        List<Admin> admins = mapper.list(search);
+        admins.forEach(admin -> admin.setRoles(mapper.listRole(admin.getId())));
+        return admins;
     }
 
     @Override

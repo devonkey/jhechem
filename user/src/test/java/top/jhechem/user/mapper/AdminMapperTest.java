@@ -20,6 +20,7 @@ public class AdminMapperTest extends SpringJUnitServiceTest{
 
     {
         admin = new Admin();
+        admin.setId(20000L);
         admin.setUsername("小赵");
         admin.setRealName("赵又廷");
         admin.setSalt("1234");
@@ -34,6 +35,11 @@ public class AdminMapperTest extends SpringJUnitServiceTest{
     @Test
     public void listRoleId() throws Exception {
         System.out.println(mapper.listRoleId(admin.getId()));
+    }
+
+    @Test
+    public void listRole() throws Exception {
+        System.out.println(mapper.listRole(admin.getId()));
     }
 
 }

@@ -51,10 +51,17 @@
         SELECT role_id FROM admin_role_rel WHERE admin_id = #{0}
     </select>
 
+    <select id="listRole" resultType="top.jhechem.user.pojo.Role">
+        SELECT r.id,r.name,r.`alias` FROM admin_role_rel arr
+        LEFT JOIN role r ON arr.role_id = r.id AND r.status = 1
+        WHERE arr.admin_id = #{0}
+    </select>
+
     <select id="list" resultMap="adminMap">
         SELECT <include refid="columnsGet"/> FROM admin
+        WHERE status = 1
         <if test="keyword != null">
-            WHERE username LIKE #{keyword} OR realname LIKE #{keyword}
+            AND (username LIKE #{keyword} OR realname LIKE #{keyword})
         </if>
         <if test="limit != null" >limit #{limit}</if>
         <if test="offset != null" >offset #{offset}</if>
@@ -62,8 +69,9 @@
 
     <select id="count" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM admin
+        WHERE status = 1
         <if test="keyword != null">
-            WHERE username LIKE #{keyword} OR realname LIKE #{keyword}
+            AND (username LIKE #{keyword} OR realname LIKE #{keyword})
         </if>
     </select>
 
@@ -96,7 +104,7 @@
     </sql>
 
     <sql id="columnsGet">
-        id,username,realname,mobile,password,salt,department
+        id,username,realname,mobile,password,salt,department,unix_timestamp(create_time) create_time
     </sql>
 
     <sql id="columnsAdd">

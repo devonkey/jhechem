@@ -20,6 +20,13 @@
         SELECT group_id FROM auth_group_rel WHERE auth_id = #{0}
     </select>
 
+    <select id="getRanges" resultType="java.lang.Integer">
+        SELECT DISTINCT r.range FROM function_operate_range r
+        LEFT JOIN `function_auth` fa ON r.function_auth_id = fa.id AND fa.status = 1
+        LEFT JOIN `admin_role_rel` arr ON r.role_id = arr.role_id
+        WHERE r.status = 1 AND fa.url = #{0} AND arr.admin_id = #{1}
+    </select>
+
 
     <sql id="columnAdd">
         `name`,url

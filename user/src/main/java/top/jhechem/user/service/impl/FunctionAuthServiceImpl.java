@@ -7,6 +7,7 @@ import top.jhechem.user.service.FunctionAuthService;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
 
 /**
  * impl
@@ -23,5 +24,9 @@ public class FunctionAuthServiceImpl implements FunctionAuthService {
         List<FunctionAuth> auths = mapper.list();
         auths.forEach(auth -> auth.setAuthGroups(mapper.listGroupAuthId(auth.getId())));
         return auths;
+    }
+
+    public Set<Integer> getRanges(String path, long adminId) {
+        return mapper.getRanges(path, adminId);
     }
 }

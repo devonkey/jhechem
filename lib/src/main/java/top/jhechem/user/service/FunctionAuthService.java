@@ -6,7 +6,9 @@ import top.jhechem.user.pojo.FunctionAuth;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 功能权限服务
@@ -22,5 +24,9 @@ public interface FunctionAuthService {
     @GET
     @Path("list")
     List<FunctionAuth> listFunctionAuth();
+
+    @GET
+    @Path("ranges")
+    Set<Integer> getRanges(@QueryParam("path") String path, @QueryParam("adminId") long adminId);
 
 }

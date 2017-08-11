@@ -2,6 +2,7 @@ package top.jhechem.user.mapper;
 
 import top.jhechem.core.base.BaseSearch;
 import top.jhechem.user.pojo.Admin;
+import top.jhechem.user.pojo.Role;
 
 import java.util.List;
 
@@ -22,6 +23,8 @@ public interface AdminMapper {
     Admin get(long id);
 
     List<Integer> listRoleId(long id);
+
+    List<Role> listRole(long id);
 
     List<Admin> list(BaseSearch search);
 

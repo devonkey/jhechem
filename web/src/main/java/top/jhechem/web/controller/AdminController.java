@@ -1,5 +1,6 @@
 package top.jhechem.web.controller;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,7 @@ import top.jhechem.user.service.AdminService;
 import top.jhechem.web.BaseController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 管理员控制器
@@ -57,6 +59,30 @@ public class AdminController extends BaseController {
     public Response update(@RequestBody Admin admin) {
         Assert.assertNotNull(admin, ExceptionResponse.MISS_ARGRUMENTS);
         Assert.assertNotNull(admin.getId(), ExceptionResponse.MISS_ARGRUMENTS);
+        return Response.ok(adminService.update(admin));
+    }
+
+    @RequestMapping(value = "delete", method = RequestMethod.DELETE)
+    public Response delete(@RequestBody List<Long> ids) {
+        Assert.assertNotNull(ids, ExceptionResponse.MISS_ARGRUMENTS);
+        ids.forEach(id -> adminService.delete(id));
+        return Response.ok();
+    }
+
+    @RequestMapping(value = "password/update", method = RequestMethod.PUT)
+    public Response updatePassword(@RequestBody Admin admin) {
+        Assert.assertNotNull(admin, ExceptionResponse.MISS_ARGRUMENTS);
+        Assert.assertNotNull(admin.getId(), ExceptionResponse.MISS_ARGRUMENTS);
+        Assert.assertNotNull(admin.getPassword(), ExceptionResponse.MISS_ARGRUMENTS);
+        return Response.ok(adminService.update(admin));
+    }
+
+    @RequestMapping(value = "password/update/self", method = RequestMethod.PUT)
+    public Response updatePasswordSelf(@RequestBody String password) {
+        Assert.assertNotNull(password, ExceptionResponse.MISS_ARGRUMENTS);
+        Admin admin = (Admin) SecurityUtils.getSubject().getPrincipal();
+        Assert.assertNotNull(admin, ExceptionResponse.NEED_LOGIN);
+        admin.setPassword(password);
         return Response.ok(adminService.update(admin));
     }
 }
