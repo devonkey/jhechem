@@ -1,18 +1,3 @@
-CREATE TABLE `admin` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '管理员id',
-  `username` varchar(64) NOT NULL DEFAULT '' COMMENT '用户姓名',
-  `realname` varchar(32) NOT NULL DEFAULT '' COMMENT '真实姓名',
-  `mobile` varchar(16) NOT NULL DEFAULT '' COMMENT '用户手机号码',
-  `salt` char(6) NOT NULL DEFAULT '' COMMENT '盐值',
-  `password` char(32) NOT NULL DEFAULT '' COMMENT '密码',
-  `department` varchar(64) NOT NULL DEFAULT '' COMMENT '部门',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
-  `update_time` datetime NOT NULL COMMENT '修改时间',
-  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0 管理员不可用 1 管理员状态正常',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=10006 DEFAULT CHARSET=utf8mb4 COMMENT='管理员表';
-
 truncate function_auth;
 #订单查看
 insert into function_auth(id,`name`,url,create_time,update_time) values (10000,'订单详情','/order/{bookid:\\d+}',current_timestamp,current_timestamp);
@@ -24,7 +9,7 @@ insert into function_auth(id,`name`,url,create_time,update_time) values (10004,'
 
 #管理员管理
 insert into function_auth(id,`name`,url,create_time,update_time) values (10005,'新增管理员','/admin/add',current_timestamp,current_timestamp);
-insert into function_auth(id,`name`,url,create_time,update_time) values (10006,'删除管理员','/admin/delete/{id:\\d+}',current_timestamp,current_timestamp);
+insert into function_auth(id,`name`,url,create_time,update_time) values (10006,'删除管理员','/admin/delete',current_timestamp,current_timestamp);
 insert into function_auth(id,`name`,url,create_time,update_time) values (10007,'管理员修改','/admin/update',current_timestamp,current_timestamp);
 insert into function_auth(id,`name`,url,create_time,update_time) values (10008,'管理员修改密码','/admin/password/update',current_timestamp,current_timestamp);
 
@@ -36,9 +21,10 @@ insert into function_auth(id,`name`,url,create_time,update_time) values (10011,'
 truncate auth_group;
 #权限组
 insert into auth_group (id,name,create_time,update_time) values (10000,'管理员管理',current_timestamp,current_timestamp;
-insert into auth_group (id,name,create_time,update_time) values (10001,'管理员查询',current_timestamp,current_timestamp;
-insert into auth_group (id,name,create_time,update_time) values (10002,'订单管理',current_timestamp,current_timestamp);
-insert into auth_group (id,name,create_time,update_time) values (10003,'订单查询',current_timestamp,current_timestamp);
+insert into auth_group (id,name,create_time,update_time) values (10001,'管理员基本操作',current_timestamp,current_timestamp;
+insert into auth_group (id,name,create_time,update_time) values (10002,'订单管理(管理员)',current_timestamp,current_timestamp);
+insert into auth_group (id,name,create_time,update_time) values (10003,'订单管理(业务员)',current_timestamp,current_timestamp);
+insert into auth_group (id,name,create_time,update_time) values (10004,'订单查询',current_timestamp,current_timestamp);
 
 truncate `auth_group_rel`;
 #功能权限分类
@@ -55,38 +41,48 @@ insert into auth_group_rel(group_id,auth_id,create_time) values (10002,10002,cur
 insert into auth_group_rel(group_id,auth_id,create_time) values (10002,10003,current_timestamp);
 insert into auth_group_rel(group_id,auth_id,create_time) values (10002,10004,current_timestamp);
 
-insert into auth_group_rel(group_id,auth_id,create_time) values (10003,10000,current_timestamp);
-insert into auth_group_rel(group_id,auth_id,create_time) values (10003,10001,current_timestamp);
+insert into auth_group_rel(group_id,auth_id,create_time) values (10003,10002,current_timestamp);
+insert into auth_group_rel(group_id,auth_id,create_time) values (10003,10004,current_timestamp);
+
+insert into auth_group_rel(group_id,auth_id,create_time) values (10004,10000,current_timestamp);
+insert into auth_group_rel(group_id,auth_id,create_time) values (10004,10001,current_timestamp);
 
 truncate role;
-#角色 分四级> 超级管理员：任何操作；管理员：授予的操作不做用户限制；业务员：授予的操作添加本人限制；实习生：仅授予只读权限
+#角色 分四级
+## 超级管理员 任何操作；
+## 普通管理员 新增、编辑管理员、查看不受限制,没有删除权限；
+## 业务员：授予的操作添加本人限制；
+## 实习生：仅授予只读权限.
 insert into role(id,`name`,`create_time`,`update_time`) values (10000,'超级管理员',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 insert into role(id,`name`,`create_time`,`update_time`) values (10001,'业务员',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 insert into role(id,`name`,`create_time`,`update_time`) values (10002,'实习生', CURRENT_TIMESTAMP ,CURRENT_TIMESTAMP );
-insert into role(id,`name`,`create_time`,`update_time`) values (10003,'管理员', CURRENT_TIMESTAMP ,CURRENT_TIMESTAMP );
+insert into role(id,`name`,`create_time`,`update_time`) values (10003,'普通管理员', CURRENT_TIMESTAMP ,CURRENT_TIMESTAMP );
 
 truncate role_auth_group_rel;
 #权限组与角色的关系
 INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10000,10000,CURRENT_TIMESTAMP );
 INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10001,10000,CURRENT_TIMESTAMP );
 INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10002,10000,CURRENT_TIMESTAMP );
-INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10003,10000,CURRENT_TIMESTAMP );
+INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10004,10000,CURRENT_TIMESTAMP );
 
 INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10001,10001,CURRENT_TIMESTAMP );
-INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10002,10001,CURRENT_TIMESTAMP );
 INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10003,10001,CURRENT_TIMESTAMP );
+INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10004,10001,CURRENT_TIMESTAMP );
 
 INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10001,10002,CURRENT_TIMESTAMP );
-INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10003,10002,CURRENT_TIMESTAMP );
+INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10004,10002,CURRENT_TIMESTAMP );
+
+INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10001,10003,CURRENT_TIMESTAMP );
+INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10002,10003,CURRENT_TIMESTAMP );
+INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10004,10003,CURRENT_TIMESTAMP );
 
 truncate admin_role_rel;
 #管理员角色关系
 insert into admin_role_rel(admin_id,role_id,create_time) values(10000,10000,CURRENT_TIMESTAMP );
 insert into admin_role_rel(admin_id,role_id,create_time) values(10001,10000,CURRENT_TIMESTAMP );
-insert into admin_role_rel(admin_id,role_id,create_time) values(10002,10001,CURRENT_TIMESTAMP );
-insert into admin_role_rel(admin_id,role_id,create_time) values(10003,10002,CURRENT_TIMESTAMP );
-insert into admin_role_rel(admin_id,role_id,create_time) values(10003,10000,CURRENT_TIMESTAMP );
-insert into admin_role_rel(admin_id,role_id,create_time) values(10004,10002,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(10002,10003,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(10003,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(10004,10003,CURRENT_TIMESTAMP );
 insert into admin_role_rel(admin_id,role_id,create_time) values(10005,10002,CURRENT_TIMESTAMP );
 insert into admin_role_rel(admin_id,role_id,create_time) values(20000,10000,CURRENT_TIMESTAMP );
 insert into admin_role_rel(admin_id,role_id,create_time) values(20001,10000,CURRENT_TIMESTAMP );

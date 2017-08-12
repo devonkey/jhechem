@@ -47,7 +47,7 @@ public class RoleController extends BaseController {
 
     @POST
     @Path("add_admin/{roleId:\\d+}")
-    public Response addAdmin(@PathVariable("roleId") int roleId, @RequestBody List<Long> adminIds) {
+    public Response addAdmin(@PathVariable("roleId") int roleId, @RequestBody List<Integer> adminIds) {
         Assert.assertNotNull(adminIds, ExceptionResponse.MISS_ARGRUMENTS);
         roleService.addAdmin(roleId, adminIds);
         return Response.ok();
@@ -55,7 +55,7 @@ public class RoleController extends BaseController {
 
     @POST
     @Path("remove_admin/{roleId:\\d+}")
-    public Response removeAdmin(int roleId, List<Long> adminIds) {
+    public Response removeAdmin(int roleId, List<Integer> adminIds) {
         Assert.assertNotNull(adminIds, ExceptionResponse.MISS_ARGRUMENTS);
         roleService.removeAdmin(roleId, adminIds);
         return Response.ok();

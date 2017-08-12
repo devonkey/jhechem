@@ -20,7 +20,7 @@ public class Admin extends Base {
 
     public static final int STATUS_NORMAL = 1, STATUS_DISABLE = 0;
 
-    private Long id;
+    private Integer id;
 
     private String username;
 
@@ -47,7 +47,7 @@ public class Admin extends Base {
     public Admin() {
     }
 
-    public Admin(Long id, Integer status) {
+    public Admin(Integer id, Integer status) {
         this.id = id;
         this.status = status;
     }

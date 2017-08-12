@@ -15,8 +15,8 @@ public interface RoleMapper {
 
     int update(Role role);
 
-    int removeAdmin(int roleId, @Param("adminIds") List<Long> adminIds);
+    int removeAdmin(int roleId, @Param("adminIds") List<Integer> adminIds);
 
-    int addAdmin(int roleId, @Param("adminIds") List<Long> adminIds);
+    int addAdmin(int roleId, @Param("adminIds") List<Integer> adminIds);
 
 }

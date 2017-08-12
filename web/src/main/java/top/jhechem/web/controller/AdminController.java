@@ -37,7 +37,7 @@ public class AdminController extends BaseController {
     }
 
     @RequestMapping(value = "{id:\\d+}", method = RequestMethod.GET)
-    public Response<Admin> get(@PathVariable("id") long id) {
+    public Response<Admin> get(@PathVariable("id") int id) {
         return Response.ok(adminService.get(id));
     }
 
@@ -63,7 +63,7 @@ public class AdminController extends BaseController {
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.DELETE)
-    public Response delete(@RequestBody List<Long> ids) {
+    public Response delete(@RequestBody List<Integer> ids) {
         Assert.assertNotNull(ids, ExceptionResponse.MISS_ARGRUMENTS);
         ids.forEach(id -> adminService.delete(id));
         return Response.ok();

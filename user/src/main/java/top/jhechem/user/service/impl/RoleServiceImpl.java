@@ -29,12 +29,12 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
-    public int addAdmin(int roleId, List<Long> adminIds) {
+    public int addAdmin(int roleId, List<Integer> adminIds) {
         return mapper.addAdmin(roleId, adminIds);
     }
 
     @Override
-    public int removeAdmin(int roleId, List<Long> adminIds) {
+    public int removeAdmin(int roleId, List<Integer> adminIds) {
         return mapper.removeAdmin(roleId, adminIds);
     }
 }

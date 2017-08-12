@@ -37,7 +37,7 @@ public interface AdminService {
 
     @DELETE
     @Path("{id:\\d+}")
-    int delete(@PathParam("id") long id);
+    int delete(@PathParam("id") int id);
 
     @GET
     @QueryParam("username")
@@ -45,7 +45,7 @@ public interface AdminService {
 
     @GET
     @Path("{id:\\d+}")
-    Admin get(@PathParam("id") long id);
+    Admin get(@PathParam("id") int id);
 
     @GET
     @Path("list")

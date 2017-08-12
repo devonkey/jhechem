@@ -44,7 +44,7 @@ public class OrderController extends BaseController {
     @RequestMapping(value = "{bookid:\\d+}", method = RequestMethod.GET)
     public Response<Order> get(@PathVariable("bookid") long bookid) {
         Order order = orderService.get(bookid);
-        long adminId = getAdminId();
+        int adminId = getAdminId();
         if (!getRanges(adminId).contains(UNLIMITED_ORDER_RANGE)) {
             order = responseFilter.doFilter(order, adminId);
         }
@@ -54,7 +54,7 @@ public class OrderController extends BaseController {
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public Response<Pagination<Order>> list(OrderSearch search) {
         List<Order> orders = orderService.list(search);
-        long adminId = getAdminId();
+        int adminId = getAdminId();
         if (!getRanges(adminId).contains(UNLIMITED_ORDER_RANGE)) {
             orders = responseFilter.doFilter(orders, adminId);
         }
@@ -65,7 +65,7 @@ public class OrderController extends BaseController {
     public Response add(@RequestBody Order order) {
         Assert.assertNotNull(order, ExceptionResponse.MISS_ARGRUMENTS);
         Assert.assertNotNull(order.getAdminId(), ExceptionResponse.MISS_ARGRUMENTS);
-        long adminId = getAdminId();
+        int adminId = getAdminId();
         if (!getRanges(adminId).contains(UNLIMITED_ORDER_RANGE)) {
             if (!order.getAdminId().equals(adminId)) {
                 throw new ApiException(ExceptionResponse.UNAUTHORIZED);
@@ -80,7 +80,7 @@ public class OrderController extends BaseController {
         Assert.assertNotNull(order, ExceptionResponse.MISS_ARGRUMENTS);
         Assert.assertNotNull(order.getBookid(), ExceptionResponse.MISS_ARGRUMENTS);
         Assert.assertNotNull(order.getAdminId(), ExceptionResponse.MISS_ARGRUMENTS);
-        long adminId = getAdminId();
+        int adminId = getAdminId();
         if (!getRanges(adminId).contains(UNLIMITED_ORDER_RANGE)) {
             if (!order.getAdminId().equals(adminId)) {
                 throw new ApiException(ExceptionResponse.UNAUTHORIZED);

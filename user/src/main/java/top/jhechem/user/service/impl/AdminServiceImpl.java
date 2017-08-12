@@ -49,7 +49,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public int delete(long id) {
+    public int delete(int id) {
         LOGGER.info("用户:{} 拥有的角色:{} 删除中...", id, mapper.listRoleId(id));
         mapper.deleteAdminRoles(id);
         Admin admin = new Admin(id, Admin.STATUS_DISABLE);
@@ -64,7 +64,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Admin get(long id) {
+    public Admin get(int id) {
         Admin admin = mapper.get(id);
         admin.setRoles(mapper.listRole(id));
         return admin;

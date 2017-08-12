@@ -27,6 +27,6 @@ public interface FunctionAuthService {
 
     @GET
     @Path("ranges")
-    Set<Integer> getRanges(@QueryParam("path") String path, @QueryParam("adminId") long adminId);
+    Set<Integer> getRanges(@QueryParam("path") String path, @QueryParam("adminId") int adminId);
 
 }

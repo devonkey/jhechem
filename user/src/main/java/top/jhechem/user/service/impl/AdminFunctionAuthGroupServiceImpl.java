@@ -21,7 +21,7 @@ public class AdminFunctionAuthGroupServiceImpl implements AdminFunctionAuthGroup
     private RoleAuthGroupMapper roleAuthGroupMapper;
 
     @Override
-    public List<Integer> listAdminAuthGroups(long adminId) {
+    public List<Integer> listAdminAuthGroups(int adminId) {
         List<Integer> roleIds = adminMapper.listRoleId(adminId);
         return roleAuthGroupMapper.listGroupIdByRoleIds(roleIds);
     }

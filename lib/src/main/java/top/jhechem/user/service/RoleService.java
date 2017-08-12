@@ -14,8 +14,8 @@ public interface RoleService {
 
     int update(Role role);
 
-    int addAdmin(int roleId, List<Long> adminIds);
+    int addAdmin(int roleId, List<Integer> adminIds);
 
-    int removeAdmin(int roleId, List<Long> adminIds);
+    int removeAdmin(int roleId, List<Integer> adminIds);
 
 }

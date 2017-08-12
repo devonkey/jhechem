@@ -18,5 +18,5 @@ public interface AdminFunctionAuthGroupService {
 
     @GET
     @Path("list/{adminId:\\d+}")
-    List<Integer> listAdminAuthGroups(@PathParam("adminId") long adminId);
+    List<Integer> listAdminAuthGroups(@PathParam("adminId") int adminId);
 }

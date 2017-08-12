@@ -35,7 +35,7 @@ public abstract class BaseController {
         }
     }
 
-    protected Long getAdminId() {
+    protected Integer getAdminId() {
         Admin admin = (Admin) SecurityUtils.getSubject().getPrincipal();
         return admin == null ? null : admin.getId();
     }
@@ -45,7 +45,7 @@ public abstract class BaseController {
                 AntPathMatcher.getMatchedAuthPath(), getAdminId());
     }
 
-    protected Set<Integer> getRanges(long adminId) {
+    protected Set<Integer> getRanges(int adminId) {
         return functionAuthService.getRanges(
                 AntPathMatcher.getMatchedAuthPath(), adminId);
     }

@@ -16,7 +16,7 @@ public class ResponseFilter {
 
 
     @SuppressWarnings("unchecked")
-    public <T> T doFilter(T t, Long loginAdminId) {
+    public <T> T doFilter(T t, Integer loginAdminId) {
 
         if (t instanceof Order) {
             return (T) filterOrder((Order) t, loginAdminId);
@@ -39,7 +39,7 @@ public class ResponseFilter {
     }
 
 
-    private Order filterOrder(Order o, Long adminId) {
+    private Order filterOrder(Order o, Integer adminId) {
         if (adminId != null && adminId.equals(o.getAdminId())) {
             return o;
         }
