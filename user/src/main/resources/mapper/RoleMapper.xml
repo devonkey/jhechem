@@ -9,6 +9,10 @@
         <result property="status" column="status"/>
     </resultMap>
 
+    <select id="listRole" resultType="top.jhechem.user.pojo.Role">
+        SELECT * FROM `role` WHERE status = 1;
+    </select>
+
     <insert id="add" parameterType="top.jhechem.user.pojo.Role"
             useGeneratedKeys="true" keyProperty="id">
         INSERT INTO `role` (<include refid="columnsAdd"/>)
@@ -22,7 +26,7 @@
         WHERE `id` = #{id}
     </update>
 
-    <delete id="removeAdmin" parameterType="java.lang.Long">
+    <delete id="removeAdmin">
         DELETE FROM `admin_role_rel`
         WHERE role_id = #{0}
         <foreach collection="adminIds" item="id" open="AND admin_id IN(" close=")"
@@ -31,7 +35,7 @@
         </foreach>
     </delete>
 
-    <insert id="addAdmin" parameterType="java.lang.Long">
+    <insert id="addAdmin">
         INSERT INTO `admin_role_rel` (admin_id,role_id,create_time) VALUES
         <foreach collection="adminIds" item="id" open="" close="" separator=",">
             ( #{id}, #{0}, CURRENT_TIMESTAMP)

@@ -10,3 +10,16 @@ INSERT INTO `admin` VALUES (20008,'梅丽燕','梅丽燕','','1234','8d421e892a4
 INSERT INTO `admin` VALUES (20009,'徐梦瑜','徐梦瑜','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
 INSERT INTO `admin` VALUES (20010,'相春辉','相春辉','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
 INSERT INTO `admin` VALUES (20011,'尚迎','尚迎','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+
+insert into admin_role_rel(admin_id,role_id,create_time) values(20000,10000,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20001,10000,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20002,10003,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20003,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20004,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20005,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20006,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20007,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20008,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20009,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20010,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20011,10001,CURRENT_TIMESTAMP );

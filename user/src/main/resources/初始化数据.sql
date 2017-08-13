@@ -49,10 +49,10 @@ insert into auth_group_rel(group_id,auth_id,create_time) values (10004,10001,cur
 
 truncate role;
 #角色 分四级
-## 超级管理员 任何操作；
-## 普通管理员 新增、编辑管理员、查看不受限制,没有删除权限；
-## 业务员：授予的操作添加本人限制；
-## 实习生：仅授予只读权限.
+## 超级管理员 任何操作;
+## 普通管理员 查看不受限制,没有删除权限;
+## 业务员 授予的操作添加本人限制,非本人订单数据仅查看部分字段;
+## 实习生 基本读权限.
 insert into role(id,`name`,`create_time`,`update_time`) values (10000,'超级管理员',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 insert into role(id,`name`,`create_time`,`update_time`) values (10001,'业务员',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 insert into role(id,`name`,`create_time`,`update_time`) values (10002,'实习生', CURRENT_TIMESTAMP ,CURRENT_TIMESTAMP );
@@ -84,5 +84,3 @@ insert into admin_role_rel(admin_id,role_id,create_time) values(10002,10003,CURR
 insert into admin_role_rel(admin_id,role_id,create_time) values(10003,10001,CURRENT_TIMESTAMP );
 insert into admin_role_rel(admin_id,role_id,create_time) values(10004,10003,CURRENT_TIMESTAMP );
 insert into admin_role_rel(admin_id,role_id,create_time) values(10005,10002,CURRENT_TIMESTAMP );
-insert into admin_role_rel(admin_id,role_id,create_time) values(20000,10000,CURRENT_TIMESTAMP );
-insert into admin_role_rel(admin_id,role_id,create_time) values(20001,10000,CURRENT_TIMESTAMP );

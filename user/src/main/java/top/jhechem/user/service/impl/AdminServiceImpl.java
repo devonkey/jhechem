@@ -4,8 +4,10 @@ import cn.idongjia.log.Log;
 import cn.idongjia.log.LogFactory;
 import cn.idongjia.util.MD5Encoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import top.jhechem.core.base.BaseSearch;
 import top.jhechem.core.util.Assert;
+import top.jhechem.core.util.Utils;
 import top.jhechem.user.mapper.AdminMapper;
 import top.jhechem.user.pojo.Admin;
 import top.jhechem.user.service.AdminService;
@@ -29,23 +31,36 @@ public class AdminServiceImpl implements AdminService {
     private AdminMapper mapper;
 
     @Override
+    @Transactional
     public Admin add(Admin admin) {
         Assert.assertNotNull(admin, MISS_ARGRUMENTS);
         Assert.assertNotNull(admin.getUsername(), MISS_ARGRUMENTS);
+        Assert.assertNotNull(admin.getRoles(), MISS_ARGRUMENTS);
         //TODO 检验用户名唯一性
 
         Objects.requireNonNull(admin.getPassword());
         encodePassword(admin);
+        //添加管理员
         mapper.add(admin);
+        //添加角色
+        mapper.addRoles(admin.getId(), admin.getRoles());
         return admin;
     }
 
     @Override
+    @Transactional
     public int update(Admin admin) {
         Assert.assertNotNull(admin, MISS_ARGRUMENTS);
         Assert.assertNotNull(admin.getId(), MISS_ARGRUMENTS);
         encodePassword(admin);
-        return mapper.update(admin);
+        int res = mapper.update(admin);
+        if (!Utils.isEmpty(admin.getRoles())) {
+            //删除原有角色
+            mapper.deleteAdminRoles(admin.getId());
+            //新增角色
+            mapper.addRoles(admin.getId(), admin.getRoles());
+        }
+        return res;
     }
 
     @Override

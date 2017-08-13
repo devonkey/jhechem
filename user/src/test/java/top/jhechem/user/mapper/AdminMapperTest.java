@@ -20,7 +20,7 @@ public class AdminMapperTest extends SpringJUnitServiceTest{
 
     {
         admin = new Admin();
-        admin.setId(20000L);
+        admin.setId(20000);
         admin.setUsername("小赵");
         admin.setRealName("赵又廷");
         admin.setSalt("1234");

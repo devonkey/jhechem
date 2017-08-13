@@ -19,6 +19,11 @@ public class RoleServiceImpl implements RoleService{
     private RoleMapper mapper;
 
     @Override
+    public List<Role> listRole() {
+        return mapper.listRole();
+    }
+
+    @Override
     public int add(Role role) {
         return mapper.add(role);
     }

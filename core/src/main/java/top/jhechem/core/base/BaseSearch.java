@@ -62,6 +62,7 @@ public class BaseSearch extends Base {
     }
 
     public String getKeyword() {
+        if (Utils.isEmpty(keyword)) return null;
         return keyword;
     }
 

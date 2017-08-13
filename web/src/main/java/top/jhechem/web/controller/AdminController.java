@@ -52,7 +52,8 @@ public class AdminController extends BaseController {
         Assert.assertNotNull(admin.getUsername(), ExceptionResponse.MISS_ARGRUMENTS);
         Assert.assertNotNull(admin.getRealName(), ExceptionResponse.MISS_ARGRUMENTS);
         Assert.assertNotNull(admin.getPassword(), ExceptionResponse.MISS_ARGRUMENTS);
-        return Response.ok(adminService.add(admin));
+        adminService.add(admin);
+        return Response.ok();
     }
 
     @RequestMapping(value = "update", method = RequestMethod.PUT)

@@ -35,6 +35,7 @@
                 /logout = logout
                 /menu/** = anon
                 /admin/test=anon
+                /role/list=anon
             </value>
         </property>
     </bean>

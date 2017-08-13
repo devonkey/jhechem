@@ -1,5 +1,6 @@
 package top.jhechem.user.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import top.jhechem.core.base.BaseSearch;
 import top.jhechem.user.pojo.Admin;
 import top.jhechem.user.pojo.Role;
@@ -16,15 +17,17 @@ public interface AdminMapper {
 
     int update(Admin admin);
 
-    int deleteAdminRoles(long id);
+    int deleteAdminRoles(int id);
+
+    int addRoles(int id, @Param("roles") List<Role> roles);
 
     Admin getByUsername(String username);
 
-    Admin get(long id);
+    Admin get(int id);
 
-    List<Integer> listRoleId(long id);
+    List<Integer> listRoleId(int id);
 
-    List<Role> listRole(long id);
+    List<Role> listRole(int id);
 
     List<Admin> list(BaseSearch search);
 

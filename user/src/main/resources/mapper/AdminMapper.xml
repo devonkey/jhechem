@@ -35,9 +35,17 @@
         WHERE `id` = #{id}
     </update>
 
-    <delete id="deleteAdminRoles"  parameterType="java.lang.Long">
+    <delete id="deleteAdminRoles"  parameterType="int">
         DELETE FROM `admin_role_rel` WHERE `admin_id` = #{0}
     </delete>
+
+    <insert id="addRoles">
+        INSERT INTO `admin_role_rel` (`admin_id`, `role_id`, `ceate_time`)
+        VALUES
+        <foreach collection="roles" item="role" open="" close="" separator=",">
+            (#{0}, #{role.id}, CURRENT_TIMESTAMP )
+        </foreach>
+    </insert>
 
     <select id="get" resultMap="adminMap">
         SELECT <include refid="columnsGet"/> FROM admin WHERE id = #{0}

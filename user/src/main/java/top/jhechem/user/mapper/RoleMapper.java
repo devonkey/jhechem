@@ -11,6 +11,8 @@ import java.util.List;
  */
 public interface RoleMapper {
 
+    List<Role> listRole();
+
     int add(Role role);
 
     int update(Role role);
