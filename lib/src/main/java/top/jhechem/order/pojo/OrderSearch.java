@@ -50,4 +50,8 @@ public class OrderSearch extends BaseSearch {
 
     private Boolean issh;       //是否收汇
 
+    private Boolean ists;       //是否退税
+
+    private Boolean isfxbg;       //是否给客人分析报告
+
 }

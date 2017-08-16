@@ -433,6 +433,8 @@
         <if test="isfh != null">AND o.isfh = #{isfh}</if>
         <if test="isdh != null">AND o.isdh = #{isdh}</if>
         <if test="issh != null">AND o.issh = #{issh}</if>
+        <if test="ists != null">AND o.ists = #{ists}</if>
+        <if test="isfxbg != null">AND o.isfxbg = #{isfxbg}</if>
         <if test="keyword != null">
             AND (
               o.bookname LIKE #{keyword}

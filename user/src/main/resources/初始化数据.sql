@@ -20,11 +20,12 @@ insert into function_auth(id,`name`,url,create_time,update_time) values (10011,'
 
 truncate auth_group;
 #权限组
-insert into auth_group (id,name,create_time,update_time) values (10000,'管理员管理',current_timestamp,current_timestamp;
-insert into auth_group (id,name,create_time,update_time) values (10001,'管理员基本操作',current_timestamp,current_timestamp;
+insert into auth_group (id,name,create_time,update_time) values (10000,'管理员管理',current_timestamp,current_timestamp);
+insert into auth_group (id,name,create_time,update_time) values (10001,'管理员基本操作',current_timestamp,current_timestamp);
 insert into auth_group (id,name,create_time,update_time) values (10002,'订单管理(管理员)',current_timestamp,current_timestamp);
 insert into auth_group (id,name,create_time,update_time) values (10003,'订单管理(业务员)',current_timestamp,current_timestamp);
 insert into auth_group (id,name,create_time,update_time) values (10004,'订单查询',current_timestamp,current_timestamp);
+insert into auth_group (id,name,create_time,update_time) values (10005,'删除操作',current_timestamp,current_timestamp);
 
 truncate `auth_group_rel`;
 #功能权限分类
@@ -38,7 +39,6 @@ insert into auth_group_rel(group_id,auth_id,create_time) values (10001,10010,cur
 insert into auth_group_rel(group_id,auth_id,create_time) values (10001,10011,current_timestamp);
 
 insert into auth_group_rel(group_id,auth_id,create_time) values (10002,10002,current_timestamp);
-insert into auth_group_rel(group_id,auth_id,create_time) values (10002,10003,current_timestamp);
 insert into auth_group_rel(group_id,auth_id,create_time) values (10002,10004,current_timestamp);
 
 insert into auth_group_rel(group_id,auth_id,create_time) values (10003,10002,current_timestamp);
@@ -46,6 +46,9 @@ insert into auth_group_rel(group_id,auth_id,create_time) values (10003,10004,cur
 
 insert into auth_group_rel(group_id,auth_id,create_time) values (10004,10000,current_timestamp);
 insert into auth_group_rel(group_id,auth_id,create_time) values (10004,10001,current_timestamp);
+
+insert into auth_group_rel(group_id,auth_id,create_time) values (10005,10006,current_timestamp);
+insert into auth_group_rel(group_id,auth_id,create_time) values (10005,10003,current_timestamp);
 
 truncate role;
 #角色 分四级
@@ -64,6 +67,7 @@ INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE
 INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10001,10000,CURRENT_TIMESTAMP );
 INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10002,10000,CURRENT_TIMESTAMP );
 INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10004,10000,CURRENT_TIMESTAMP );
+INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10005,10000,CURRENT_TIMESTAMP );
 
 INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10001,10001,CURRENT_TIMESTAMP );
 INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10003,10001,CURRENT_TIMESTAMP );
