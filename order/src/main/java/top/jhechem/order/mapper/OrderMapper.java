@@ -3,6 +3,7 @@ package top.jhechem.order.mapper;
 import org.apache.ibatis.annotations.Param;
 import top.jhechem.order.pojo.Order;
 import top.jhechem.order.pojo.OrderSearch;
+import top.jhechem.order.pojo.OrderStatistic;
 
 import java.util.List;
 
@@ -23,4 +24,6 @@ public interface OrderMapper {
     List<Order> list(OrderSearch search);
 
     int count(OrderSearch search);
+
+    List<OrderStatistic> getOrderStatistics(OrderSearch search);
 }

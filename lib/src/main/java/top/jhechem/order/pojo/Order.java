@@ -35,7 +35,7 @@ public class Order extends Base {
     private String hl;
     private String zsh;
     private String huokuan;
-    private String lirun;
+    private Integer lirun;
     private String yundan;
     private String date3;
     private Integer cpgg;

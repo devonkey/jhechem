@@ -114,6 +114,18 @@
         </where>
     </select>
 
+    <select id="getOrderStatistics" resultType="top.jhechem.order.pojo.OrderStatistic">
+        SELECT DATE_FORMAT(date1,'%Y-%m-%d') grain, SUM(lirun) lirun
+        FROM jh_order o
+        LEFT JOIN admin a ON o.admin_id = a.id
+        <where>
+            o.`status` = 1
+            <include refid="searchBody"/>
+        </where>
+        GROUP BY grain
+        ORDER BY date1
+    </select>
+
 
     <sql id="columnAdd">
       `paixu`, `casno`, `bookname`, `enbookname`, `ordernum`, `fapiaonum`, `krname`, `date1`,
@@ -209,7 +221,7 @@
         </choose>
         <choose>
             <when test="lirun !=null and lirun != ''">,#{lirun}</when>
-            <otherwise>,NULL</otherwise>
+            <otherwise>,0</otherwise>
         </choose>
         <choose>
             <when test="yundan !=null and yundan != ''">,#{yundan}</when>

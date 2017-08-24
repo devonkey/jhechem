@@ -13,6 +13,7 @@ import top.jhechem.core.constant.ExceptionResponse;
 import top.jhechem.core.util.Assert;
 import top.jhechem.order.pojo.Order;
 import top.jhechem.order.pojo.OrderSearch;
+import top.jhechem.order.pojo.OrderStatistic;
 import top.jhechem.order.service.OrderService;
 import top.jhechem.web.BaseController;
 import top.jhechem.web.support.ResponseFilter;
@@ -94,5 +95,12 @@ public class OrderController extends BaseController {
     public Response delete(@RequestBody List<Long> bookids) {
         int res = orderService.delete(bookids);
         return Response.ok(res);
+    }
+
+    @RequestMapping(value = "statistic", method = RequestMethod.GET)
+    public Response<List<OrderStatistic>> getOrderStatistic(OrderSearch search) {
+        Assert.assertNotNull(search.getStart(), ExceptionResponse.MISS_ARGRUMENTS);
+        Assert.assertNotNull(search.getEnd(), ExceptionResponse.MISS_ARGRUMENTS);
+        return Response.ok(orderService.getOrderStatistic(search));
     }
 }

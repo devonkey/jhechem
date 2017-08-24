@@ -71,4 +71,10 @@ public class OrderMapperTest extends SpringJUnitServiceTest {
         list();
     }
 
+    @Test
+    public void getOrderStatistics() throws Exception {
+        OrderSearch search = new OrderSearch();
+        System.out.println(mapper.getOrderStatistics(search));
+    }
+
 }

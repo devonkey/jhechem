@@ -3,6 +3,7 @@ package top.jhechem.order.service;
 import com.alibaba.dubbo.rpc.protocol.rest.support.ContentType;
 import top.jhechem.order.pojo.Order;
 import top.jhechem.order.pojo.OrderSearch;
+import top.jhechem.order.pojo.OrderStatistic;
 
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
@@ -47,5 +48,7 @@ public interface OrderService {
     @GET
     @Path("count")
     int count(@BeanParam OrderSearch search);
+
+    List<OrderStatistic> getOrderStatistic(OrderSearch search);
 
 }
