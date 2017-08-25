@@ -1,3 +1,5 @@
+truncate `admin`;
+
 INSERT INTO `admin` VALUES
 (10000,'阿宝','杨波','','1234','8d421e892a47dff539f46142eb09e56b','','2017-07-30 16:03:26','2017-07-30 16:03:26',1),
 (10001,'小赵','赵又廷','','1234','8d421e892a47dff539f46142eb09e56b','','2017-07-30 16:03:26','2017-07-30 16:03:26',1),
@@ -5,3 +7,40 @@ INSERT INTO `admin` VALUES
 (10003,'三关','吴强','','1234','8d421e892a47dff539f46142eb09e56b','','2017-07-30 16:03:26','2017-07-30 16:03:26',1),
 (10004,'空空笑','任宪龙','','1234','8d421e892a47dff539f46142eb09e56b','','2017-07-30 16:03:26','2017-07-30 16:03:26',1),
 (10005,'夏夏','周贝贝','','1234','8d421e892a47dff539f46142eb09e56b','','2017-07-30 16:03:27','2017-07-30 16:03:27',1);
+
+
+INSERT INTO `admin` VALUES (20000,'杨波','杨波','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20001,'赵国梁','赵国梁','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20002,'郑瑞笔','郑瑞笔','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20003,'胡振杭','胡振杭','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20004,'胡佳瑶','胡佳瑶','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20005,'胡姗姗','胡姗姗','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20006,'任如意','任如意','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20007,'薛奇汶','薛奇汶','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20008,'梅丽燕','梅丽燕','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20009,'徐梦瑜','徐梦瑜','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20010,'相春辉','相春辉','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+INSERT INTO `admin` VALUES (20011,'尚迎','尚迎','','1234','8d421e892a47dff539f46142eb09e56b','',current_timestamp,current_timestamp,1);
+
+
+truncate admin_role_rel;
+#管理员角色关系
+insert into admin_role_rel(admin_id,role_id,create_time) values(10000,10000,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(10001,10000,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(10002,10003,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(10003,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(10004,10003,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(10005,10002,CURRENT_TIMESTAMP );
+
+insert into admin_role_rel(admin_id,role_id,create_time) values(20000,10000,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20001,10000,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20002,10003,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20003,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20004,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20005,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20006,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20007,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20008,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20009,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20010,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20011,10001,CURRENT_TIMESTAMP );

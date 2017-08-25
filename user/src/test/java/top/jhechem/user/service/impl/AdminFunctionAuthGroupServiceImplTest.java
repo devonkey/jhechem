@@ -17,7 +17,7 @@ public class AdminFunctionAuthGroupServiceImplTest extends SpringJUnitServiceTes
     private AdminFunctionAuthGroupService service;
     @Test
     public void listAdminAuthGroups() throws Exception {
-        System.out.println(service.listAdminAuthGroups(10006));
+        System.out.println(service.listAdminAuthGroups(20000));
     }
 
 }

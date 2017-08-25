@@ -43,7 +43,7 @@
     </logger>
 
     <logger level="debug" name="top.jhechem.user.mapper" additivity="false">
-        <appender-ref ref="SERVICE-OUT"/>
+        <appender-ref ref="STDOUT"/>
     </logger>
 
     <root level="WARN">
