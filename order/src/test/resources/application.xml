@@ -18,7 +18,7 @@
 
     <context:annotation-config/>
 
-    <context:component-scan base-package="cn.idongjia"/>
+    <context:component-scan base-package="top.jhechem"/>
 
     <import resource="mybatis.xml"/>
 
@@ -38,10 +38,17 @@
                     cn.idongjia.exception.filter.ValidationExceptionMapper"
                     payload="16777216"/>
 
+    <dubbo:protocol name="dubbo" port="${port_dubbo}"
+                    extension="cn.idongjia.exception.filter.DubboExceptionFilter" payload="16777216"/>
+
+    <dubbo:provider filter="-default,context,finalcontext,echo,clsLoader,gnc,dubbo,timeout,monitor,trace"/>
     <dubbo:consumer filter="consumerfilter"/>
 
     <dubbo:service interface="cn.idongjia.common.api.PingService"
                    ref="pingService" protocol="rest"/>
     <bean id="pingService" class="cn.idongjia.common.impl.Ping"/>
+
+    <dubbo:service interface="top.jhechem.order.service.OrderService"
+                   ref="orderService" protocol="dubbo,rest"/>
 
 </beans>

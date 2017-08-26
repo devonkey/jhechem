@@ -38,6 +38,11 @@
         <appender-ref ref="SERVICE-OUT"/>
     </logger>
 
+    <logger level="debug" name="cn.idongjia" additivity="false">
+        <appender-ref ref="SERVICE-OUT"/>
+    </logger>
+
+
     <logger level="info" name="interface" additivity="false">
         <appender-ref ref="INTERFACE-OUT"/>
     </logger>

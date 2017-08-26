@@ -64,3 +64,4 @@ ALTER TABLE jh_order ADD COLUMN `status` tinyint(2) unsigned DEFAULT '1' COMMENT
 alter table jh_order MODIFY `lirun` int  DEFAULT 0 COMMENT '利润分析';
 ALTER TABLE jh_order ADD COLUMN `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间';
 ALTER TABLE jh_order ADD COLUMN `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间';
+ALTER TABLE jh_order ADD INDEX idx_date1 (`date1`);

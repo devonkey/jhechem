@@ -99,7 +99,8 @@ public class OrderServiceImpl implements OrderService {
                     statistic0 = statistic;
                     break;
                 } else {
-                    res.add(new OrderStatistic(nextGrain));
+                    statistic0 = new OrderStatistic(nextGrain);
+                    res.add(statistic0);
                 }
             }
         }
