@@ -44,7 +44,7 @@ public class AuthResultController extends BaseController {
         if (response != null) {
             return (Response) response;
         }
-        return ExceptionResponse.NEED_LOGIN;
+        return ExceptionResponse.NO_RESOURCE;
     }
 
     @RequestMapping("unauthorized")
