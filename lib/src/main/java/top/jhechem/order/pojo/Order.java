@@ -72,5 +72,4 @@ public class Order extends Base {
 
     private Integer adminId;     //业务员id
     private String adminName;    //业务员名称
-
 }

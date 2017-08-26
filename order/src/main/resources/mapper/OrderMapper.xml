@@ -148,7 +148,7 @@
 
     <sql id="insertBody">
         <choose>
-            <when test="paixu !=null and paixu != ''">#{paixu}</when>
+            <when test="paixu !=null">#{paixu}</when>
             <otherwise>0</otherwise>
         </choose>
         <choose>
@@ -176,7 +176,7 @@
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="date1 !=null and date1 != ''">,from_unixtime(#{date1})</when>
+            <when test="date1 !=null">,from_unixtime(#{date1})</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
@@ -220,7 +220,7 @@
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="lirun !=null and lirun != ''">,#{lirun}</when>
+            <when test="lirun !=null">,#{lirun}</when>
             <otherwise>,0</otherwise>
         </choose>
         <choose>
@@ -232,7 +232,7 @@
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="cpgg !=null and cpgg != ''">,#{cpgg}</when>
+            <when test="cpgg !=null">,#{cpgg}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
@@ -240,7 +240,7 @@
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="isyp !=null and isyp != ''">,#{isyp}</when>
+            <when test="isyp !=null">,#{isyp}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
@@ -252,11 +252,11 @@
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="iskucun !=null and iskucun != ''">,#{iskucun}</when>
+            <when test="iskucun !=null">,#{iskucun}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="kucun !=null and kucun != ''">,#{kucun}</when>
+            <when test="kucun !=null">,#{kucun}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
@@ -272,23 +272,23 @@
             <otherwise>,0</otherwise>
         </choose>
         <choose>
-            <when test="isjs !=null and isjs != ''">,#{isjs}</when>
+            <when test="isjs !=null">,#{isjs}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="isdh !=null and isdh != ''">,#{isdh}</when>
+            <when test="isdh !=null">,#{isdh}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="isfh !=null and isfh != ''">,#{isfh}</when>
+            <when test="isfh !=null">,#{isfh}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="isfp !=null and isfp != ''">,#{isfp}</when>
+            <when test="isfp !=null">,#{isfp}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="isfxbg !=null and isfxbg != ''">,#{isfxbg}</when>
+            <when test="isfxbg !=null">,#{isfxbg}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
@@ -296,7 +296,7 @@
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="ists !=null and ists != ''">,#{ists}</when>
+            <when test="ists !=null">,#{ists}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
@@ -304,15 +304,15 @@
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="issh !=null and issh != ''">,#{issh}</when>
+            <when test="issh !=null">,#{issh}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="iskp !=null and iskp != ''">,#{iskp}</when>
+            <when test="iskp !=null">,#{iskp}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="isgcfp !=null and isgcfp != ''">,#{isgcfp}</when>
+            <when test="isgcfp !=null">,#{isgcfp}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
@@ -320,7 +320,7 @@
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="ishx !=null and ishx != ''">,#{ishx}</when>
+            <when test="ishx !=null">,#{ishx}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
@@ -328,11 +328,11 @@
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="iswcts !=null and iswcts != ''">,#{iswcts}</when>
+            <when test="iswcts !=null">,#{iswcts}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="ishkqf !=null and ishkqf != ''">,#{ishkqf}</when>
+            <when test="ishkqf !=null">,#{ishkqf}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
@@ -344,7 +344,7 @@
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
-            <when test="isok !=null and isok != ''">,#{isok}</when>
+            <when test="isok !=null">,#{isok}</when>
             <otherwise>,NULL</otherwise>
         </choose>
         <choose>
