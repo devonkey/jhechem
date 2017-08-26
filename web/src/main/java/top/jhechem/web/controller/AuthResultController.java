@@ -37,7 +37,11 @@ public class AuthResultController extends BaseController {
     }
 
     @RequestMapping("login/redirect")
-    public Response redirect() {
+    public Response redirect(HttpServletRequest request) {
+        Object response = request.getAttribute(AuthBiz.DISPATCHER_RESULT_KEY);
+        if (response != null) {
+            return (Response) response;
+        }
         return ExceptionResponse.NEED_LOGIN;
     }
 

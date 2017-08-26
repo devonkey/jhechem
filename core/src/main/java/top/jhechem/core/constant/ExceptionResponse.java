@@ -14,6 +14,7 @@ public class ExceptionResponse {
     public static final Response NO_USER = new Response(401, "未注册~");
     public static final Response LOGIN_FAILURE = new Response(401, "登录失败~");
     public static final Response NEED_LOGIN = new Response(401, "无资源~");
+    public static final Response LOGOUT_SUCCESS = new Response(401, "登出成功~");
 
     public static final Response UNAUTHORIZED = new Response(403, "未授权~");
 

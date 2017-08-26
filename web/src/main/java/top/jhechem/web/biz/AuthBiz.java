@@ -81,7 +81,7 @@ public class AuthBiz {
         } else {
             result = LOGIN_FAILURE;
         }
-        request.getServletContext().setAttribute(DISPATCHER_RESULT_KEY, result);
+        request.setAttribute(DISPATCHER_RESULT_KEY, result);
         try {
             request.getRequestDispatcher(DISPATCHER_FAILURE_URL).forward(request, response);
         } catch (ServletException | IOException e1) {
@@ -90,6 +90,15 @@ public class AuthBiz {
     }
 
     public void redirectToLogin(ServletRequest request, ServletResponse response) {
+        try {
+            request.getRequestDispatcher(DISPATCHER_REDIRECT_URL).forward(request, response);
+        } catch (ServletException | IOException e1) {
+            LOGGER.error(e1);
+        }
+    }
+
+    public void redirectToLogin(ServletRequest request, ServletResponse response,Response result) {
+        request.setAttribute(DISPATCHER_RESULT_KEY, result);
         try {
             request.getRequestDispatcher(DISPATCHER_REDIRECT_URL).forward(request, response);
         } catch (ServletException | IOException e1) {
