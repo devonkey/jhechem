@@ -11,6 +11,7 @@ import top.jhechem.core.Response;
 import top.jhechem.core.base.Pagination;
 import top.jhechem.core.constant.ExceptionResponse;
 import top.jhechem.core.util.Assert;
+import top.jhechem.core.util.DateUtil;
 import top.jhechem.order.pojo.Order;
 import top.jhechem.order.pojo.OrderSearch;
 import top.jhechem.order.pojo.OrderStatistic;
@@ -99,8 +100,49 @@ public class OrderController extends BaseController {
 
     @RequestMapping(value = "statistic", method = RequestMethod.GET)
     public Response<List<OrderStatistic>> getOrderStatistic(OrderSearch search) {
-        Assert.assertNotNull(search.getStart(), ExceptionResponse.MISS_ARGRUMENTS);
-        Assert.assertNotNull(search.getEnd(), ExceptionResponse.MISS_ARGRUMENTS);
+        if (search.getStart() == null) {
+            search.setStart(DateUtil.getCurrentMonthStartSecond());
+        }
+        if (search.getEnd() == null) {
+            search.setEnd(DateUtil.getCurrentSecond());
+        }
         return Response.ok(orderService.getOrderStatistic(search));
     }
+
+    @RequestMapping(value = "sh/{bookid:\\d+}", method = RequestMethod.POST)
+    public Response<Integer> setSh(
+            @PathVariable("bookid") long bookid, @RequestBody boolean issh) {
+        Order order = new Order();
+        order.setBookid(bookid);
+        order.setIssh(issh);
+        return Response.ok(orderService.update(order));
+    }
+
+    @RequestMapping(value = "dh/{bookid:\\d+}", method = RequestMethod.POST)
+    public Response<Integer> setDh(
+            @PathVariable("bookid") long bookid, @RequestBody boolean isdh) {
+        Order order = new Order();
+        order.setBookid(bookid);
+        order.setIsdh(isdh);
+        return Response.ok(orderService.update(order));
+    }
+
+    @RequestMapping(value = "fh/{bookid:\\d+}", method = RequestMethod.POST)
+    public Response<Integer> setFh(
+            @PathVariable("bookid") long bookid, @RequestBody boolean isfh) {
+        Order order = new Order();
+        order.setBookid(bookid);
+        order.setIsfh(isfh);
+        return Response.ok(orderService.update(order));
+    }
+
+    @RequestMapping(value = "js/{bookid:\\d+}", method = RequestMethod.POST)
+    public Response<Integer> setJs(
+            @PathVariable("bookid") long bookid, @RequestBody boolean isjs) {
+        Order order = new Order();
+        order.setBookid(bookid);
+        order.setIsjs(isjs);
+        return Response.ok(orderService.update(order));
+    }
+
 }

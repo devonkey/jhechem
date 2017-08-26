@@ -9,6 +9,8 @@ import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import static top.jhechem.core.constant.ExceptionResponse.NEED_LOGIN;
+
 /**
  * 自定义权限认证
  * Created by wuqiang on 2017/7/23.
@@ -36,7 +38,11 @@ public class PermissionsAuthorizationFilter extends AuthorizationFilter {
                 return true;
             }
         }
-        authBiz.unauthorized(request, response);
+        if (subject.getPrincipal() == null) {
+            authBiz.redirectToLogin(request, response, NEED_LOGIN);
+        } else {
+            authBiz.unauthorized(request, response);
+        }
         return false;
     }
 

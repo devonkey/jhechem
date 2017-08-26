@@ -60,6 +60,7 @@ public class ShiroDynamicLoadDefinitionImpl implements ShiroDynamicLoadDefinitio
         Map<String, String> authsMap = new HashMap<>();
         auths.forEach(auth ->
                 authsMap.put(auth.getUrl(), "perms" + auth.getAuthGroups().toString()));
+        LOGGER.info("authsMap:{}", authsMap);
         section.putAll(authsMap);
         section.put("/**", "authc");
         return section;

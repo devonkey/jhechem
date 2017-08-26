@@ -2,6 +2,7 @@ package top.jhechem.order.service.impl;
 
 import cn.idongjia.log.Log;
 import cn.idongjia.log.LogFactory;
+import cn.idongjia.util.Utils;
 import org.springframework.stereotype.Service;
 import top.jhechem.core.base.BaseSearch;
 import top.jhechem.order.mapper.OrderMapper;
@@ -33,6 +34,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order add(Order order) {
+        if (order.getDate1() == null) {
+            order.setDate1(Utils.getCurrentSecond());
+        }
         mapper.add(order);
         return order;
     }

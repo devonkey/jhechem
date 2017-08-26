@@ -13,13 +13,15 @@ import top.jhechem.web.biz.AuthBiz;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static top.jhechem.web.constant.Const.AUTH_DISPATHER_PATH_PREFIX;
+
 /**
  * 登录控制
  * shiro 进行登录和权限控制后，将登录结果转发过来
  * Created by wuqiang on 2017/7/21.
  */
 @Controller
-@RequestMapping("auth")
+@RequestMapping(AUTH_DISPATHER_PATH_PREFIX)
 @ResponseBody
 public class AuthResultController extends BaseController {
 

@@ -4,6 +4,11 @@ insert into function_auth(id,`name`,url,create_time,update_time) values (10000,'
 insert into function_auth(id,`name`,url,create_time,update_time) values (10001,'订单删除','/order/delete',current_timestamp,current_timestamp);
 insert into function_auth(id,`name`,url,create_time,update_time) values (10002,'添加订单','/order/add',current_timestamp,current_timestamp);
 insert into function_auth(id,`name`,url,create_time,update_time) values (10003,'订单统计','/order/statistic',current_timestamp,current_timestamp);
+insert into function_auth(id,`name`,url,create_time,update_time) values (10004,'设置发货状态','/order/fh/{bookid:\\d+}',current_timestamp,current_timestamp);
+insert into function_auth(id,`name`,url,create_time,update_time) values (10005,'设置到货状态','/order/dh/{bookid:\\d+}',current_timestamp,current_timestamp);
+insert into function_auth(id,`name`,url,create_time,update_time) values (10006,'设置结算状态','/order/js/{bookid:\\d+}',current_timestamp,current_timestamp);
+insert into function_auth(id,`name`,url,create_time,update_time) values (10007,'设置收汇状态','/order/sh/{bookid:\\d+}',current_timestamp,current_timestamp);
+
 #订单查看
 insert into function_auth(id,`name`,url,create_time,update_time) values (10010,'订单详情','/order/{bookid:\\d+}',current_timestamp,current_timestamp);
 insert into function_auth(id,`name`,url,create_time,update_time) values (10011,'订单列表','/order/list',current_timestamp,current_timestamp);
@@ -41,6 +46,10 @@ insert into auth_group_rel(group_id,auth_id,create_time) values (10001,10112,cur
 insert into auth_group_rel(group_id,auth_id,create_time) values (10002,10000,current_timestamp);
 insert into auth_group_rel(group_id,auth_id,create_time) values (10002,10002,current_timestamp);
 insert into auth_group_rel(group_id,auth_id,create_time) values (10002,10003,current_timestamp);
+insert into auth_group_rel(group_id,auth_id,create_time) values (10002,10004,current_timestamp);
+insert into auth_group_rel(group_id,auth_id,create_time) values (10002,10005,current_timestamp);
+insert into auth_group_rel(group_id,auth_id,create_time) values (10002,10006,current_timestamp);
+insert into auth_group_rel(group_id,auth_id,create_time) values (10002,10007,current_timestamp);
 
 insert into auth_group_rel(group_id,auth_id,create_time) values (10003,10000,current_timestamp);
 insert into auth_group_rel(group_id,auth_id,create_time) values (10003,10002,current_timestamp);
