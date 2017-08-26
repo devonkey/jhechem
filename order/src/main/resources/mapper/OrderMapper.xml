@@ -115,7 +115,7 @@
     </select>
 
     <select id="getOrderStatistics" resultType="top.jhechem.order.pojo.OrderStatistic">
-        SELECT DATE_FORMAT(date1,'%Y-%m-%d') grain, SUM(lirun) lirun
+        SELECT DATE_FORMAT(date1,'%Y-%m-%d') grain, IFNULL(SUM(lirun),0) lirun
         FROM jh_order o
         LEFT JOIN admin a ON o.admin_id = a.id
         <where>
