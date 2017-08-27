@@ -59,22 +59,18 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> list(@BeanParam OrderSearch search) {
         search.setDefaultOrderBy("bookid desc");
-        search.setBookname(BaseSearch.likeStr(search.getBookname()));
-        search.setYwy(BaseSearch.likeStr(search.getYwy()));
-        search.setEnbookname(BaseSearch.likeStr(search.getEnbookname()));
-        search.setGysname(BaseSearch.likeStr(search.getGysname()));
-        search.setGyscontact(BaseSearch.likeStr(search.getGyscontact()));
-        search.setKeyword(BaseSearch.likeStr(search.getKeyword()));
+        plentifulOrderSearch(search);
         return mapper.list(search);
     }
 
     @Override
     public int count(@BeanParam OrderSearch search) {
+        plentifulOrderSearch(search);
         return mapper.count(search);
     }
 
 
-    private String nextGrain(String grain, SimpleDateFormat dateFormat){
+    private String nextGrain(String grain, SimpleDateFormat dateFormat) {
         try {
             long time = dateFormat.parse(grain).getTime();
             long nextTime = time + 24 * 60 * 60 * 1000;
@@ -87,18 +83,20 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderStatistic> getOrderStatistic(OrderSearch search) {
-
+        plentifulOrderSearch(search);
         List<OrderStatistic> statistics = mapper.getOrderStatistics(search);
         List<OrderStatistic> res = new ArrayList<>();
-        if (statistics == null || statistics.size() == 0) {return res;}
+        if (statistics == null || statistics.size() == 0) {
+            return res;
+        }
         OrderStatistic statistic0 = statistics.get(0);
         res.add(statistic0);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         for (int i = 1; i < statistics.size(); i++) {
             OrderStatistic statistic = statistics.get(i);
-            while (true){
-                String nextGrain = nextGrain(statistic0.getGrain(),format);
-                if (nextGrain.equals(statistic.getGrain())){
+            while (true) {
+                String nextGrain = nextGrain(statistic0.getGrain(), format);
+                if (nextGrain.equals(statistic.getGrain())) {
                     res.add(statistic);
                     statistic0 = statistic;
                     break;
@@ -109,6 +107,17 @@ public class OrderServiceImpl implements OrderService {
             }
         }
         return res;
+    }
+
+
+    private void plentifulOrderSearch(OrderSearch search) {
+        search.setBookname(BaseSearch.likeStr(search.getBookname()));
+        search.setYwy(BaseSearch.likeStr(search.getYwy()));
+        search.setEnbookname(BaseSearch.likeStr(search.getEnbookname()));
+        search.setKrname(BaseSearch.likeStr(search.getKrname()));
+        search.setGysname(BaseSearch.likeStr(search.getGysname()));
+        search.setGyscontact(BaseSearch.likeStr(search.getGyscontact()));
+        search.setKeyword(BaseSearch.likeStr(search.getKeyword()));
     }
 
 

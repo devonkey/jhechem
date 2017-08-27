@@ -54,4 +54,6 @@ public class OrderSearch extends BaseSearch {
 
     private Boolean isfxbg;       //是否给客人分析报告
 
+    private String krname;       //客户名称
+
 }

@@ -439,6 +439,7 @@
         <if test="ordernum != null">AND o.ordernum = #{ordernum}</if>
         <if test="huokuan != null">AND o.huokuan = #{huokuan}</if>
         <if test="gysname != null">AND o.gysname LIKE #{gysname}</if>
+        <if test="krname != null">AND o.krname LIKE #{krname}</if>
         <if test="gyscontact != null">AND o.gyscontact LIKE #{gyscontact}</if>
         <if test="lirun != null">AND o.lirun = #{lirun}</if>
         <if test="yundan != null">AND o.yundan = #{yundan}</if>
@@ -456,6 +457,7 @@
               OR a.username LIKE #{keyword}
               OR o.gysname LIKE #{keyword}
               OR o.gyscontact LIKE #{keyword}
+              OR o.krname LIKE #{krname}
                 )
         </if>
     </sql>
