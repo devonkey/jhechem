@@ -130,6 +130,9 @@ public class OrderServiceImpl implements OrderService {
 
 
     private void plentifulOrderSearch(OrderSearch search) {
+        if(Utils.isEmpty(search.getKrname())){
+            search.setKrname(null);
+        }
         search.setBookname(BaseSearch.likeStr(search.getBookname()));
         search.setYwy(BaseSearch.likeStr(search.getYwy()));
         search.setEnbookname(BaseSearch.likeStr(search.getEnbookname()));

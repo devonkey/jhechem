@@ -1,6 +1,5 @@
 package top.jhechem.web.controller;
 
-import cn.idongjia.util.Utils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -106,9 +105,6 @@ public class OrderController extends BaseController {
         }
         if (search.getEnd() == null) {
             search.setEnd(DateUtil.getCurrentSecond());
-        }
-        if(Utils.isEmpty(search.getKrname())){
-            search.setKrname(null);
         }
         return Response.ok(orderService.getOrderStatistic(search));
     }
