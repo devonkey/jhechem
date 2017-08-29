@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static top.jhechem.core.constant.Const.NUMBER_MILL_OF_DAY;
+import static top.jhechem.core.constant.Const.NUMBER_SECOND_OF_DAY;
 
 /**
  * impl
@@ -97,7 +97,7 @@ public class OrderServiceImpl implements OrderService {
 
             if (search.getEnd() != null) {
                 String end = format.format(new Date(search.getEnd() * Const.NUMBER_THOUSAND));
-                search.setEnd(format.parse(end).getTime() / Const.NUMBER_THOUSAND + NUMBER_MILL_OF_DAY);
+                search.setEnd(format.parse(end).getTime() / Const.NUMBER_THOUSAND + NUMBER_SECOND_OF_DAY);
             }
         } catch (ParseException e) {
             LOGGER.error(e);
