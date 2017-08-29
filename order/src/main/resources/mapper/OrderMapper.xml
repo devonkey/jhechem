@@ -458,6 +458,7 @@
               OR o.gysname LIKE #{keyword}
               OR o.gyscontact LIKE #{keyword}
               OR o.krname LIKE #{keyword}
+              OR o.casno LIKE #{keyword}
                 )
         </if>
     </sql>
