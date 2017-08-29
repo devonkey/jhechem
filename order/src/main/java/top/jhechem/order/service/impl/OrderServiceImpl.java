@@ -5,6 +5,7 @@ import cn.idongjia.log.LogFactory;
 import cn.idongjia.util.Utils;
 import org.springframework.stereotype.Service;
 import top.jhechem.core.base.BaseSearch;
+import top.jhechem.core.constant.Const;
 import top.jhechem.order.mapper.OrderMapper;
 import top.jhechem.order.pojo.Order;
 import top.jhechem.order.pojo.OrderSearch;
@@ -18,6 +19,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static top.jhechem.core.constant.Const.NUMBER_MILL_OF_DAY;
 
 /**
  * impl
@@ -83,6 +86,23 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderStatistic> getOrderStatistic(OrderSearch search) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        //日期取当天凌晨
+        try {
+            if (search.getStart() != null) {
+                String start = format.format(new Date(search.getStart() * Const.NUMBER_THOUSAND));
+                search.setStart(format.parse(start).getTime() / Const.NUMBER_THOUSAND);
+            }
+
+            if (search.getEnd() != null) {
+                String end = format.format(new Date(search.getEnd() * Const.NUMBER_THOUSAND));
+                search.setEnd(format.parse(end).getTime() / Const.NUMBER_THOUSAND + NUMBER_MILL_OF_DAY);
+            }
+        } catch (ParseException e) {
+            LOGGER.error(e);
+        }
+
         plentifulOrderSearch(search);
         List<OrderStatistic> statistics = mapper.getOrderStatistics(search);
         List<OrderStatistic> res = new ArrayList<>();
@@ -91,7 +111,6 @@ public class OrderServiceImpl implements OrderService {
         }
         OrderStatistic statistic0 = statistics.get(0);
         res.add(statistic0);
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         for (int i = 1; i < statistics.size(); i++) {
             OrderStatistic statistic = statistics.get(i);
             while (true) {
@@ -114,7 +133,6 @@ public class OrderServiceImpl implements OrderService {
         search.setBookname(BaseSearch.likeStr(search.getBookname()));
         search.setYwy(BaseSearch.likeStr(search.getYwy()));
         search.setEnbookname(BaseSearch.likeStr(search.getEnbookname()));
-        search.setKrname(BaseSearch.likeStr(search.getKrname()));
         search.setGysname(BaseSearch.likeStr(search.getGysname()));
         search.setGyscontact(BaseSearch.likeStr(search.getGyscontact()));
         search.setKeyword(BaseSearch.likeStr(search.getKeyword()));

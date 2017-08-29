@@ -10,5 +10,6 @@ public class Const {
     public static final String DEFAULT_MOUTH_FORMAT = "yyyy-MM";
 
     public static final long NUMBER_THOUSAND = 1000;
+    public static final long NUMBER_MILL_OF_DAY = 24 * 60 * 60 * 1000;
 
 }
