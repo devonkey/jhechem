@@ -48,6 +48,7 @@
 
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="shiroRealm"/>
+        <!--<property name="sessionManager" ref="sessionManager"/>-->
     </bean>
 
     <bean id="lifecycleBeanPostProcessor"
@@ -66,5 +67,12 @@
         <property name="securityManager" ref="securityManager"/>
     </bean>
 
+    <!--<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">-->
+        <!--<property name="globalSessionTimeout" value="${login.session.timeout}"/>-->
+        <!--<property name="sessionIdCookie.name" value="${login.sessionIdCookie.name}"/>-->
+        <!--<property name="sessionIdCookie.path" value="/"/>-->
+        <!--<property name="sessionIdCookie.httpOnly" value="false"/>-->
+        <!--<property name="sessionValidationSchedulerEnabled" value="false"/>-->
+    <!--</bean>-->
 
 </beans>

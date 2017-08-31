@@ -22,7 +22,7 @@ CREATE TABLE `jh_order` (
 `lirun` VARCHAR(64) DEFAULT NULL COMMENT '利润分析', 
 `yundan` VARCHAR(64) DEFAULT NULL COMMENT '外运单号码', 
 `date3` VARCHAR(64) DEFAULT NULL COMMENT '收汇日期',
-`cpgg` TINYTEXT DEFAULT NULL COMMENT '产品规格要求', 
+`cpgg` TEXT DEFAULT NULL COMMENT '产品规格要求',
 `baozhuang` VARCHAR(64) DEFAULT NULL COMMENT '包装要求', 
 `isyp` VARCHAR(64) DEFAULT NULL COMMENT '是否给客人样品', 
 `gyscontact` VARCHAR(64) DEFAULT NULL COMMENT '供应商联系方式', 
