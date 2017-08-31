@@ -40,7 +40,7 @@
     </delete>
 
     <insert id="addRoles">
-        INSERT INTO `admin_role_rel` (`admin_id`, `role_id`, `ceate_time`)
+        INSERT INTO `admin_role_rel` (`admin_id`, `role_id`, `create_time`)
         VALUES
         <foreach collection="roles" item="role" open="" close="" separator=",">
             (#{0}, #{role.id}, CURRENT_TIMESTAMP )

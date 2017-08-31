@@ -33,7 +33,7 @@ insert into auth_group (id,name,create_time,update_time) values (10002,'订单�
 insert into auth_group (id,name,create_time,update_time) values (10003,'订单管理(业务员)',current_timestamp,current_timestamp);
 insert into auth_group (id,name,create_time,update_time) values (10004,'订单查询',current_timestamp,current_timestamp);
 insert into auth_group (id,name,create_time,update_time) values (10005,'删除操作',current_timestamp,current_timestamp);
-insert into auth_group (id,name,create_time,update_time) values (10006,'设置订单状态',current_timestamp,current_timestamp);
+insert into auth_group (id,name,create_time,update_time) values (10006,'订单超级管理',current_timestamp,current_timestamp);
 
 
 truncate `auth_group_rel`;
@@ -48,8 +48,8 @@ insert into auth_group_rel(group_id,auth_id,create_time) values (10001,10112,cur
 
 insert into auth_group_rel(group_id,auth_id,create_time) values (10002,10000,current_timestamp);
 insert into auth_group_rel(group_id,auth_id,create_time) values (10002,10002,current_timestamp);
-insert into auth_group_rel(group_id,auth_id,create_time) values (10002,10003,current_timestamp);
 
+insert into auth_group_rel(group_id,auth_id,create_time) values (10006,10003,current_timestamp);
 insert into auth_group_rel(group_id,auth_id,create_time) values (10006,10004,current_timestamp);
 insert into auth_group_rel(group_id,auth_id,create_time) values (10006,10005,current_timestamp);
 insert into auth_group_rel(group_id,auth_id,create_time) values (10006,10006,current_timestamp);
