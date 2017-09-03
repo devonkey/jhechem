@@ -14,6 +14,7 @@ import top.jhechem.order.service.OrderService;
 
 import javax.annotation.Resource;
 import javax.ws.rs.BeanParam;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -61,6 +62,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> list(@BeanParam OrderSearch search) {
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        //日期取当天凌晨
+        formatDate(search,format);
+
         search.setDefaultOrderBy("bookid desc");
         plentifulOrderSearch(search);
         return mapper.list(search);
@@ -68,12 +73,16 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public int count(@BeanParam OrderSearch search) {
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        //日期取当天凌晨
+        formatDate(search,format);
+
         plentifulOrderSearch(search);
         return mapper.count(search);
     }
 
 
-    private String nextGrain(String grain, SimpleDateFormat dateFormat) {
+    private String nextGrain(String grain, DateFormat dateFormat) {
         try {
             long time = dateFormat.parse(grain).getTime();
             long nextTime = time + 24 * 60 * 60 * 1000;
@@ -86,22 +95,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderStatistic> getOrderStatistic(OrderSearch search) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         //日期取当天凌晨
-        try {
-            if (search.getStart() != null) {
-                String start = format.format(new Date(search.getStart() * Const.NUMBER_THOUSAND));
-                search.setStart(format.parse(start).getTime() / Const.NUMBER_THOUSAND);
-            }
-
-            if (search.getEnd() != null) {
-                String end = format.format(new Date(search.getEnd() * Const.NUMBER_THOUSAND));
-                search.setEnd(format.parse(end).getTime() / Const.NUMBER_THOUSAND + NUMBER_SECOND_OF_DAY);
-            }
-        } catch (ParseException e) {
-            LOGGER.error(e);
-        }
+        formatDate(search,format);
 
         plentifulOrderSearch(search);
         List<OrderStatistic> statistics = mapper.getOrderStatistics(search);
@@ -141,5 +138,20 @@ public class OrderServiceImpl implements OrderService {
         search.setKeyword(BaseSearch.likeStr(search.getKeyword()));
     }
 
+    private void formatDate(OrderSearch search, DateFormat format){
+        try {
+            if (search.getStart() != null) {
+                String start = format.format(new Date(search.getStart() * Const.NUMBER_THOUSAND));
+                search.setStart(format.parse(start).getTime() / Const.NUMBER_THOUSAND);
+            }
+
+            if (search.getEnd() != null) {
+                String end = format.format(new Date(search.getEnd() * Const.NUMBER_THOUSAND));
+                search.setEnd(format.parse(end).getTime() / Const.NUMBER_THOUSAND + NUMBER_SECOND_OF_DAY);
+            }
+        } catch (ParseException e) {
+            LOGGER.error(e);
+        }
+    }
 
 }

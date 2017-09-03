@@ -35,7 +35,7 @@ public class AuthResultController extends BaseController {
 
     @RequestMapping("login/failure")
     public Response failure(HttpServletRequest request) {
-        return (Response) request.getServletContext().getAttribute(AuthBiz.DISPATCHER_RESULT_KEY);
+        return (Response) request.getAttribute(AuthBiz.DISPATCHER_RESULT_KEY);
     }
 
     @RequestMapping("login/redirect")

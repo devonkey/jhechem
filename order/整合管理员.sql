@@ -30,7 +30,8 @@ update jh_order set ywy ='郑瑞笔' where ywy='郑';
 update jh_order set ywy ='胡振杭' where ywy='胡';
 update jh_order set ywy ='罗琴' where ywy='罗';
 update jh_order set ywy ='胡振杭' where ywy='罗琴 胡';
-update jh_order set ywy ='匿名' where (ywy='无' OR ywy IS NULL) AND admin_id IS NULL ;
+ update jh_order set ywy = '郑瑞笔' where ywy= '郑润笔';
+update jh_order set ywy ='匿名' where (ywy='无' OR ywy IS NULL OR ywy = '') AND admin_id = 1 ;
 
 
 

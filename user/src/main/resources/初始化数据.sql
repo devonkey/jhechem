@@ -95,3 +95,11 @@ INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE
 INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10002,10003,CURRENT_TIMESTAMP );
 INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10004,10003,CURRENT_TIMESTAMP );
 
+truncate function_operate_range;
+INSERT INTO function_operate_range VALUES (1,10010,10000,1,'订单详情:1-无权限限制,其它-只能查询自己的数据和其余数据的部分字段',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP );
+INSERT INTO function_operate_range VALUES (2,10010,10003,1,'订单详情:1-无权限限制,其它-只能查询自己的数据和其余数据的部分字段',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP );
+INSERT INTO function_operate_range VALUES (3,10011,10000,1,'订单列表:1-无权限限制,其它-只能查询自己的数据和其余数据的部分字段',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP );
+INSERT INTO function_operate_range VALUES (4,10011,10003,1,'订单详情:1-无权限限制,其它-只能查询自己的数据和其余数据的部分字段',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP );
+INSERT INTO function_operate_range VALUES (5,10000,10000,1,'添加订单:1-无权限限制,其它-只能修改自己的订单',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP );
+INSERT INTO function_operate_range VALUES (6,10002,10000,1,'修改订单:1-无权限限制,其它-只能添加自己的订单',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP );
+INSERT INTO function_operate_range VALUES (7,10003,10000,1,'订单统计:1-无权限限制,其它-只能统计自己的订单',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP );
