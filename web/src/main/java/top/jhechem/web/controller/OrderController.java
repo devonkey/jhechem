@@ -32,6 +32,7 @@ import java.util.List;
 public class OrderController extends BaseController {
 
     private static final int UNLIMITED_ORDER_RANGE = 1;
+    private static final int UNPRICE_ORDER_RANGE = 2;
 
     @Resource
     private OrderService orderService;
@@ -48,7 +49,12 @@ public class OrderController extends BaseController {
         Order order = orderService.get(bookid);
         int adminId = getAdminId();
         if (!getRanges(adminId).contains(UNLIMITED_ORDER_RANGE)) {
-            order = responseFilter.doFilter(order, adminId);
+            if (getRanges(adminId).contains(UNPRICE_ORDER_RANGE)) {
+                //禁用价格字段
+                order = responseFilter.doFilterPrice(order);
+            } else {
+                order = responseFilter.doFilter(order, adminId);
+            }
         }
         return Response.ok(order);
     }
@@ -58,7 +64,12 @@ public class OrderController extends BaseController {
         List<Order> orders = orderService.list(search);
         int adminId = getAdminId();
         if (!getRanges(adminId).contains(UNLIMITED_ORDER_RANGE)) {
-            orders = responseFilter.doFilter(orders, adminId);
+            if (getRanges(adminId).contains(UNPRICE_ORDER_RANGE)) {
+                //禁用价格字段
+                orders = responseFilter.doFilterPrice(orders);
+            } else {
+                orders = responseFilter.doFilter(orders, adminId);
+            }
         }
         return Response.paginate(orders, orderService.count(search));
     }

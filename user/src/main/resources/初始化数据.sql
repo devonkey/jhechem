@@ -34,6 +34,7 @@ insert into auth_group (id,name,create_time,update_time) values (10003,'订单�
 insert into auth_group (id,name,create_time,update_time) values (10004,'订单查询',current_timestamp,current_timestamp);
 insert into auth_group (id,name,create_time,update_time) values (10005,'删除操作',current_timestamp,current_timestamp);
 insert into auth_group (id,name,create_time,update_time) values (10006,'订单超级管理',current_timestamp,current_timestamp);
+insert into auth_group (id,name,create_time,update_time) values (10007,'货物管理',current_timestamp,current_timestamp);
 
 
 truncate `auth_group_rel`;
@@ -64,6 +65,9 @@ insert into auth_group_rel(group_id,auth_id,create_time) values (10004,10011,cur
 insert into auth_group_rel(group_id,auth_id,create_time) values (10005,10001,current_timestamp);
 insert into auth_group_rel(group_id,auth_id,create_time) values (10005,10101,current_timestamp);
 
+insert into auth_group_rel(group_id,auth_id,create_time) values (10007,10004,current_timestamp);
+insert into auth_group_rel(group_id,auth_id,create_time) values (10007,10005,current_timestamp);
+
 truncate role;
 #角色 分四级
 ## 超级管理员 任何操作;
@@ -74,6 +78,7 @@ insert into role(id,`name`,`create_time`,`update_time`) values (10000,'超级管
 insert into role(id,`name`,`create_time`,`update_time`) values (10001,'业务员',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 insert into role(id,`name`,`create_time`,`update_time`) values (10002,'实习生', CURRENT_TIMESTAMP ,CURRENT_TIMESTAMP );
 insert into role(id,`name`,`create_time`,`update_time`) values (10003,'普通管理员', CURRENT_TIMESTAMP ,CURRENT_TIMESTAMP );
+insert into role(id,`name`,`create_time`,`update_time`) values (10004,'发货员', CURRENT_TIMESTAMP ,CURRENT_TIMESTAMP );
 
 truncate role_auth_group_rel;
 #权限组与角色的关系
@@ -95,6 +100,10 @@ INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE
 INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10002,10003,CURRENT_TIMESTAMP );
 INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10004,10003,CURRENT_TIMESTAMP );
 
+INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10001,10004,CURRENT_TIMESTAMP );
+INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10004,10004,CURRENT_TIMESTAMP );
+INSERT INTO `role_auth_group_rel`(`auth_group_id`,`role_id`,`create_time`) VALUE (10007,10004,CURRENT_TIMESTAMP );
+
 truncate function_operate_range;
 INSERT INTO function_operate_range VALUES (1,10010,10000,1,'订单详情:1-无权限限制,其它-只能查询自己的数据和其余数据的部分字段',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP );
 INSERT INTO function_operate_range VALUES (2,10010,10003,1,'订单详情:1-无权限限制,其它-只能查询自己的数据和其余数据的部分字段',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP );
@@ -103,3 +112,5 @@ INSERT INTO function_operate_range VALUES (4,10011,10003,1,'订单详情:1-无�
 INSERT INTO function_operate_range VALUES (5,10000,10000,1,'添加订单:1-无权限限制,其它-只能修改自己的订单',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP );
 INSERT INTO function_operate_range VALUES (6,10002,10000,1,'修改订单:1-无权限限制,其它-只能添加自己的订单',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP );
 INSERT INTO function_operate_range VALUES (7,10003,10000,1,'订单统计:1-无权限限制,其它-只能统计自己的订单',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP );
+INSERT INTO function_operate_range VALUES (8,10010,10004,2,'订单详情:1-无权限限制,2-只能看到非价格字段数据',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP );
+INSERT INTO function_operate_range VALUES (9,10011,10004,2,'订单列表:1-无权限限制,2-只能看到非价格字段数据',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP );

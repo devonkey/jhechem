@@ -51,4 +51,22 @@ public class ResponseFilter {
         order.setDate1(o.getDate1());
         return order;
     }
+
+    @SuppressWarnings("unchecked")
+    public <T> T doFilterPrice(T t) {
+        if (t instanceof List) {
+            List list = (List) t;
+            List newList = new ArrayList();
+            list.forEach(l -> newList.add(doFilterPrice(l)));
+            return (T) newList;
+        }
+        Order order = (Order) t;
+        order.setLirun(null);
+        order.setZsh(null);
+        order.setPrice1(null);
+        order.setPrice2(null);
+        order.setHuokuan(null);
+        return (T) order;
+    }
+
 }
