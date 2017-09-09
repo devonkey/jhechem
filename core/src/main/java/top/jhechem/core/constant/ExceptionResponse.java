@@ -24,4 +24,6 @@ public class ExceptionResponse {
     public static Response response(String msg) {
         return new Response(DEFAULT_ERROR_CODE, msg);
     }
+
+    public static final Response SYSTEM_ERROR = new Response(DEFAULT_ERROR_CODE, "系统错误~");
 }

@@ -20,10 +20,11 @@
 
     <context:component-scan base-package="top.jhechem"/>
 
-    <context:property-placeholder location="classpath:web.properties"/>
+    <context:property-placeholder location="classpath:web.properties, redis.properties"/>
 
     <dubbo:application name="web"/>
 
+    <import resource="classpath:redis.xml"/>
     <import resource="classpath:shiro.xml"/>
 
     <dubbo:registry protocol="zookeeper" address="${zookeeper}" client="curator"/>

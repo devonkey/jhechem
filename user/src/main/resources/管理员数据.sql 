@@ -44,3 +44,4 @@ insert into admin_role_rel(admin_id,role_id,create_time) values(20008,10001,CURR
 insert into admin_role_rel(admin_id,role_id,create_time) values(20009,10001,CURRENT_TIMESTAMP );
 insert into admin_role_rel(admin_id,role_id,create_time) values(20010,10001,CURRENT_TIMESTAMP );
 insert into admin_role_rel(admin_id,role_id,create_time) values(20011,10001,CURRENT_TIMESTAMP );
+insert into admin_role_rel(admin_id,role_id,create_time) values(20016,10004,CURRENT_TIMESTAMP );

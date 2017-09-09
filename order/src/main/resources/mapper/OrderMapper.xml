@@ -449,7 +449,7 @@
         <if test="ists != null">AND o.ists = #{ists}</if>
         <if test="isfxbg != null">AND o.isfxbg = #{isfxbg}</if>
         <if test="start != null">AND o.date1 &gt;= from_unixtime(#{start})</if>
-        <if test="end != null">AND o.date1 &lt;= from_unixtime(#{end})</if>
+        <if test="end != null">AND o.date1 &lt; from_unixtime(#{end})</if>
         <if test="keyword != null">
             AND (
               o.bookname LIKE #{keyword}

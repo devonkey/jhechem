@@ -64,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> list(@BeanParam OrderSearch search) {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         //日期取当天凌晨
-        formatDate(search,format);
+        formatDate(search, format);
 
         search.setDefaultOrderBy("bookid desc");
         plentifulOrderSearch(search);
@@ -75,7 +75,7 @@ public class OrderServiceImpl implements OrderService {
     public int count(@BeanParam OrderSearch search) {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         //日期取当天凌晨
-        formatDate(search,format);
+        formatDate(search, format);
 
         plentifulOrderSearch(search);
         return mapper.count(search);
@@ -98,7 +98,7 @@ public class OrderServiceImpl implements OrderService {
 
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         //日期取当天凌晨
-        formatDate(search,format);
+        formatDate(search, format);
 
         plentifulOrderSearch(search);
         List<OrderStatistic> statistics = mapper.getOrderStatistics(search);
@@ -127,8 +127,11 @@ public class OrderServiceImpl implements OrderService {
 
 
     private void plentifulOrderSearch(OrderSearch search) {
-        if(Utils.isEmpty(search.getKrname())){
+        if (Utils.isEmpty(search.getKrname())) {
             search.setKrname(null);
+        }
+        if (Utils.isEmpty(search.getOrdernum())) {
+            search.setOrdernum(null);
         }
         search.setBookname(BaseSearch.likeStr(search.getBookname()));
         search.setYwy(BaseSearch.likeStr(search.getYwy()));
@@ -138,7 +141,7 @@ public class OrderServiceImpl implements OrderService {
         search.setKeyword(BaseSearch.likeStr(search.getKeyword()));
     }
 
-    private void formatDate(OrderSearch search, DateFormat format){
+    private void formatDate(OrderSearch search, DateFormat format) {
         try {
             if (search.getStart() != null) {
                 String start = format.format(new Date(search.getStart() * Const.NUMBER_THOUSAND));
