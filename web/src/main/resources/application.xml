@@ -20,7 +20,7 @@
 
     <context:component-scan base-package="top.jhechem"/>
 
-    <context:property-placeholder location="classpath:web.properties, redis.properties"/>
+    <context:property-placeholder location="classpath:web.properties, classpath:redis.properties"/>
 
     <dubbo:application name="web"/>
 

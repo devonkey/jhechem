@@ -53,19 +53,21 @@ public class ResponseFilter {
     }
 
     @SuppressWarnings("unchecked")
-    public <T> T doFilterPrice(T t) {
+    public <T> T doFilterPrice(T t, int adminId) {
         if (t instanceof List) {
             List list = (List) t;
             List newList = new ArrayList();
-            list.forEach(l -> newList.add(doFilterPrice(l)));
+            list.forEach(l -> newList.add(doFilterPrice(l, adminId)));
             return (T) newList;
         }
         Order order = (Order) t;
-        order.setLirun(null);
-        order.setZsh(null);
-        order.setPrice1(null);
-        order.setPrice2(null);
-        order.setHuokuan(null);
+        if (adminId != order.getAdminId()) {
+            order.setLirun(null);
+            order.setZsh(null);
+            order.setPrice1(null);
+            order.setPrice2(null);
+            order.setHuokuan(null);
+        }
         return (T) order;
     }
 

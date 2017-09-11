@@ -51,7 +51,7 @@ public class OrderController extends BaseController {
         if (!getRanges(adminId).contains(UNLIMITED_ORDER_RANGE)) {
             if (getRanges(adminId).contains(UNPRICE_ORDER_RANGE)) {
                 //禁用价格字段
-                order = responseFilter.doFilterPrice(order);
+                order = responseFilter.doFilterPrice(order, adminId);
             } else {
                 order = responseFilter.doFilter(order, adminId);
             }
@@ -66,7 +66,7 @@ public class OrderController extends BaseController {
         if (!getRanges(adminId).contains(UNLIMITED_ORDER_RANGE)) {
             if (getRanges(adminId).contains(UNPRICE_ORDER_RANGE)) {
                 //禁用价格字段
-                orders = responseFilter.doFilterPrice(orders);
+                orders = responseFilter.doFilterPrice(orders, adminId);
             } else {
                 orders = responseFilter.doFilter(orders, adminId);
             }

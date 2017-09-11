@@ -65,10 +65,6 @@
     </bean>
 
 
-    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
-        <property name="securityManager" ref="securityManager"/>
-    </bean>
-
     <bean id="sessionIdGenerator"
           class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
 
@@ -83,7 +79,7 @@
         <property name="sessionDAO" ref="sessionDao"/>
         <property name="sessionFactory" ref="sessionFactory"/>
         <property name="globalSessionTimeout" value="${login.session.timeout}"/>
-        <!--<property name="sessionIdCookie.name" value="${login.sessionIdCookie.name}"/>-->
+        <property name="sessionIdCookie.name" value="${login.sessionIdCookie.name}"/>
         <property name="sessionIdCookie.path" value="/"/>
         <property name="sessionIdCookie.httpOnly" value="false"/>
         <property name="sessionValidationSchedulerEnabled" value="false"/>
