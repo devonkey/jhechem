@@ -20,6 +20,7 @@ import java.util.Map;
 import static org.springframework.util.StringUtils.isEmpty;
 import static top.jhechem.core.constant.ExceptionResponse.NEED_LOGIN;
 import static top.jhechem.web.constant.Const.AUTH_DISPATHER_PATH_PREFIX;
+import static top.jhechem.web.constant.Const.MAIL_PREFIX;
 import static top.jhechem.web.constant.Const.URL_SEPERATOR;
 
 public class AccessInterceptor extends HandlerInterceptorAdapter {
@@ -31,7 +32,8 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
         Map<String, String> paramMap = convertMap(request.getParameterMap());
         String path = request.getPathInfo();
         //认证、授权结果转发的请求
-        if (path.startsWith(AUTH_DISPATHER_PATH_PREFIX + URL_SEPERATOR)) {
+        if (path.startsWith(AUTH_DISPATHER_PATH_PREFIX + URL_SEPERATOR)
+                || path.startsWith(MAIL_PREFIX + URL_SEPERATOR)) {
             return true;
         }
 

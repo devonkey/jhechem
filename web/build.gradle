@@ -31,6 +31,8 @@ dependencies {
     compile rootProject.ext.dependencies['commons-codec']
     compile rootProject.ext.dependencies['hibernate-validator']
     compile rootProject.ext.dependencies['javax.servlet-api']
+    compile rootProject.ext.dependencies['mail']
+    compile rootProject.ext.dependencies['activation']
     //shiro
     compile rootProject.ext.dependencies['shiro-core']
     compile rootProject.ext.dependencies['shiro-web']

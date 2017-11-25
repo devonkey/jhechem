@@ -38,6 +38,7 @@
                 /menu/** = anon
                 /admin/test=anon
                 /role/list=anon
+                /mail/**=anon
             </value>
         </property>
     </bean>

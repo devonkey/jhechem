@@ -7,6 +7,7 @@ package top.jhechem.web.constant;
 public class Const {
 
     public static final String AUTH_DISPATHER_PATH_PREFIX="/auth";
+    public static final String MAIL_PREFIX="/mail";
     public static final String URL_SEPERATOR="/";
 
 }

@@ -20,7 +20,10 @@
 
     <context:component-scan base-package="top.jhechem"/>
 
-    <context:property-placeholder location="classpath:web.properties, classpath:redis.properties"/>
+    <context:property-placeholder
+            location="classpath:web.properties,
+            classpath:redis.properties,
+            classpath:mail.properties"/>
 
     <dubbo:application name="web"/>
 
@@ -44,5 +47,10 @@
     <dubbo:reference id="roleService"
                      interface="top.jhechem.user.service.RoleService"
                      check="false" protocol="dubbo"/>
+
+    <bean id="simpleMailSender" class="top.jhechem.web.mail.SimpleMailSender">
+        <constructor-arg value="${mail.username}"/>
+        <constructor-arg value="${mail.password}"/>
+    </bean>
 
 </beans>

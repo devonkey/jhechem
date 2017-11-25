@@ -21,6 +21,8 @@ ext {
             'validation-api'     : '1.1.0.Final',
             'javax.servlet-api'  : '3.1.0',
             'shiro'              : '1.3.2',
+            'mail'               : '1.4.7',
+            'activation'         : '1.1.1',
     ]
 
     dependencies = [
@@ -53,6 +55,8 @@ ext {
             'shiro-quartz'       : 'org.apache.shiro:shiro-quartz:' + version['shiro'],
             'shiro-ehcache'      : 'org.apache.shiro:shiro-ehcache:' + version['shiro'],
             'shiro-web'          : 'org.apache.shiro:shiro-web:' + version['shiro'],
+            'mail'               : 'javax.mail:mail:' + version['mail'],
+            'activation'         : 'javax.activation:activation:' + version['activation'],
 
             'spring-test'        : 'org.springframework:spring-test:' + version['spring'],
             'junit'              : 'junit:junit:' + version['junit'],

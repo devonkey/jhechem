@@ -97,6 +97,6 @@ public class ShiroDynamicLoadDefinitionImpl implements ShiroDynamicLoadDefinitio
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        reloadPermission();
+//        reloadPermission();
     }
 }
