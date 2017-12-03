@@ -51,6 +51,8 @@
     <bean id="simpleMailSender" class="top.jhechem.web.mail.SimpleMailSender">
         <constructor-arg value="${mail.username}"/>
         <constructor-arg value="${mail.password}"/>
+        <constructor-arg value="${mail.smtp}"/>
+        <constructor-arg value="${mail.port}"/>
     </bean>
 
 </beans>
