@@ -49,6 +49,8 @@ public class ResponseFilter {
         order.setGyscontact(o.getGyscontact());
         order.setAdminName(o.getAdminName());
         order.setDate1(o.getDate1());
+        order.setBookname(o.getBookname());
+        order.setCjsl(o.getCjsl());
         return order;
     }
 
