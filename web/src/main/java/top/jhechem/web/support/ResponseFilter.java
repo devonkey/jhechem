@@ -44,13 +44,13 @@ public class ResponseFilter {
             return o;
         }
         Order order = new Order();
-        order.setBookid(o.getBookid());
+//        order.setBookid(o.getBookid());
         order.setGysname(o.getGysname());
         order.setGyscontact(o.getGyscontact());
-        order.setAdminName(o.getAdminName());
-        order.setDate1(o.getDate1());
-        order.setBookname(o.getBookname());
-        order.setCjsl(o.getCjsl());
+//        order.setAdminName(o.getAdminName());
+//        order.setDate1(o.getDate1());
+//        order.setBookname(o.getBookname());
+//        order.setCjsl(o.getCjsl());
         return order;
     }
 
