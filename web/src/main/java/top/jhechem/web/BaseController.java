@@ -10,6 +10,7 @@ import top.jhechem.core.ApiException;
 import top.jhechem.core.Response;
 import top.jhechem.core.constant.ExceptionResponse;
 import top.jhechem.user.pojo.Admin;
+import top.jhechem.user.pojo.Role;
 import top.jhechem.user.service.FunctionAuthService;
 import top.jhechem.web.shiro.AntPathMatcher;
 
@@ -40,9 +41,14 @@ public abstract class BaseController {
         return admin == null ? null : admin.getId();
     }
 
-    protected Set<Integer> getRanges() {
-        return functionAuthService.getRanges(
-                AntPathMatcher.getMatchedAuthPath(), getAdminId());
+    protected boolean hasRole(int roleId) {
+        Admin admin = (Admin) SecurityUtils.getSubject().getPrincipal();
+        for (Role role : admin.getRoles()) {
+            if (role.getId().equals(roleId)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     protected Set<Integer> getRanges(int adminId) {

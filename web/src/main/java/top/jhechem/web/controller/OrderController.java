@@ -1,5 +1,7 @@
 package top.jhechem.web.controller;
 
+import cn.idongjia.log.Log;
+import cn.idongjia.log.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,8 +33,11 @@ import java.util.List;
 @ResponseBody
 public class OrderController extends BaseController {
 
+    private static final Log LOGGER = LogFactory.getLog(OrderController.class);
+
     private static final int UNLIMITED_ORDER_RANGE = 1;
     private static final int UNPRICE_ORDER_RANGE = 2;
+    private static final int ADMIN_ROLE = 10000;
 
     @Resource
     private OrderService orderService;
@@ -99,6 +104,13 @@ public class OrderController extends BaseController {
                 throw new ApiException(ExceptionResponse.UNAUTHORIZED);
             }
         }
+
+        //非管理员不能修改利润
+        if (!hasRole(ADMIN_ROLE)) {
+            LOGGER.info("lirun:{} not set yet.", order.getLirun());
+            order.setLirun(null);
+        }
+
         int res = orderService.update(order);
         return Response.ok(res);
     }
