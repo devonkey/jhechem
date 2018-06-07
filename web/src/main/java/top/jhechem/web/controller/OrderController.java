@@ -89,6 +89,13 @@ public class OrderController extends BaseController {
                 throw new ApiException(ExceptionResponse.UNAUTHORIZED);
             }
         }
+
+        //非管理员不能修改利润
+        if (!hasRole(ADMIN_ROLE)) {
+            LOGGER.info("lirun:{} not add.", order.getLirun());
+            order.setLirun(null);
+        }
+
         Order res = orderService.add(order);
         return Response.ok(res);
     }
