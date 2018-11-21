@@ -23,6 +23,7 @@ import top.jhechem.web.support.ResponseFilter;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 订单控制器
@@ -37,6 +38,7 @@ public class OrderController extends BaseController {
 
     private static final int UNLIMITED_ORDER_RANGE = 1;
     private static final int UNPRICE_ORDER_RANGE = 2;
+    private static final int FINANCIAL_ORDER_RANGE = 3;
     private static final int ADMIN_ROLE = 10000;
 
     @Resource
@@ -53,10 +55,13 @@ public class OrderController extends BaseController {
     public Response<Order> get(@PathVariable("bookid") long bookid) {
         Order order = orderService.get(bookid);
         int adminId = getAdminId();
-        if (!getRanges(adminId).contains(UNLIMITED_ORDER_RANGE)) {
-            if (getRanges(adminId).contains(UNPRICE_ORDER_RANGE)) {
+        Set<Integer> ranges = getRanges(adminId);
+        if (!ranges.contains(UNLIMITED_ORDER_RANGE)) {
+            if (ranges.contains(UNPRICE_ORDER_RANGE)) {
                 //禁用价格字段
                 order = responseFilter.doFilterPrice(order, adminId);
+            } else if (ranges.contains(FINANCIAL_ORDER_RANGE)) {
+                order = responseFilter.doFilterFinacial(order, adminId);
             } else {
                 order = responseFilter.doFilter(order, adminId);
             }
@@ -68,10 +73,13 @@ public class OrderController extends BaseController {
     public Response<Pagination<Order>> list(OrderSearch search) {
         List<Order> orders = orderService.list(search);
         int adminId = getAdminId();
-        if (!getRanges(adminId).contains(UNLIMITED_ORDER_RANGE)) {
-            if (getRanges(adminId).contains(UNPRICE_ORDER_RANGE)) {
+        Set<Integer> ranges = getRanges(adminId);
+        if (!ranges.contains(UNLIMITED_ORDER_RANGE)) {
+            if (ranges.contains(UNPRICE_ORDER_RANGE)) {
                 //禁用价格字段
                 orders = responseFilter.doFilterPrice(orders, adminId);
+            } else if (ranges.contains(FINANCIAL_ORDER_RANGE)) {
+                orders = responseFilter.doFilterFinacial(orders, adminId);
             } else {
                 orders = responseFilter.doFilter(orders, adminId);
             }

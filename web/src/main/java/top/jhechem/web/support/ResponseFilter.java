@@ -73,4 +73,37 @@ public class ResponseFilter {
         return (T) order;
     }
 
+    public <T> T doFilterFinacial(T t, int adminId) {
+        if (t instanceof List) {
+            List list = (List) t;
+            List newList = new ArrayList();
+            list.forEach(l -> newList.add(doFilterFinacial(l, adminId)));
+            return (T) newList;
+        }
+        Order order = (Order) t;
+        Order res = new Order();
+        if (adminId != order.getAdminId()) {
+            res.setBookid(order.getBookid());
+            res.setCasno(order.getCasno());
+            res.setOrdernum(order.getOrdernum());
+            res.setZsh(order.getZsh());
+            res.setBookname(order.getBookname());
+            res.setAdminName(order.getAdminName());
+            res.setAdminId(order.getAdminId());
+            res.setHuokuan(order.getHuokuan());
+            res.setGyscontact(order.getGyscontact());
+            res.setGysname(order.getGysname());
+            res.setIsdh(order.getIsdh());
+            res.setIsfh(order.getIsfh());
+            res.setIsjs(order.getIsjs());
+            res.setIssh(order.getIssh());
+            res.setIssh(order.getIssh());
+            res.setDate1(order.getDate1());
+            res.setDate2(order.getDate2());
+            res.setContent(order.getContent());
+            res.setCjsl(order.getCjsl());
+        }
+        return (T) res;
+    }
+
 }
