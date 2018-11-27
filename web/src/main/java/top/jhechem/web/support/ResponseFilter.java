@@ -106,4 +106,19 @@ public class ResponseFilter {
         return (T) res;
     }
 
+    public <T> T doFilterHumanResources(T t, int adminId) {
+        if (t instanceof List) {
+            List list = (List) t;
+            List newList = new ArrayList();
+            list.forEach(l -> newList.add(doFilterHumanResources(l, adminId)));
+            return (T) newList;
+        }
+        Order order = (Order) t;
+        if (adminId != order.getAdminId()) {
+            order.setZsh(null);
+            order.setLirun(null);
+        }
+        return (T) order;
+    }
+
 }

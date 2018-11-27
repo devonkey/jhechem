@@ -39,6 +39,7 @@ public class OrderController extends BaseController {
     private static final int UNLIMITED_ORDER_RANGE = 1;
     private static final int UNPRICE_ORDER_RANGE = 2;
     private static final int FINANCIAL_ORDER_RANGE = 3;
+    private static final int HUMAN_RESOURCES_ORDER_RANGE = 4;
     private static final int ADMIN_ROLE = 10000;
 
     @Resource
@@ -62,6 +63,8 @@ public class OrderController extends BaseController {
                 order = responseFilter.doFilterPrice(order, adminId);
             } else if (ranges.contains(FINANCIAL_ORDER_RANGE)) {
                 order = responseFilter.doFilterFinacial(order, adminId);
+            } else if (ranges.contains(HUMAN_RESOURCES_ORDER_RANGE)) {
+                order = responseFilter.doFilterHumanResources(order, adminId);
             } else {
                 order = responseFilter.doFilter(order, adminId);
             }
@@ -80,6 +83,8 @@ public class OrderController extends BaseController {
                 orders = responseFilter.doFilterPrice(orders, adminId);
             } else if (ranges.contains(FINANCIAL_ORDER_RANGE)) {
                 orders = responseFilter.doFilterFinacial(orders, adminId);
+            } else if (ranges.contains(HUMAN_RESOURCES_ORDER_RANGE)) {
+                orders = responseFilter.doFilterHumanResources(orders, adminId);
             } else {
                 orders = responseFilter.doFilter(orders, adminId);
             }
