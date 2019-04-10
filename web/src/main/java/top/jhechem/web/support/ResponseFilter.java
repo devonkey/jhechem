@@ -43,15 +43,11 @@ public class ResponseFilter {
         if (adminId != null && adminId.equals(o.getAdminId())) {
             return o;
         }
-        Order order = new Order();
-//        order.setBookid(o.getBookid());
-        order.setGysname(o.getGysname());
-        order.setGyscontact(o.getGyscontact());
-//        order.setAdminName(o.getAdminName());
-//        order.setDate1(o.getDate1());
-//        order.setBookname(o.getBookname());
-//        order.setCjsl(o.getCjsl());
-        return order;
+        o.setCjsl(null);
+        o.setZsh(null);
+        o.setLirun(null);
+        o.setHuokuan(null);
+        return o;
     }
 
     @SuppressWarnings("unchecked")
