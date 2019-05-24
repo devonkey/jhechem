@@ -84,6 +84,7 @@ public class ResponseFilter {
             res.setOrdernum(order.getOrdernum());
             res.setZsh(order.getZsh());
             res.setBookname(order.getBookname());
+            res.setEnbookname(order.getEnbookname());
             res.setAdminName(order.getAdminName());
             res.setAdminId(order.getAdminId());
             res.setHuokuan(order.getHuokuan());
