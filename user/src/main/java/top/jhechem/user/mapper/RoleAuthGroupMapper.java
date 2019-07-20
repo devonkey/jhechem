@@ -12,4 +12,6 @@ public interface RoleAuthGroupMapper {
 
     List<Integer> listGroupIdByRoleIds(@Param("roleIds") List<Integer> roleIds);
 
+    int getAuthGroupIdByName(String name);
+
 }

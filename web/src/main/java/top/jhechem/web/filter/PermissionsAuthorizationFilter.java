@@ -2,7 +2,9 @@ package top.jhechem.web.filter;
 
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authz.AuthorizationFilter;
+import top.jhechem.user.service.AdminFunctionAuthGroupService;
 import top.jhechem.web.biz.AuthBiz;
+import top.jhechem.web.biz.TaskBiz;
 import top.jhechem.web.shiro.AntPathMatcher;
 
 import javax.annotation.Resource;
@@ -21,6 +23,10 @@ public class PermissionsAuthorizationFilter extends AuthorizationFilter {
     private AntPathMatcher pathMatcher;
     @Resource
     private AuthBiz authBiz;
+    @Resource
+    private TaskBiz taskBiz;
+    @Resource
+    private AdminFunctionAuthGroupService adminFunctionAuthGroupService;
 
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
@@ -38,6 +44,15 @@ public class PermissionsAuthorizationFilter extends AuthorizationFilter {
                 return true;
             }
         }
+
+        String authGroupIdOfTimeLimitLessPerm = adminFunctionAuthGroupService.getAuthGroupIdOfTimeLimitLess() + "";
+
+        if (!subject.isPermitted(authGroupIdOfTimeLimitLessPerm)
+                && !taskBiz.redisAvailable()) {
+            authBiz.unauthorized(request, response);
+            return false;
+        }
+
         if (subject.getPrincipal() == null) {
             authBiz.redirectToLogin(request, response, NEED_LOGIN);
         } else {

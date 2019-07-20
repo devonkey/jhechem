@@ -20,4 +20,9 @@ public class AdminFunctionAuthGroupServiceImplTest extends SpringJUnitServiceTes
         System.out.println(service.listAdminAuthGroups(20000));
     }
 
+    @Test
+    public void getAuthGroupIdOfTimeLimitLess() {
+        System.out.println(service.getAuthGroupIdOfTimeLimitLess());
+    }
+
 }

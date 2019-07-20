@@ -11,4 +11,8 @@
         </foreach>
     </select>
 
+    <select id="getAuthGroupIdByName" resultType="java.lang.Integer">
+        SELECT DISTINCT id FROM auth_group
+        WHERE name = #{0}
+    </select>
 </mapper>

@@ -16,7 +16,13 @@ import java.util.List;
 @Path("admin_function_auth_group")
 public interface AdminFunctionAuthGroupService {
 
+    String TIME_LIMIT_LESS_AUTH_NAME = "系统无限使用时间";
+
     @GET
     @Path("list/{adminId:\\d+}")
     List<Integer> listAdminAuthGroups(@PathParam("adminId") int adminId);
+
+    @GET
+    @Path("auth_group/time_less")
+    int getAuthGroupIdOfTimeLimitLess();
 }

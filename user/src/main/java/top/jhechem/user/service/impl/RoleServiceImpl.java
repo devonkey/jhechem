@@ -42,4 +42,5 @@ public class RoleServiceImpl implements RoleService{
     public int removeAdmin(int roleId, List<Integer> adminIds) {
         return mapper.removeAdmin(roleId, adminIds);
     }
+
 }

@@ -42,6 +42,9 @@
         </foreach>
     </insert>
 
+    <select id="getT" resultType="top.jhechem.user.pojo.Role">
+        SELECT * FROM `role` WHERE status = 1;
+    </select>
 
     <sql id="insertBody">
         <choose>

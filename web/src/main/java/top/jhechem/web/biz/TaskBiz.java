@@ -7,35 +7,91 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import top.jhechem.web.support.HttpUtils;
+import top.jhechem.core.util.Utils;
+import top.jhechem.web.support.DateUtils;
 
-import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static top.jhechem.web.constant.Const.REDIS_HOLIDAY_PREFIX;
+import static top.jhechem.web.constant.Const.REDIS_WORKDAY_BETWEEN;
 
 @Component
 public class TaskBiz {
 
-    private static String[] months = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
-    private static String baseUrl = "http://www.easybots.cn/api/holiday.php";
     private static Logger logger = LoggerFactory.getLogger(TaskBiz.class);
 
     @Autowired
     @Qualifier("loginJedisPool")
     private JedisPool pool;
 
-    public List<String> initHolidayInfo(int year) {
-        List<String> holidays = new ArrayList<>();
-        for (String month : months) {
-            String m = year + month;
-            String result = HttpUtils.get(baseUrl + "?m=" + m);
-            holidays.add(result);
-            logger.info("初始化{}年{}月的假日信息为{}", year, month, result);
-            try (Jedis jedis = pool.getResource()) {
-                jedis.set(REDIS_HOLIDAY_PREFIX + m, result);
+
+    /**
+     * 添加特殊假日标记
+     *
+     * @param date      like 20190720
+     * @param isHoliday true 节日， false 工作日
+     */
+    public void putDateHoliday(String date, boolean isHoliday) {
+        String value = isHoliday ? "1" : "0";
+        try (Jedis jedis = pool.getResource()) {
+            String s = jedis.set(REDIS_HOLIDAY_PREFIX + date, value);
+            logger.info("set {} result is {}", date, s);
+        }
+    }
+
+    /**
+     * 添加 工作日开放时间
+     *
+     * @param start like 0800
+     * @param end   like 2000
+     */
+    public void putWorkDayTime(String start, String end) {
+        try (Jedis jedis = pool.getResource()) {
+            Long s = jedis.lpush(REDIS_WORKDAY_BETWEEN, start, end);
+            logger.info("set {} start:{} end:{} result is {}.",
+                    REDIS_WORKDAY_BETWEEN, start, end, s);
+        }
+    }
+
+    public boolean redisAvailable() {
+        final DateFormat holidayFormat = new SimpleDateFormat("yyyyMMdd");
+
+        final Date now = new Date();
+        String date = holidayFormat.format(now);
+        String dateTag;
+        try (Jedis jedis = pool.getResource()) {
+            dateTag = jedis.get(REDIS_HOLIDAY_PREFIX + date);
+        }
+
+        boolean weekend = DateUtils.isWeekend();
+        if (Utils.isEmpty(dateTag)) {
+            if (weekend) { //未标记，周末
+                return false;
+            }
+        } else {
+            if (Boolean.valueOf(dateTag)) { //标记为假期
+                return false;
             }
         }
-        return holidays;
+
+        //date满足，对照时间
+        final DateFormat timeFormat = new SimpleDateFormat("HHmm");
+        String time = timeFormat.format(date);
+        List<String> timeList;
+        try (Jedis jedis = pool.getResource()) {
+            timeList = jedis.lrange(REDIS_WORKDAY_BETWEEN, 0, -1);
+        }
+
+        if (timeList.size() != 2) {
+            logger.error("时间 {} 设置错误", timeList);
+            return false;
+        }
+
+        return time.compareTo(timeList.get(1)) >= 1 && time.compareTo(timeList.get(0)) <= 1;
+
     }
+
 }

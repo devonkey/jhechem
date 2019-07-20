@@ -26,6 +26,7 @@ public class FunctionAuthServiceImpl implements FunctionAuthService {
         return auths;
     }
 
+    @Override
     public Set<Integer> getRanges(String path, int adminId) {
         return mapper.getRanges(path, adminId);
     }
