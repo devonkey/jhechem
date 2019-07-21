@@ -1,5 +1,6 @@
 package top.jhechem.user.service.impl;
 
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 import top.jhechem.user.mapper.RoleMapper;
 import top.jhechem.user.pojo.Role;
@@ -13,10 +14,12 @@ import java.util.List;
  * Created by wuqiang on 2017/7/31.
  */
 @Service("roleService")
-public class RoleServiceImpl implements RoleService{
+public class RoleServiceImpl implements RoleService, InitializingBean {
 
     @Resource
     private RoleMapper mapper;
+
+    private Integer ROLE_ID_OF_TIME_LIMITLESS;
 
     @Override
     public List<Role> listRole() {
@@ -43,4 +46,13 @@ public class RoleServiceImpl implements RoleService{
         return mapper.removeAdmin(roleId, adminIds);
     }
 
+    @Override
+    public int getRoleIdOfTimeLimitLess() {
+        return ROLE_ID_OF_TIME_LIMITLESS;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        ROLE_ID_OF_TIME_LIMITLESS = mapper.geRoleIdByName(TIME_LIMITLESS_NAME);
+    }
 }

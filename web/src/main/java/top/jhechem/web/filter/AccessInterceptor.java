@@ -27,6 +27,7 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
 
     private Logger interfaceLogger = LoggerFactory.getLogger(LoggerName.INTERFACE);
 
+    @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                              Object handler) throws Exception {
         Map<String, String> paramMap = convertMap(request.getParameterMap());

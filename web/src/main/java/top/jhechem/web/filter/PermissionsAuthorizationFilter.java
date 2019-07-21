@@ -38,19 +38,19 @@ public class PermissionsAuthorizationFilter extends AuthorizationFilter {
             return true;
         }
 
+        String authGroupLimitLessPerm = adminFunctionAuthGroupService.getAuthGroupIdOfTimeLimitLess() + "";
+
+        if (!subject.isPermitted(authGroupLimitLessPerm)
+                && !taskBiz.redisAvailable()) {
+            authBiz.unauthorized(request, response);
+            return false;
+        }
+
         //url在任何一个权限组里，则授权成功
         for (String perm : perms) {
             if (subject.isPermitted(perm)) {
                 return true;
             }
-        }
-
-        String authGroupIdOfTimeLimitLessPerm = adminFunctionAuthGroupService.getAuthGroupIdOfTimeLimitLess() + "";
-
-        if (!subject.isPermitted(authGroupIdOfTimeLimitLessPerm)
-                && !taskBiz.redisAvailable()) {
-            authBiz.unauthorized(request, response);
-            return false;
         }
 
         if (subject.getPrincipal() == null) {

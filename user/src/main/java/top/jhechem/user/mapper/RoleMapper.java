@@ -21,4 +21,5 @@ public interface RoleMapper {
 
     int addAdmin(int roleId, @Param("adminIds") List<Integer> adminIds);
 
+    int geRoleIdByName(String name);
 }
