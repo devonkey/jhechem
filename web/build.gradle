@@ -42,6 +42,9 @@ dependencies {
     compile rootProject.ext.dependencies['shiro-quartz']
     compile rootProject.ext.dependencies['shiro-ehcache']
 
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+
     // test
     compile rootProject.ext.dependencies['spring-test']
     compile rootProject.ext.dependencies['junit']

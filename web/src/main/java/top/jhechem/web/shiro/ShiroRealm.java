@@ -1,5 +1,6 @@
 package top.jhechem.web.shiro;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -24,6 +25,7 @@ import java.util.Set;
  * 获取认证和授权信息
  * Created by wuqiang on 2017/7/25.
  */
+@Slf4j
 public class ShiroRealm extends AuthorizingRealm {
 
     @Resource
@@ -46,6 +48,7 @@ public class ShiroRealm extends AuthorizingRealm {
         authGroupIds.forEach(authGroupId -> perms.add(authGroupId.toString()));
         authorizationInfo.setStringPermissions(perms);
 
+        log.info("authorizationInfo:{}", authorizationInfo);
         return authorizationInfo;
     }
 
@@ -69,6 +72,13 @@ public class ShiroRealm extends AuthorizingRealm {
                 new SimpleAuthenticationInfo(admin, admin.getPassword(), admin.getRealName());
         simpleAuthenticationInfo.setCredentialsSalt(ByteSource.Util.bytes(admin.getSalt()));
 
+        log.info("simpleAuthenticationInfo:{}", simpleAuthenticationInfo);
         return simpleAuthenticationInfo;
+    }
+
+    @Override
+    protected AuthorizationInfo getAuthorizationInfo(PrincipalCollection principals) {
+        log.info("getAuthorizationInfo principals:{}", principals);
+        return super.getAuthorizationInfo(principals);
     }
 }
