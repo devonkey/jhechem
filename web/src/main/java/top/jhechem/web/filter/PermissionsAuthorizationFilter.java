@@ -31,6 +31,12 @@ public class PermissionsAuthorizationFilter extends AuthorizationFilter {
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
         Subject subject = getSubject(request, response);
+
+        if (subject.getPrincipal() == null) {
+            authBiz.redirectToLogin(request, response, NEED_LOGIN);
+            return false;
+        }
+
         //url对应的权限组
         String[] perms = (String[]) mappedValue;
 
@@ -53,11 +59,7 @@ public class PermissionsAuthorizationFilter extends AuthorizationFilter {
             }
         }
 
-        if (subject.getPrincipal() == null) {
-            authBiz.redirectToLogin(request, response, NEED_LOGIN);
-        } else {
-            authBiz.unauthorized(request, response);
-        }
+        authBiz.unauthorized(request, response);
         return false;
     }
 
