@@ -3,6 +3,7 @@ package top.jhechem.user.service.impl;
 import org.junit.Test;
 import test.SpringJUnitServiceTest;
 import top.jhechem.user.service.AdminFunctionAuthGroupService;
+import top.jhechem.user.service.RoleService;
 
 import javax.annotation.Resource;
 
@@ -15,6 +16,8 @@ import static org.junit.Assert.*;
 public class AdminFunctionAuthGroupServiceImplTest extends SpringJUnitServiceTest {
     @Resource
     private AdminFunctionAuthGroupService service;
+    @Resource
+    private RoleService roleService;
     @Test
     public void listAdminAuthGroups() throws Exception {
         System.out.println(service.listAdminAuthGroups(20000));
@@ -22,7 +25,7 @@ public class AdminFunctionAuthGroupServiceImplTest extends SpringJUnitServiceTes
 
     @Test
     public void getAuthGroupIdOfTimeLimitLess() {
-        System.out.println(service.getAuthGroupIdOfTimeLimitLess());
+        System.out.println(roleService.getRoleIdOfTimeLimitLess());
     }
 
 }

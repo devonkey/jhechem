@@ -50,6 +50,7 @@ public class TaskBiz {
      */
     public void putWorkDayTime(String start, String end) {
         try (Jedis jedis = pool.getResource()) {
+            jedis.del(REDIS_WORKDAY_BETWEEN);
             Long s = jedis.lpush(REDIS_WORKDAY_BETWEEN, start, end);
             logger.info("set {} start:{} end:{} result is {}.",
                     REDIS_WORKDAY_BETWEEN, start, end, s);
@@ -79,7 +80,7 @@ public class TaskBiz {
 
         //date满足，对照时间
         final DateFormat timeFormat = new SimpleDateFormat("HHmm");
-        String time = timeFormat.format(date);
+        String time = timeFormat.format(now);
         List<String> timeList;
         try (Jedis jedis = pool.getResource()) {
             timeList = jedis.lrange(REDIS_WORKDAY_BETWEEN, 0, -1);

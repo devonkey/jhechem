@@ -10,6 +10,7 @@ import java.util.List;
  */
 public interface RoleService {
 
+    String TIME_LIMITLESS_NAME = "时间无限";
 
     List<Role> listRole();
 
@@ -20,5 +21,7 @@ public interface RoleService {
     int addAdmin(int roleId, List<Integer> adminIds);
 
     int removeAdmin(int roleId, List<Integer> adminIds);
+
+    int getRoleIdOfTimeLimitLess();
 
 }

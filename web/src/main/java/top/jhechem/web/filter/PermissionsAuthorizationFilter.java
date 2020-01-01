@@ -31,11 +31,25 @@ public class PermissionsAuthorizationFilter extends AuthorizationFilter {
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
         Subject subject = getSubject(request, response);
+
+        if (subject.getPrincipal() == null) {
+            authBiz.redirectToLogin(request, response, NEED_LOGIN);
+            return false;
+        }
+
         //url对应的权限组
         String[] perms = (String[]) mappedValue;
 
         if (perms == null || perms.length == 0) {
             return true;
+        }
+
+        String authGroupLimitLessPerm = adminFunctionAuthGroupService.getAuthGroupIdOfTimeLimitLess() + "";
+
+        if (!subject.isPermitted(authGroupLimitLessPerm)
+                && !taskBiz.redisAvailable()) {
+            authBiz.unauthorized(request, response);
+            return false;
         }
 
         //url在任何一个权限组里，则授权成功
@@ -45,19 +59,7 @@ public class PermissionsAuthorizationFilter extends AuthorizationFilter {
             }
         }
 
-        String authGroupIdOfTimeLimitLessPerm = adminFunctionAuthGroupService.getAuthGroupIdOfTimeLimitLess() + "";
-
-        if (!subject.isPermitted(authGroupIdOfTimeLimitLessPerm)
-                && !taskBiz.redisAvailable()) {
-            authBiz.unauthorized(request, response);
-            return false;
-        }
-
-        if (subject.getPrincipal() == null) {
-            authBiz.redirectToLogin(request, response, NEED_LOGIN);
-        } else {
-            authBiz.unauthorized(request, response);
-        }
+        authBiz.unauthorized(request, response);
         return false;
     }
 
