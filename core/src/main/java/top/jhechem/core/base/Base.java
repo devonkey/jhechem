@@ -1,15 +1,16 @@
 package top.jhechem.core.base;
 
-import com.google.gson.Gson;
+import cn.devonkey.util.GsonUtil;
 
 import java.io.Serializable;
 
+/**
+ * @author hugo
+ */
 public abstract class Base implements Serializable {
-
-    protected static final Gson GSON = new Gson();
 
     @Override
     public String toString() {
-        return GSON.toJson(this);
+        return GsonUtil.GSON.toJson(this);
     }
 }

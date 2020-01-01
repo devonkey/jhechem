@@ -1,8 +1,8 @@
 package top.jhechem.web.shiro;
 
-import cn.idongjia.Const;
-import cn.idongjia.log.Log;
-import cn.idongjia.log.LogFactory;
+import cn.devonkey.Const;
+import cn.devonkey.log.Log;
+import cn.devonkey.log.LogFactory;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.shiro.session.Session;

@@ -1,7 +1,7 @@
 package top.jhechem.web.biz;
 
-import cn.idongjia.log.Log;
-import cn.idongjia.log.LogFactory;
+import cn.devonkey.log.Log;
+import cn.devonkey.log.LogFactory;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -15,9 +15,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import java.io.IOException;
 
-import static top.jhechem.core.constant.ExceptionResponse.INVALID_PASSWORD;
-import static top.jhechem.core.constant.ExceptionResponse.LOGIN_FAILURE;
-import static top.jhechem.core.constant.ExceptionResponse.NO_USER;
+import static top.jhechem.core.constant.ExceptionResponse.*;
 
 
 /**
@@ -97,7 +95,7 @@ public class AuthBiz {
         }
     }
 
-    public void redirectToLogin(ServletRequest request, ServletResponse response,Response result) {
+    public void redirectToLogin(ServletRequest request, ServletResponse response, Response result) {
         request.setAttribute(DISPATCHER_RESULT_KEY, result);
         try {
             request.getRequestDispatcher(DISPATCHER_REDIRECT_URL).forward(request, response);

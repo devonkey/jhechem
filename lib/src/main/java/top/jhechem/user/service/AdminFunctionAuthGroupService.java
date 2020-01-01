@@ -1,6 +1,6 @@
 package top.jhechem.user.service;
 
-import com.alibaba.dubbo.rpc.protocol.rest.support.ContentType;
+import org.apache.dubbo.rpc.protocol.rest.support.ContentType;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -18,6 +18,11 @@ public interface AdminFunctionAuthGroupService {
 
     String TIME_LIMIT_LESS_AUTH_NAME = "系统无限使用时间";
 
+    /**
+     * 查询所有授权组
+     * @param adminId 管理员id
+     * @return 管理员授权组
+     */
     @GET
     @Path("list/{adminId:\\d+}")
     List<Integer> listAdminAuthGroups(@PathParam("adminId") int adminId);

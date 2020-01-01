@@ -1,49 +1,44 @@
-apply plugin: 'war'
-
-war {
-    archiveName = "web.war"
-}
-
 dependencies {
 
     compile project(":core")
     compile project(":lib")
 
-    compile rootProject.ext.dependencies['dongjia-common']
+    compile rootProject.ext.depends['common']
+    compile rootProject.ext.depends['redis']
 
     // spring
-    compile rootProject.ext.dependencies['spring-webmvc']
-    compile rootProject.ext.dependencies['spring-context']
+    compile rootProject.ext.depends['spring-webmvc']
+    compile rootProject.ext.depends['spring-context']
 
     // 数据访问
-    compile rootProject.ext.dependencies['mysql-connector']
-    compile rootProject.ext.dependencies['druid']
-    compile rootProject.ext.dependencies['mybatis']
-    compile rootProject.ext.dependencies['mybatis-spring']
+    compile rootProject.ext.depends['mysql-connector']
+    compile rootProject.ext.depends['druid']
+    compile rootProject.ext.depends['mybatis']
+    compile rootProject.ext.depends['mybatis-spring']
 
     //zookeeper
-    compile rootProject.ext.dependencies['zookeeper']
-    compile rootProject.ext.dependencies['curator-framework']
+    compile rootProject.ext.depends['zookeeper']
+    compile rootProject.ext.depends['curator-framework']
     // beanutils
-    compile rootProject.ext.dependencies['commons-beanutils']
+    compile rootProject.ext.depends['commons-beanutils']
     // tools
-    compile rootProject.ext.dependencies['commons-lang3']
-    compile rootProject.ext.dependencies['commons-codec']
-    compile rootProject.ext.dependencies['hibernate-validator']
-    compile rootProject.ext.dependencies['javax.servlet-api']
-    compile rootProject.ext.dependencies['mail']
-    compile rootProject.ext.dependencies['activation']
+    compile rootProject.ext.depends['commons-lang3']
+    compile rootProject.ext.depends['commons-codec']
+    compile rootProject.ext.depends['hibernate-validator']
+    compile rootProject.ext.depends['javax.servlet-api']
+    compile rootProject.ext.depends['mail']
+    compile rootProject.ext.depends['activation']
     //shiro
-    compile rootProject.ext.dependencies['shiro-core']
-    compile rootProject.ext.dependencies['shiro-web']
-    compile rootProject.ext.dependencies['shiro-guice']
-    compile rootProject.ext.dependencies['shiro-aspectj']
-    compile rootProject.ext.dependencies['shiro-spring']
-    compile rootProject.ext.dependencies['shiro-quartz']
-    compile rootProject.ext.dependencies['shiro-ehcache']
+    compile rootProject.ext.depends['shiro-core']
+    compile rootProject.ext.depends['shiro-web']
+    compile rootProject.ext.depends['shiro-guice']
+    compile rootProject.ext.depends['shiro-aspectj']
+    compile rootProject.ext.depends['shiro-spring']
+    compile rootProject.ext.depends['shiro-quartz']
+    compile rootProject.ext.depends['shiro-ehcache']
 
     // test
-    compile rootProject.ext.dependencies['spring-test']
-    compile rootProject.ext.dependencies['junit']
+    compile rootProject.ext.depends['spring-test']
+    compile rootProject.ext.depends['junit']
 
 }

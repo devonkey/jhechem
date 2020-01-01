@@ -1,9 +1,9 @@
 package top.jhechem.core.util;
 
-import cn.idongjia.Const;
-import cn.idongjia.consts.NumberConst;
-import cn.idongjia.log.Log;
-import cn.idongjia.log.LogFactory;
+import cn.devonkey.Const;
+import cn.devonkey.consts.NumberConst;
+import cn.devonkey.log.Log;
+import cn.devonkey.log.LogFactory;
 import org.slf4j.helpers.MessageFormatter;
 
 import java.beans.PropertyDescriptor;
@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
 @SuppressWarnings("unused")
 public class Utils {
     private static final Log LOGGER = LogFactory.getLog(Utils.class);
+    private static final Pattern MOBILE_PATTERN = Pattern.compile("^((\\+)?86)?1[34578][0-9]{9}$");
 
     public static boolean isEmpty(String str) {
         return null == str || str.isEmpty();
@@ -34,7 +35,7 @@ public class Utils {
     }
 
     public static boolean isMobile(String mobile) {
-        return Pattern.compile("^((\\+)?86)?1[34578][0-9]{9}$").matcher(mobile).matches();
+        return MOBILE_PATTERN.matcher(mobile).matches();
     }
 
     // TODO 国际手机号校验
@@ -196,7 +197,8 @@ public class Utils {
             int len = 0;
 
             for (int i = 0; i < sourceString.length(); i++) {
-                if (chr[i] >= 0xa1) { //0xa1汉字最小位开始
+                //0xa1汉字最小位开始
+                if (chr[i] >= 0xa1) {
                     strNum = strNum + 2;
                     strGBKNum++;
                 } else {

@@ -1,6 +1,6 @@
 package top.jhechem.web.support;
 
-import cn.idongjia.util.Utils;
+import cn.devonkey.util.Utils;
 import org.springframework.stereotype.Component;
 import top.jhechem.order.pojo.Order;
 

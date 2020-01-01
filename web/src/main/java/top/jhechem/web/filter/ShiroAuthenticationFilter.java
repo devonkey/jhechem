@@ -1,7 +1,7 @@
 package top.jhechem.web.filter;
 
-import cn.idongjia.log.Log;
-import cn.idongjia.log.LogFactory;
+import cn.devonkey.log.Log;
+import cn.devonkey.log.LogFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;

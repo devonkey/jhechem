@@ -1,7 +1,7 @@
 package top.jhechem.web.filter;
 
-import cn.idongjia.common.context.DongjiaContext;
-import cn.idongjia.log.LoggerName;
+import cn.devonkey.common.context.DongjiaContext;
+import cn.devonkey.log.LoggerName;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

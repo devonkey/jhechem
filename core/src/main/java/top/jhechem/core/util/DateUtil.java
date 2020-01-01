@@ -1,7 +1,7 @@
 package top.jhechem.core.util;
 
-import cn.idongjia.log.Log;
-import cn.idongjia.log.LogFactory;
+import cn.devonkey.log.Log;
+import cn.devonkey.log.LogFactory;
 
 import java.text.DateFormat;
 import java.text.ParseException;

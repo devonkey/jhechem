@@ -1,7 +1,7 @@
 package top.jhechem.web.filter;
 
-import cn.idongjia.log.Log;
-import cn.idongjia.log.LogFactory;
+import cn.devonkey.log.Log;
+import cn.devonkey.log.LogFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;

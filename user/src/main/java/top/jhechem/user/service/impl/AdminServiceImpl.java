@@ -1,8 +1,8 @@
 package top.jhechem.user.service.impl;
 
-import cn.idongjia.log.Log;
-import cn.idongjia.log.LogFactory;
-import cn.idongjia.util.MD5Encoder;
+import cn.devonkey.log.Log;
+import cn.devonkey.log.LogFactory;
+import cn.devonkey.util.MD5Encoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.jhechem.core.base.BaseSearch;

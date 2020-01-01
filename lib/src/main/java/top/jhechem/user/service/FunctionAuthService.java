@@ -1,6 +1,6 @@
 package top.jhechem.user.service;
 
-import com.alibaba.dubbo.rpc.protocol.rest.support.ContentType;
+import org.apache.dubbo.rpc.protocol.rest.support.ContentType;
 import top.jhechem.user.pojo.FunctionAuth;
 
 import javax.ws.rs.GET;

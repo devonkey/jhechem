@@ -1,0 +1,57 @@
+[
+  {
+    "type": 1,
+    "desc": "dynamic pictures",
+    "switch_type": "切换模式",
+    "pics": [
+      {
+        "uri": "",
+        "movement": "标记图片动画效果类型"
+      },
+      {
+        "uri": "",
+        "movement": "标记图片动画效果类型"
+      }
+    ]
+  },
+  {
+    "type": 2,
+    "desc": "news",
+    "count": 3,
+    "news": [
+      {
+        "author": "",
+        "date": "",
+        "title": "",
+        "pic": "",
+        "content": ""
+      },
+      {
+        "author": "",
+        "date": "",
+        "title": "",
+        "pic": "",
+        "content": ""
+      }
+    ]
+  },
+  {
+    "type": 3,
+    "desc": "products"
+  },
+  {
+    "type": 4,
+    "desc": "link",
+    "text": "Know more",
+    "link": ""
+  },
+  {
+    "type": 5,
+    "desc": "Rich text",
+    "ids": [
+      1,
+      2,
+      3
+    ]
+  }
+]

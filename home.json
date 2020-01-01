@@ -1,0 +1,34 @@
+[
+  {
+    "language": "EN",
+    "icon": "语言图片地址",
+    "conf": {
+      "welcome": "Hello,Welcome to J&HChem.com",
+      "logo": "",
+      "search": {
+        "icon": "搜索图标",
+        "placeholder": "Search by Cas No,Product Name",
+        "skip": "菜单地址",
+        "action": "调转菜单之后的动作"
+      },
+      "category": [
+        {
+          "name": "Home",
+          "content": []
+        },
+        {
+          "name": "Company",
+          "content": [
+            {
+              "name": "Company Brief",
+              "content": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "language": "中文"
+  }
+]

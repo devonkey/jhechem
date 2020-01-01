@@ -1,9 +1,8 @@
-version getGitVersion(version, true)
-
-archivesBaseName = 'core'
-
 dependencies {
 
-    compile rootProject.ext.dependencies['dongjia-common']
-
+    compile rootProject.ext.depends['common']
+    compile rootProject.ext.depends['jackson-annotations']
+    compile rootProject.ext.depends['lombok']
+    compile rootProject.ext.depends['gson']
+    compile rootProject.ext.depends['slf4j-api']
 }

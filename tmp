@@ -1,2 +1,0 @@
-o.bookid,o.paixu,o.casno,o.bookname,o.enbookname,o.ordernum,o.fapiaonum,o.krname,IF(o.date1 IS NULL,0,unix_timestamp(o.date1)) date1,o.date2,o.cjsl,o.style,o.price1,o.price2,o.ysfs,o.ysfy,o.hl,o.zsh,o.huokuan,o.lirun,o.yundan,o.date3,o.cpgg,o.baozhuang,o.isyp,o.gyscontact,o.gysname,o.iskucun,o.kucun,o.fj1,o.fj2,o.ywy,o.admin_id,o.isjs,o.isdh,o.isfh,o.isfp,o.isfxbg,o.zhfrom,o.ists,o.date4,o.issh,o.iskp,o.isgcfp,o.mylx,o.ishx,o.date5,o.iswcts,o.ishkqf,o.qgchk,o.krqk,o.isok,o.krkpdz,o.krfhdz,o.content,a.name admin_name
-

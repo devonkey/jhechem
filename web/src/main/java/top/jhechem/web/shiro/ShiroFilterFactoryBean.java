@@ -1,7 +1,7 @@
 package top.jhechem.web.shiro;
 
-import cn.idongjia.log.Log;
-import cn.idongjia.log.LogFactory;
+import cn.devonkey.log.Log;
+import cn.devonkey.log.LogFactory;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.web.filter.mgt.FilterChainManager;
 import org.apache.shiro.web.mgt.WebSecurityManager;

@@ -1,5 +1,6 @@
 # Gradle temporary files
 .gradle/
+gradle*
 build/
 classes/
 target/

@@ -1,6 +1,6 @@
 package top.jhechem.core.base;
 
-import cn.idongjia.util.Utils;
+import cn.devonkey.util.Utils;
 import lombok.Setter;
 import top.jhechem.core.constant.Query;
 

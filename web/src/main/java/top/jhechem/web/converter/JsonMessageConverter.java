@@ -16,8 +16,8 @@
 
 package top.jhechem.web.converter;
 
-import cn.idongjia.common.context.DongjiaContext;
-import cn.idongjia.log.LoggerName;
+import cn.devonkey.common.context.DongjiaContext;
+import cn.devonkey.log.LoggerName;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;

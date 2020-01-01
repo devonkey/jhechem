@@ -1,11 +1,7 @@
-version getGitVersion(version, true)
-
-archivesBaseName = 'lib'
-
 dependencies {
 
     compile project(":core")
-
-    compile rootProject.ext.dependencies['dongjia-common']
+    compile rootProject.ext.depends['common']
+    compile rootProject.ext.depends['dubbo-rpc-rest']
 
 }

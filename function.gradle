@@ -1,0 +1,52 @@
+static String gitVersion(String prefix, Boolean withGit) {
+    return prefix + (withGit ? ('-' + ('git rev-parse --short HEAD'.execute().text.trim())) : '')
+}
+
+static String version(String prefix, Boolean release) {
+    return prefix + (release ? '' : '-SNAPSHOT')
+}
+
+ext {
+    snapshot = {
+        v -> return this.&version(v, false)
+    }
+    release = {
+        v -> return this.&version(v, true)
+    }
+}
+
+class PublishInfo {
+    String username
+    String password
+    String url
+
+    PublishInfo(Project project) {
+        if (project.group == "cn.devonkey") {
+            this.username = project.properties.my_publish_username
+            this.password = project.properties.my_publish_password
+            if (project.version.toString().endsWith('-SNAPSHOT')) {
+                this.url = project.properties.my_snapshot_url
+            } else {
+                this.url = project.properties.my_release_url
+            }
+        } else if (project.group == "com.idanchuang") {
+            this.username = project.properties.danchuang_publish_username
+            this.password = project.properties.danchuang_publish_password
+            if (project.version.toString().endsWith('-SNAPSHOT')) {
+                this.url = project.properties.danchuang_snapshot_url
+            } else {
+                this.url = project.properties.danchuang_release_url
+            }
+        }
+    }
+}
+
+static PublishInfo repo(Project project) {
+//    if (!ext.hasProperty('projectInfo')) {
+//        ext.set('projectInfo', new PublishInfo(project))
+//    }
+//    return ext.projectInfo
+    return new PublishInfo(project)
+}
+
+ext.setProperty('repo', this.&repo)

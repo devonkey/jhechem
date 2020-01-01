@@ -1,8 +1,2 @@
 include 'core','lib','user','order','web'
 
-project(':core').projectDir = "$rootDir/core" as File
-project(':lib').projectDir = "$rootDir/lib" as File
-project(':user').projectDir = "$rootDir/user" as File
-project(':order').projectDir = "$rootDir/order" as File
-project(':web').projectDir = "$rootDir/web" as File
-

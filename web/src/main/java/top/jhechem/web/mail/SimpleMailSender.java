@@ -1,7 +1,7 @@
 package top.jhechem.web.mail;
 
-import cn.idongjia.log.Log;
-import cn.idongjia.log.LogFactory;
+import cn.devonkey.log.Log;
+import cn.devonkey.log.LogFactory;
 import top.jhechem.web.pojo.MailRequest;
 
 import javax.activation.DataHandler;
